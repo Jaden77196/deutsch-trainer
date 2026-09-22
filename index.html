@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#EDEFF2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12161C" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Deutsch">
+<title>Deutsch · 德语训练</title>
+<style>
+/* ============================================================
+   设计系统
+   冷调纸感（不用米色/奶油色）+ 深蓝墨色。
+   唯一的高亮留给"掌握度"——五个圆点，呼应德语 Umlaut 的两点。
+   名词按 der/die/das 上色，这是德语教材的通行做法，也是功能性的。
+   ============================================================ */
+:root{
+  --paper:#EDEFF2; --paper-2:#E4E8ED; --paper-3:#DCE1E7;
+  --ink:#1A222C; --ink-soft:#5C6875; --ink-faint:#8B96A3;
+  --rule:#D2D8DF; --rule-soft:#E0E5EA;
+  --accent:#2F4B8F; --accent-soft:#E2E8F5;
+  --der:#2F4B8F; --die:#A63D52; --das:#3E7A5E;
+  --ok:#3E7A5E; --ok-soft:#E1EEE7;
+  --no:#A64B3C; --no-soft:#F6E4E0;
+  --font-de:Georgia,'Times New Roman','Noto Serif','Source Han Serif SC',serif;
+  --font-ui:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --r:10px;
+  --pad:20px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#12161C; --paper-2:#191E26; --paper-3:#212833;
+    --ink:#E8ECF1; --ink-soft:#9AA5B2; --ink-faint:#6E7885;
+    --rule:#2A313B; --rule-soft:#232A34;
+    --accent:#7C9BD8; --accent-soft:#1B2434;
+    --der:#7C9BD8; --die:#D98A9B; --das:#7FBF9C;
+    --ok:#7FBF9C; --ok-soft:#16241D;
+    --no:#D9948A; --no-soft:#2A1C19;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--font-ui);font-size:16px;line-height:1.6;
+  overscroll-behavior-y:none;
+}
+#app{
+  max-width:560px;margin:0 auto;min-height:100dvh;
+  display:flex;flex-direction:column;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* ---------- 顶栏 ---------- */
+.topbar{
+  display:flex;align-items:center;gap:12px;
+  padding:14px var(--pad) 12px;border-bottom:1px solid var(--rule);
+  position:sticky;top:0;background:var(--paper);z-index:10;
+}
+.topbar .back{
+  font-size:15px;color:var(--ink-soft);background:none;border:0;
+  padding:10px 12px 10px 0;margin:0;cursor:pointer;font-family:inherit;
+  min-width:44px;text-align:left;
+}
+.topbar .back:active{color:var(--ink)}
+.topbar .title{flex:1;font-size:15px;font-weight:600;letter-spacing:.01em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .title small{display:block;font-weight:400;font-size:12px;color:var(--ink-faint);
+  font-family:var(--font-de);font-style:italic;letter-spacing:.02em}
+
+/* ---------- 掌握度：五个圆点 ---------- */
+.dots{display:flex;gap:6px;align-items:center}
+.dots i{
+  width:9px;height:9px;border-radius:50%;background:transparent;
+  border:1.5px solid var(--rule);display:block;transition:background .25s,border-color .25s,transform .25s;
+}
+.dots i.on{background:var(--accent);border-color:var(--accent);transform:scale(1.15)}
+.dots i.pop{animation:pop .4s ease}
+@keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.7)}100%{transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){.dots i,.dots i.pop{animation:none;transition:none}}
+
+/* ---------- 舞台 ---------- */
+.stage{flex:1;display:flex;flex-direction:column;padding:0 var(--pad)}
+.center{flex:1;display:flex;flex-direction:column;justify-content:center}
+
+/* ---------- 德语词 ---------- */
+.de{
+  font-family:var(--font-de);font-weight:400;
+  font-size:clamp(30px,9vw,44px);line-height:1.2;letter-spacing:-.01em;
+  word-break:break-word;
+}
+.de.sm{font-size:clamp(22px,6.5vw,30px)}
+.art{font-style:italic;font-weight:400}
+.art.der{color:var(--der)} .art.die{color:var(--die)} .art.das{color:var(--das)}
+.hint{font-size:14px;color:var(--ink-faint);margin-top:8px;letter-spacing:.02em}
+.zh{font-size:19px;color:var(--ink);margin-top:6px}
+.zh.dim{color:var(--ink-soft)}
+
+/* ---------- 例句 ---------- */
+.ex{margin-top:22px;padding-top:18px;border-top:1px solid var(--rule-soft)}
+.ex .de{font-size:clamp(19px,5.4vw,23px);line-height:1.5}
+.ex .zh{font-size:15px;color:var(--ink-soft);margin-top:8px}
+.blank{
+  display:inline-block;min-width:3.2em;border-bottom:2px solid var(--accent);
+  text-align:center;color:var(--accent);font-weight:600;
+}
+.fill{color:var(--ok);font-weight:600;border-bottom:2px solid var(--ok)}
+.miss{color:var(--no);text-decoration:line-through;text-decoration-thickness:2px}
+
+/* ---------- 按钮 ---------- */
+.actions{display:flex;flex-direction:column;gap:10px;padding:22px 0 30px}
+.btn{
+  font-family:inherit;font-size:17px;font-weight:600;
+  padding:16px 20px;border-radius:var(--r);border:1px solid var(--rule);
+  background:var(--paper-2);color:var(--ink);cursor:pointer;
+  min-height:56px;transition:background .15s,transform .1s;
+}
+.btn:active{transform:scale(.985)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){.btn.primary{color:#0F141A}}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.45;cursor:default;transform:none}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:10px}
+.row .btn{flex:1}
+
+/* ---------- 选项 ---------- */
+.opts{display:flex;flex-direction:column;gap:10px;padding:20px 0 26px}
+.opt{
+  font-family:inherit;font-size:17px;text-align:left;
+  padding:15px 18px;border-radius:var(--r);border:1px solid var(--rule);
+  background:var(--paper-2);color:var(--ink);cursor:pointer;
+  min-height:56px;transition:background .15s,border-color .15s;
+}
+.opt .n{color:var(--ink-faint);margin-right:10px;font-variant-numeric:tabular-nums}
+.opt:active{transform:scale(.99)}
+.opt.correct{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
+.opt.wrong{background:var(--no-soft);border-color:var(--no);color:var(--no)}
+.opt.muted{opacity:.5}
+.opt:disabled{cursor:default}
+
+/* ---------- 输入 ---------- */
+.input{
+  font-family:var(--font-de);font-size:19px;
+  width:100%;padding:16px;border-radius:var(--r);
+  border:1px solid var(--rule);background:var(--paper-2);color:var(--ink);
+  min-height:56px;
+}
+.input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.input::placeholder{color:var(--ink-faint);font-family:var(--font-ui);font-size:16px}
+.specials{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.specials button{
+  font-family:var(--font-de);font-size:19px;min-width:48px;min-height:44px;
+  padding:6px 12px;border-radius:8px;border:1px solid var(--rule);
+  background:var(--paper-2);color:var(--ink);cursor:pointer;
+}
+.specials button:active{background:var(--paper-3)}
+
+/* ---------- 反馈 ---------- */
+.judge{margin-top:16px;font-size:15px;line-height:1.6;padding:12px 14px;border-radius:var(--r)}
+.judge.ok{background:var(--ok-soft);color:var(--ok)}
+.judge.no{background:var(--no-soft);color:var(--no)}
+.judge b{font-family:var(--font-de);font-size:17px}
+
+/* ---------- 发音按钮 ---------- */
+.speak{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;font-size:15px;color:var(--ink-soft);
+  background:none;border:1px solid var(--rule);border-radius:999px;
+  padding:10px 18px;margin-top:18px;cursor:pointer;min-height:44px;
+}
+.speak:active{background:var(--paper-2)}
+.speak svg{width:17px;height:17px;flex:none}
+
+/* ---------- 首页 ---------- */
+.head{padding:26px var(--pad) 20px}
+.head h1{font-family:var(--font-de);font-size:30px;margin:0;font-weight:400;letter-spacing:-.01em}
+.head p{margin:8px 0 0;font-size:14px;color:var(--ink-soft)}
+.list{border-top:1px solid var(--rule)}
+.item{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  padding:16px var(--pad);border:0;border-bottom:1px solid var(--rule);
+  background:none;color:var(--ink);font-family:inherit;font-size:16px;cursor:pointer;
+}
+.item:active{background:var(--paper-2)}
+.item .idx{
+  font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);
+  min-width:22px;font-variant-numeric:tabular-nums;
+}
+.item .body{flex:1;min-width:0}
+.item .nm{font-size:16px;font-weight:500}
+.item .nm small{display:block;font-family:var(--font-de);font-style:italic;
+  font-weight:400;font-size:13px;color:var(--ink-faint);letter-spacing:.02em}
+.item.locked{opacity:.42;cursor:default}
+.item.locked:active{background:none}
+.item.done .idx{color:var(--accent)}
+.item .cnt{font-size:12px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.badge{
+  font-size:11px;padding:2px 7px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);font-weight:600;
+}
+.foot{padding:22px var(--pad) 34px;font-size:12px;color:var(--ink-faint);line-height:1.8}
+.foot button{
+  font-family:inherit;font-size:12px;color:var(--ink-faint);
+  background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* ---------- 阅读 ---------- */
+.passage{font-family:var(--font-de);font-size:18px;line-height:1.75;letter-spacing:.005em}
+.passage p{margin:0 0 1.1em}
+.q{margin-top:26px;padding-top:20px;border-top:1px solid var(--rule-soft)}
+.q .qt{font-size:16px;font-weight:600;margin-bottom:12px}
+.q .qt small{display:block;font-family:var(--font-de);font-weight:400;
+  font-size:15px;color:var(--ink-soft);margin-top:4px}
+.trans{margin-top:24px;padding-top:18px;border-top:1px solid var(--rule-soft);
+  font-size:15px;color:var(--ink-soft);line-height:1.9}
+
+/* ---------- 进度条 ---------- */
+.bar{height:2px;background:var(--rule-soft);position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);transition:width .3s}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+
+.mode-list{padding:8px 0 0}
+.mode{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  padding:17px var(--pad);border:0;border-bottom:1px solid var(--rule);
+  background:none;color:var(--ink);font-family:inherit;cursor:pointer;
+}
+.mode:active{background:var(--paper-2)}
+.mode .k{font-family:var(--font-de);font-size:20px;color:var(--ink-faint);min-width:26px}
+.mode .body{flex:1}
+.mode .nm{font-size:16px;font-weight:500}
+.mode .sub{font-size:13px;color:var(--ink-faint);margin-top:2px}
+.mode .arrow{color:var(--ink-faint);font-size:18px}
+.note{padding:16px var(--pad) 0;font-size:13px;color:var(--ink-soft);line-height:1.7}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ============================================================
+   课程内容
+   单词格式：[德语, 中文, 读音提示, 例句, 例句译文, 词性]
+     - 名词在德语里带上冠词，如 'die Familie'，程序会自动解析词性颜色
+     - 例句里用 { } 标出可以挖空的部分（用变位后的形式，如 {bin}）
+     - 词性：n 名词 / v 动词 / a 形容词 / x 其他
+   要加新词，直接在对应的 w 数组里加一行即可。
+   ============================================================ */
+const GROUPS = [
+{t:'问候与道别', s:'Begrüßung', w:[
+ ['Hallo','你好（随意）','哈洛','{Hallo}, ich bin Li.','你好，我是李。','x'],
+ ['Guten Morgen','早上好','古腾 摩根','{Guten Morgen}, Frau Müller!','早上好，穆勒女士！','x'],
+ ['Guten Tag','你好（白天正式）','古腾 塔克','{Guten Tag}, wie geht es Ihnen?','您好，您过得好吗？','x'],
+ ['Guten Abend','晚上好','古腾 阿本特','{Guten Abend}, Herr Schmidt.','晚上好，施密特先生。','x'],
+ ['Gute Nacht','晚安','古特 纳赫特','{Gute Nacht}, schlaf gut!','晚安，睡个好觉！','x'],
+ ['Tschüss','再见（随意）','去斯','{Tschüss}, bis morgen!','再见，明天见！','x'],
+ ['Auf Wiedersehen','再见（正式）','奥夫 维德泽恩','{Auf Wiedersehen}, Frau Doktor.','再见，博士女士。','x'],
+ ['Danke','谢谢','当克','{Danke} für die Hilfe!','谢谢帮忙！','x'],
+ ['Bitte','请／不客气','比特','{Bitte}, kommen Sie herein.','请进。','x'],
+ ['Entschuldigung','对不起／劳驾','恩特舒尔迪贡','{Entschuldigung}, wo ist der Bahnhof?','劳驾，火车站在哪里？','x']
+]},
+{t:'认识与自我介绍', s:'Sich vorstellen', w:[
+ ['ich','我','伊希','{Ich} heiße Anna.','我叫安娜。','x'],
+ ['du','你（对熟人）','杜','Wie heißt {du}?','你叫什么名字？','x'],
+ ['Sie','您（尊称）','兹','Wie heißen {Sie}?','您怎么称呼？','x'],
+ ['sein','是','再恩','Ich {bin} aus China.','我来自中国。','v'],
+ ['heißen','名叫','海森','Wie {heißen} Sie?','您叫什么名字？','v'],
+ ['kommen','来，来自','科门','Ich {komme} aus Deutschland.','我来自德国。','v'],
+ ['wohnen','居住','沃嫩','Ich {wohne} in Berlin.','我住在柏林。','v'],
+ ['der Name','名字','纳默','Mein {Name} ist Li Wei.','我的名字是李伟。','n'],
+ ['das Land','国家','兰特','Aus welchem {Land} kommen Sie?','您来自哪个国家？','n'],
+ ['die Sprache','语言','施普拉赫','Deutsch ist eine schöne {Sprache}.','德语是一门美丽的语言。','n']
+]},
+{t:'数字 0–12', s:'Zahlen', w:[
+ ['null','零','努尔','Die Temperatur ist {null} Grad.','温度是零度。','x'],
+ ['eins','一','艾恩斯','Ich möchte {eins} von diesen.','我想要其中一个。','x'],
+ ['zwei','二','次外','Ich habe {zwei} Schwestern.','我有两个姐妹。','x'],
+ ['drei','三','德赖','Das kostet {drei} Euro.','这个三欧元。','x'],
+ ['vier','四','菲尔','Wir sind {vier} Personen.','我们四个人。','x'],
+ ['fünf','五','弗恩夫','Ich arbeite {fünf} Tage pro Woche.','我每周工作五天。','x'],
+ ['sechs','六','泽克斯','Es ist {sechs} Uhr.','现在六点。','x'],
+ ['sieben','七','济本','Die Woche hat {sieben} Tage.','一周有七天。','x'],
+ ['acht','八','阿赫特','Ich stehe um {acht} Uhr auf.','我八点起床。','x'],
+ ['neun','九','诺伊恩','Der Kurs beginnt um {neun}.','课程九点开始。','x'],
+ ['zehn','十','岑','Ich zähle bis {zehn}.','我数到十。','x'],
+ ['elf','十一','艾尔夫','Es ist {elf} Uhr.','现在十一点。','x'],
+ ['zwölf','十二','次沃尔夫','Das Jahr hat {zwölf} Monate.','一年有十二个月。','x']
+]},
+{t:'数字 13–100', s:'Zahlen II', w:[
+ ['dreizehn','十三','德赖岑','Mein Bruder ist {dreizehn} Jahre alt.','我弟弟十三岁。','x'],
+ ['vierzehn','十四','菲尔岑','Sie ist {vierzehn}.','她十四岁。','x'],
+ ['fünfzehn','十五','弗恩夫岑','Das kostet {fünfzehn} Euro.','这个十五欧元。','x'],
+ ['sechzehn','十六','泽希岑','Mit {sechzehn} darf man Auto fahren.','十六岁可以开车。','x'],
+ ['siebzehn','十七','济普岑','Er ist {siebzehn} Jahre alt.','他十七岁。','x'],
+ ['achtzehn','十八','阿赫特岑','Mit {achtzehn} ist man volljährig.','十八岁成年。','x'],
+ ['neunzehn','十九','诺伊恩岑','Sie wohnt in Zimmer {neunzehn}.','她住在十九号房间。','x'],
+ ['zwanzig','二十','次万齐希','Ich habe {zwanzig} Euro.','我有二十欧元。','x'],
+ ['dreißig','三十','德赖西希','Der Monat hat {dreißig} Tage.','这个月有三十天。','x'],
+ ['hundert','一百','洪德特','Das kostet {hundert} Euro.','这个一百欧元。','x']
+]},
+{t:'基础动词', s:'Grundverben', w:[
+ ['gehen','走，去','给恩','Ich {gehe} nach Hause.','我回家。','v'],
+ ['sprechen','说，讲','施普雷贤','{Sprechen} Sie Deutsch?','您说德语吗？','v'],
+ ['verstehen','理解','费施泰恩','Ich {verstehe} nicht.','我不明白。','v'],
+ ['lernen','学习','雷恩恩','Ich {lerne} Deutsch.','我在学德语。','v'],
+ ['arbeiten','工作','阿拜滕','Wo {arbeiten} Sie?','您在哪里工作？','v'],
+ ['kaufen','买','考芬','Ich möchte Brot {kaufen}.','我想买面包。','v'],
+ ['essen','吃','艾森','Wir {essen} um sieben.','我们七点吃饭。','v'],
+ ['trinken','喝','特林肯','Ich {trinke} gern Kaffee.','我喜欢喝咖啡。','v'],
+ ['schlafen','睡觉','施拉芬','Ich {schlafe} acht Stunden.','我睡八小时。','v'],
+ ['lesen','读','雷曾','Ich {lese} ein Buch.','我在读一本书。','v']
+]},
+{t:'家庭', s:'Die Familie', w:[
+ ['die Familie','家庭','法米利厄','Meine {Familie} ist groß.','我的家庭很大。','n'],
+ ['die Mutter','母亲','穆特','Meine {Mutter} kocht gut.','我妈妈做饭很好吃。','n'],
+ ['der Vater','父亲','法特','Mein {Vater} arbeitet viel.','我爸爸工作很多。','n'],
+ ['der Bruder','兄弟','布鲁德','Mein {Bruder} ist zehn.','我弟弟十岁。','n'],
+ ['die Schwester','姐妹','施韦斯特','Meine {Schwester} wohnt in Köln.','我姐姐住在科隆。','n'],
+ ['das Kind','孩子','金特','Das {Kind} spielt im Garten.','孩子在花园里玩。','n'],
+ ['der Sohn','儿子','佐恩','Ihr {Sohn} ist Student.','她儿子是大学生。','n'],
+ ['die Tochter','女儿','托赫特','Meine {Tochter} geht zur Schule.','我女儿上学。','n'],
+ ['die Eltern','父母','艾尔滕','Meine {Eltern} wohnen in Beijing.','我父母住在北京。','n'],
+ ['der Mann','男人／丈夫','曼','Ihr {Mann} ist Arzt.','她丈夫是医生。','n']
+]},
+{t:'饮食', s:'Essen und Trinken', w:[
+ ['das Brot','面包','布洛特','Ich kaufe frisches {Brot}.','我买新鲜面包。','n'],
+ ['das Wasser','水','瓦瑟','Ein Glas {Wasser}, bitte.','请来一杯水。','n'],
+ ['der Kaffee','咖啡','卡费','Ich trinke {Kaffee} ohne Zucker.','我喝咖啡不加糖。','n'],
+ ['der Tee','茶','泰','Möchten Sie {Tee} oder Kaffee?','您想要茶还是咖啡？','n'],
+ ['das Bier','啤酒','比尔','Ein {Bier}, bitte!','请来一杯啤酒！','n'],
+ ['die Milch','牛奶','米尔希','Ich trinke {Milch} zum Frühstück.','我早餐喝牛奶。','n'],
+ ['der Käse','奶酪','凯泽','Der {Käse} kommt aus der Schweiz.','这奶酪来自瑞士。','n'],
+ ['der Apfel','苹果','阿普费尔','Ein {Apfel} am Tag ist gesund.','一天一苹果，身体好。','n'],
+ ['das Fleisch','肉','弗莱施','Ich esse kein {Fleisch}.','我不吃肉。','n'],
+ ['die Suppe','汤','祖佩','Die {Suppe} ist heiß.','汤很烫。','n']
+]},
+{t:'餐厅', s:'Im Restaurant', w:[
+ ['die Speisekarte','菜单','施派泽卡特','Die {Speisekarte}, bitte.','请给我菜单。','n'],
+ ['bestellen','点（菜）','贝施泰伦','Ich möchte {bestellen}.','我想点菜。','v'],
+ ['die Rechnung','账单','雷希农','Die {Rechnung}, bitte!','请结账！','n'],
+ ['bezahlen','付款','贝曹伦','Wir möchten {bezahlen}.','我们想结账。','v'],
+ ['der Kellner','服务员','凯尔纳','Der {Kellner} bringt das Wasser.','服务员端来水。','n'],
+ ['das Frühstück','早餐','弗吕施图克','Das {Frühstück} ist inklusive.','含早餐。','n'],
+ ['das Mittagessen','午餐','米塔克艾森','Zum {Mittagessen} esse ich Reis.','午饭我吃米饭。','n'],
+ ['das Abendessen','晚餐','阿本特艾森','Das {Abendessen} war lecker.','晚餐很好吃。','n'],
+ ['lecker','好吃的','莱克','Der Kuchen ist sehr {lecker}.','这个蛋糕很好吃。','a'],
+ ['satt','饱的','扎特','Ich bin {satt}.','我吃饱了。','a']
+]},
+{t:'时间与日期', s:'Zeit und Datum', w:[
+ ['die Uhr','钟／点钟','乌尔','Es ist drei {Uhr}.','现在三点。','n'],
+ ['die Stunde','小时','施图恩德','Ich warte eine {Stunde}.','我等一小时。','n'],
+ ['die Minute','分钟','米努特','Warten Sie eine {Minute}.','请等一分钟。','n'],
+ ['der Tag','天','塔克','Jeden {Tag} lerne ich Deutsch.','我每天学德语。','n'],
+ ['die Woche','星期','沃赫','Diese {Woche} habe ich Zeit.','这周我有时间。','n'],
+ ['der Monat','月','莫纳特','Der Kurs dauert einen {Monat}.','课程持续一个月。','n'],
+ ['das Jahr','年','亚尔','Ich lerne ein {Jahr} Deutsch.','我学德语一年了。','n'],
+ ['heute','今天','霍伊特','{Heute} ist Montag.','今天是星期一。','x'],
+ ['morgen','明天','摩根','{Morgen} fahre ich nach Berlin.','明天我去柏林。','x'],
+ ['gestern','昨天','格斯特恩','{Gestern} war ich müde.','昨天我很累。','x']
+]},
+{t:'城市与交通', s:'Stadt und Verkehr', w:[
+ ['die Stadt','城市','施塔特','München ist eine schöne {Stadt}.','慕尼黑是座美丽的城市。','n'],
+ ['der Bahnhof','火车站','班霍夫','Wo ist der {Bahnhof}?','火车站在哪里？','n'],
+ ['der Zug','火车','楚克','Der {Zug} fährt um acht.','火车八点开。','n'],
+ ['der Bus','公交车','布斯','Ich nehme den {Bus}.','我坐公交车。','n'],
+ ['die Straße','街道','施特拉瑟','Ich wohne in dieser {Straße}.','我住在这条街。','n'],
+ ['das Auto','汽车','奥托','Mein {Auto} ist alt.','我的车很旧。','n'],
+ ['die Fahrkarte','车票','法尔卡特','Eine {Fahrkarte} nach Berlin, bitte.','请给我一张去柏林的车票。','n'],
+ ['fahren','行驶，乘车','法伦','Ich {fahre} nach Hamburg.','我去汉堡。','v'],
+ ['der Flughafen','机场','弗卢克哈芬','Der {Flughafen} ist weit.','机场很远。','n'],
+ ['das Flugzeug','飞机','弗卢克措伊克','Das {Flugzeug} landet um zehn.','飞机十点降落。','n']
+]},
+{t:'购物', s:'Einkaufen', w:[
+ ['das Geschäft','商店','格舍夫特','Das {Geschäft} ist geschlossen.','商店关门了。','n'],
+ ['der Markt','市场','马尔克特','Ich gehe auf den {Markt}.','我去市场。','n'],
+ ['der Preis','价格','普赖斯','Der {Preis} ist zu hoch.','价格太高了。','n'],
+ ['das Geld','钱','盖尔特','Ich habe kein {Geld}.','我没钱。','n'],
+ ['der Euro','欧元','奥伊罗','Das kostet zehn {Euro}.','这个十欧元。','n'],
+ ['teuer','贵的','托伊尔','Das ist zu {teuer}.','这太贵了。','a'],
+ ['billig','便宜的','比利希','Das ist sehr {billig}.','这很便宜。','a'],
+ ['die Kasse','收银台','卡瑟','Bitte zahlen Sie an der {Kasse}.','请在收银台付款。','n'],
+ ['die Größe','尺码／大小','格勒瑟','Welche {Größe} brauchen Sie?','您要哪个尺码？','n'],
+ ['anprobieren','试穿','安普罗比伦','Kann ich das {anprobieren}?','我可以试穿吗？','v']
+]},
+{t:'住宿', s:'Im Hotel', w:[
+ ['das Hotel','酒店','霍特尔','Das {Hotel} ist im Zentrum.','酒店在市中心。','n'],
+ ['das Zimmer','房间','齐默','Ich brauche ein {Zimmer}.','我需要一个房间。','n'],
+ ['der Schlüssel','钥匙','施吕瑟尔','Hier ist Ihr {Schlüssel}.','这是您的钥匙。','n'],
+ ['die Rezeption','前台','雷采普齐翁','Fragen Sie an der {Rezeption}.','请到前台询问。','n'],
+ ['die Dusche','淋浴','杜舍','Das Zimmer hat eine {Dusche}.','房间有淋浴。','n'],
+ ['das Bett','床','贝特','Das {Bett} ist bequem.','床很舒服。','n'],
+ ['die Nacht','夜','纳赫特','Eine {Nacht} kostet 80 Euro.','一晚80欧。','n'],
+ ['frei','空着的','弗赖','Ist noch ein Zimmer {frei}?','还有空房吗？','a'],
+ ['reservieren','预订','雷泽维伦','Ich möchte ein Zimmer {reservieren}.','我想预订一个房间。','v'],
+ ['der Gast','客人','加斯特','Der {Gast} kommt um sechs.','客人六点到。','n']
+]},
+{t:'身体与健康', s:'Körper und Gesundheit', w:[
+ ['der Kopf','头','科普夫','Mein {Kopf} tut weh.','我头疼。','n'],
+ ['das Auge','眼睛','奥格','Ihr {Auge} ist blau.','她眼睛是蓝色的。','n'],
+ ['die Hand','手','汉特','Gib mir deine {Hand}.','把手给我。','n'],
+ ['der Fuß','脚','弗斯','Mein {Fuß} ist kalt.','我的脚很冷。','n'],
+ ['der Arm','胳膊','阿尔姆','Sein {Arm} ist gebrochen.','他胳膊骨折了。','n'],
+ ['das Bein','腿','拜恩','Mein {Bein} tut weh.','我腿疼。','n'],
+ ['der Bauch','肚子','包赫','Mein {Bauch} ist voll.','我肚子饱了。','n'],
+ ['krank','生病的','克兰克','Ich bin {krank}.','我生病了。','a'],
+ ['gesund','健康的','格尊特','Obst ist {gesund}.','水果很健康。','a'],
+ ['der Arzt','医生','阿尔茨特','Ich gehe zum {Arzt}.','我去看医生。','n']
+]},
+{t:'天气与季节', s:'Wetter und Jahreszeiten', w:[
+ ['das Wetter','天气','韦特','Das {Wetter} ist schön.','天气很好。','n'],
+ ['die Sonne','太阳','佐内','Die {Sonne} scheint.','太阳在照耀。','n'],
+ ['der Regen','雨','雷根','Heute gibt es {Regen}.','今天有雨。','n'],
+ ['der Schnee','雪','施内','Im Winter liegt {Schnee}.','冬天有雪。','n'],
+ ['der Wind','风','温特','Der {Wind} ist stark.','风很大。','n'],
+ ['warm','暖的','瓦尔姆','Es ist heute {warm}.','今天很暖和。','a'],
+ ['kalt','冷的','卡尔特','Im Winter ist es {kalt}.','冬天很冷。','a'],
+ ['der Sommer','夏天','佐默','Im {Sommer} fahren wir ans Meer.','夏天我们去海边。','n'],
+ ['der Winter','冬天','温特','Der {Winter} ist lang.','冬天很长。','n'],
+ ['der Frühling','春天','弗吕林','Im {Frühling} blühen die Blumen.','春天花开了。','n']
+]},
+{t:'常用形容词', s:'Adjektive', w:[
+ ['gut','好的','古特','Das Essen ist {gut}.','饭菜很好。','a'],
+ ['schlecht','坏的','施莱希特','Das Wetter ist {schlecht}.','天气很糟。','a'],
+ ['groß','大的','格罗斯','Berlin ist eine {große} Stadt.','柏林是座大城市。','a'],
+ ['klein','小的','克莱恩','Das Zimmer ist {klein}.','房间很小。','a'],
+ ['alt','老的','阿尔特','Mein Auto ist {alt}.','我的车很旧。','a'],
+ ['neu','新的','诺伊','Das ist ein {neues} Handy.','这是新手机。','a'],
+ ['schön','美的','舍恩','Der Garten ist {schön}.','花园很美。','a'],
+ ['schnell','快的','施内尔','Der Zug ist {schnell}.','火车很快。','a'],
+ ['langsam','慢的','朗扎姆','Bitte sprechen Sie {langsam}.','请说慢一点。','a'],
+ ['müde','累的','米德','Ich bin sehr {müde}.','我很累。','a']
+]},
+{t:'情态动词与常用表达', s:'Modalverben', w:[
+ ['können','能，会','克嫩','Ich {kann} Deutsch sprechen.','我会说德语。','v'],
+ ['müssen','必须','米森','Ich {muss} jetzt gehen.','我现在必须走了。','v'],
+ ['wollen','想要','沃伦','Wir {wollen} nach Berlin fahren.','我们想去柏林。','v'],
+ ['möchten','想要（礼貌）','默希滕','Ich {möchte} einen Kaffee.','我想要一杯咖啡。','v'],
+ ['dürfen','被允许','迪尔芬','Hier {darf} man nicht rauchen.','这里不许吸烟。','v'],
+ ['sollen','应该','佐伦','Was {soll} ich tun?','我该怎么办？','v'],
+ ['gern','乐意地','盖恩','Ich trinke {gern} Tee.','我喜欢喝茶。','x'],
+ ['vielleicht','也许','菲尔莱希特','{Vielleicht} komme ich später.','也许我晚点来。','x'],
+ ['natürlich','当然','纳蒂尔利希','{Natürlich} helfe ich dir.','我当然帮你。','x'],
+ ['leider','可惜，遗憾','莱德','{Leider} habe ich keine Zeit.','很遗憾我没时间。','x']
+]}
+];
+
+/* 阅读理解：难度递进，after 表示学完第几组后解锁 */
+const READINGS = [
+{id:'r1', after:2, t:'Ich heiße Anna', zh:'我叫安娜',
+ de:['Hallo! Ich heiße Anna Müller. Ich komme aus Deutschland. Ich wohne in Berlin. Ich bin Studentin. Ich lerne Chinesisch. Guten Tag!'],
+ tr:'你好！我叫安娜·穆勒。我来自德国。我住在柏林。我是大学生。我在学中文。你好！',
+ qs:[
+  {q:'安娜从哪里来？', de:'Woher kommt Anna?', o:['中国','德国','柏林'], a:1},
+  {q:'安娜住在哪里？', de:'Wo wohnt Anna?', o:['柏林','慕尼黑','科隆'], a:0},
+  {q:'安娜在做什么？', de:'Was macht Anna?', o:['工作','学中文','做饭'], a:1}
+ ]},
+{id:'r2', after:5, t:'Meine Familie', zh:'我的家庭',
+ de:['Meine Familie ist nicht groß. Ich habe einen Vater, eine Mutter und eine Schwester.',
+     'Mein Vater arbeitet in einem Büro. Meine Mutter ist Lehrerin.',
+     'Meine Schwester heißt Lena und ist zwölf Jahre alt. Wir wohnen in Hamburg.',
+     'Am Wochenende essen wir zusammen.'],
+ tr:'我的家庭不大。我有爸爸、妈妈和一个姐姐。我爸爸在办公室工作。我妈妈是老师。我姐姐叫蕾娜，十二岁。我们住在汉堡。周末我们一起吃饭。',
+ qs:[
+  {q:'这个人有几个兄弟姐妹？', de:'Wie viele Geschwister?', o:['一个姐妹','一个兄弟','两个姐妹'], a:0},
+  {q:'妈妈做什么工作？', de:'Was ist die Mutter von Beruf?', o:['老师','医生','职员'], a:0},
+  {q:'蕾娜多大？', de:'Wie alt ist Lena?', o:['十岁','十二岁','二十岁'], a:1}
+ ]},
+{id:'r3', after:8, t:'Im Restaurant', zh:'在餐厅',
+ de:['Am Abend gehen wir ins Restaurant. Der Kellner bringt die Speisekarte.',
+     'Ich bestelle eine Suppe und ein Bier. Mein Freund möchte Fleisch mit Reis.',
+     'Das Essen ist lecker. Am Ende bezahlen wir. Die Rechnung ist 32 Euro.'],
+ tr:'晚上我们去餐厅。服务员拿来菜单。我点了一份汤和一杯啤酒。我朋友想要肉配米饭。饭菜很好吃。最后我们结账，账单是32欧元。',
+ qs:[
+  {q:'这个人点了什么？', de:'Was bestellt die Person?', o:['汤和啤酒','肉和米饭','面包和牛奶'], a:0},
+  {q:'朋友想吃什么？', de:'Was möchte der Freund?', o:['汤','肉配米饭','只有啤酒'], a:1},
+  {q:'这顿饭多少钱？', de:'Wie viel kostet das Essen?', o:['23欧元','32欧元','42欧元'], a:1}
+ ]},
+{id:'r4', after:10, t:'Eine Reise nach München', zh:'慕尼黑之行',
+ de:['Morgen fahre ich nach München. Der Zug fährt um acht Uhr vom Bahnhof ab.',
+     'Die Fahrt dauert vier Stunden. In München besuche ich einen Freund.',
+     'Wir gehen auf den Markt und trinken Kaffee. Am Abend fahre ich mit dem Bus zum Hotel.'],
+ tr:'明天我去慕尼黑。火车八点从火车站出发。车程四小时。在慕尼黑我拜访一个朋友。我们去市场喝咖啡。晚上我坐公交车去酒店。',
+ qs:[
+  {q:'火车几点出发？', de:'Wann fährt der Zug ab?', o:['七点','八点','十点'], a:1},
+  {q:'车程多长？', de:'Wie lange dauert die Fahrt?', o:['两小时','四小时','八小时'], a:1},
+  {q:'这个人怎么去酒店？', de:'Wie fährt die Person zum Hotel?', o:['坐公交','坐火车','坐飞机'], a:0}
+ ]},
+{id:'r5', after:12, t:'Im Geschäft und im Hotel', zh:'在商店和酒店',
+ de:['Ich brauche ein neues Hemd. Ich gehe in ein Geschäft in der Stadt.',
+     'Das Hemd kostet 25 Euro, aber die Größe ist zu klein. Ich probiere eine andere Größe an.',
+     'Dann gehe ich zum Hotel. Ich habe ein Zimmer reserviert. Der Schlüssel liegt an der Rezeption.',
+     'Das Zimmer ist klein, aber bequem.'],
+ tr:'我需要一件新衬衫。我去城里的一家商店。衬衫25欧元，但尺码太小。我试了另一个尺码。然后我去酒店。我预订了一个房间。钥匙在前台。房间不大，但很舒服。',
+ qs:[
+  {q:'这个人需要什么？', de:'Was braucht die Person?', o:['一件衬衫','一双鞋','一个包'], a:0},
+  {q:'为什么不买第一件？', de:'Warum kauft sie das erste Hemd nicht?', o:['太贵','尺码太小','颜色不好'], a:1},
+  {q:'钥匙在哪里？', de:'Wo ist der Schlüssel?', o:['在前台','在房间里','在商店'], a:0}
+ ]},
+{id:'r6', after:15, t:'Ein Tag im Winter', zh:'冬日的一天',
+ de:['Es ist Winter und sehr kalt. Heute ist Montag. Ich stehe um sieben Uhr auf.',
+     'Ich frühstücke mit Brot und Milch. Draußen liegt Schnee und der Wind ist stark.',
+     'Ich bin müde, denn ich schlafe nur sechs Stunden. Mein Kopf tut weh.',
+     'Ich gehe nicht zur Arbeit. Ich bleibe zu Hause und trinke Tee.'],
+ tr:'现在是冬天，非常冷。今天是星期一。我七点起床。我早餐吃面包喝牛奶。外面有积雪，风很大。我很累，因为我只睡了六小时。我头疼。我不去上班，待在家里喝茶。',
+ qs:[
+  {q:'今天是星期几？', de:'Welcher Tag ist heute?', o:['星期一','星期二','星期天'], a:0},
+  {q:'早餐吃什么？', de:'Was isst die Person zum Frühstück?', o:['面包和牛奶','鸡蛋和茶','汤和米饭'], a:0},
+  {q:'为什么不去上班？', de:'Warum geht sie nicht zur Arbeit?', o:['下雪','她累而且头疼','交通不便'], a:1}
+ ]}
+];
+/* ============================================================
+   应用逻辑
+   ============================================================ */
+const KEY='deutsch.v1';
+const PASSES=5;                 // 满分几遍解锁下一组
+const DEF={g:{},set:{article:true,strict:true,rate:0.85}};
+let S=JSON.parse(JSON.stringify(DEF));
+
+function load(){
+  try{
+    const r=localStorage.getItem(KEY);
+    if(r){const p=JSON.parse(r);S.g=p.g||{};S.set=Object.assign({},DEF.set,p.set||{});}
+  }catch(e){}
+}
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} }
+function gs(i){ // group state
+  const k='g'+i;
+  if(!S.g[k])S.g[k]={dots:0,seen:false,w:{}};
+  return S.g[k];
+}
+function unlocked(i){ return i===0 || gs(i-1).dots>=PASSES; }
+function mastered(i){ return gs(i).dots>=PASSES; }
+
+/* ---------- 工具 ---------- */
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* ---------- 解析单词 ---------- */
+function pw(w){
+  const [de,zh,hint,ex,exZh,type]=w;
+  let art=null,bare=de;
+  const m=de.match(/^(der|die|das)\s+(.+)$/i);
+  if(m){art=m[1].toLowerCase();bare=m[2];}
+  const bm=ex.match(/\{([^}]*)\}/);
+  const blank=bm?bm[1]:null;
+  const parts=ex.split(/\{[^}]*\}/);
+  return {de,bare,art,zh,hint,ex,exZh,type,blank,parts};
+}
+/* 句子用 HTML 还原：fill=填入的词（高亮），null=显示下划线空位 */
+function sentHTML(p,fill){
+  if(!p.blank)return esc(p.ex);
+  const mid = fill===null ? '<span class="blank">&nbsp;&nbsp;&nbsp;</span>'
+    : (fill===false ? '<span class="blank">&nbsp;&nbsp;&nbsp;</span>'
+    : '<span class="fill">'+esc(fill)+'</span>');
+  return esc(p.parts[0])+mid+esc(p.parts[1]||'');
+}
+/* 词性色 */
+function artClass(a){return a==='der'?'der':a==='die'?'die':a==='das'?'das':'';}
+
+/* ============================================================
+   语音合成（德语 TTS）
+   ============================================================ */
+let deVoice=null;
+function pickVoice(){
+  if(!('speechSynthesis' in window))return;
+  const vs=speechSynthesis.getVoices()||[];
+  deVoice = vs.find(v=>/^de([-_]|$)/i.test(v.lang)&&/google|premium|enhanced|siri/i.test(v.name))
+         || vs.find(v=>/^de([-_]|$)/i.test(v.lang)) || null;
+}
+if('speechSynthesis' in window){
+  pickVoice();
+  speechSynthesis.onvoiceschanged=pickVoice;
+}
+function speak(text,rate){
+  if(!('speechSynthesis' in window))return;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='de-DE'; u.rate=rate||S.set.rate;
+    if(!deVoice)pickVoice();
+    if(deVoice)u.voice=deVoice;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+const SPEAK_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+
+/* ============================================================
+   路由
+   ============================================================ */
+let route={v:'home'};
+let ses=null;   // 当前练习会话
+const app=document.getElementById('app');
+
+function go(v,extra){
+  route=Object.assign({v},extra||{});
+  render();
+  window.scrollTo(0,0);
+}
+
+function render(){
+  if(ses)      renderSession();
+  else if(route.v==='home')     renderHome();
+  else if(route.v==='group')    renderGroup(route.i);
+  else if(route.v==='readings') renderReadings();
+  else if(route.v==='reading')  renderReading(route.id);
+}
+
+function topbar(title,sub,back){
+  return '<div class="topbar">'
+   +(back?'<button class="back" id="bk">← 返回</button>':'')
+   +'<div class="title">'+esc(title)+(sub?'<small>'+esc(sub)+'</small>':'')+'</div>'
+   +'</div>';
+}
+function bindBack(fn){
+  const b=document.getElementById('bk');
+  if(b)b.onclick=fn;
+}
+
+/* ============================================================
+   首页
+   ============================================================ */
+function renderHome(){
+  let total=0,done=0;
+  GROUPS.forEach((g,i)=>{total++;if(mastered(i))done++;});
+  const curIdx=GROUPS.findIndex((g,i)=>!mastered(i));
+  let h='<div class="head"><h1>Deutsch</h1>'
+   +'<p>已掌握 '+done+' / '+total+' 组　·　每组五遍满分即可解锁下一组</p></div>'
+   +'<div class="list">';
+  GROUPS.forEach((g,i)=>{
+    const st=gs(i),lock=!unlocked(i),ok=mastered(i);
+    const isCur=(i===curIdx);
+    h+='<button class="item'+(lock?' locked':'')+(ok?' done':'')+'" data-g="'+i+'"'+(lock?' disabled':'')+'>'
+     +'<span class="idx">'+(ok?'✓':String(i+1).padStart(2,'0'))+'</span>'
+     +'<span class="body"><span class="nm">'+esc(g.t)
+     +(isCur&&!lock?' <span class="badge">当前</span>':'')
+     +'<small>'+esc(g.s)+'</small></span></span>'
+     +'<span class="cnt">'+st.dots+'/'+PASSES+'</span>'
+     +dots(st.dots)+'</button>';
+  });
+  h+='</div>';
+  h+='<div class="list" style="border-top:1px solid var(--rule);margin-top:22px">'
+   +'<button class="item" id="rd"><span class="idx">Aa</span><span class="body">'
+   +'<span class="nm">阅读理解<small>Leseverstehen</small></span></span>'
+   +'<span class="cnt">'+READINGS.filter(r=>unlockedReading(r)).length+'/'+READINGS.length+'</span></button></div>';
+  h+='<div class="foot">'
+   +'<div><button id="st">设置</button></div></div>';
+  app.innerHTML=h;
+  app.querySelectorAll('.item[data-g]').forEach(b=>{b.onclick=()=>go('group',{i:+b.dataset.g});});
+  document.getElementById('rd').onclick=()=>go('readings');
+  document.getElementById('st').onclick=openSettings;
+}
+function dots(n){
+  let s='<span class="dots">';
+  for(let i=0;i<PASSES;i++)s+='<i class="'+(i<n?'on':'')+'"></i>';
+  return s+'</span>';
+}
+function unlockedReading(r){ return r.after<=1 || gs(r.after-1).dots>=PASSES || gs(r.after-1).seen; }
+
+/* ============================================================
+   组内模式选择
+   ============================================================ */
+function renderGroup(i){
+  const g=GROUPS[i],st=gs(i),ok=mastered(i);
+  let h=topbar(g.t,g.s,true)
+   +'<div class="bar"><i style="width:'+(st.dots/PASSES*100)+'%"></i></div>'
+   +'<div class="note" style="display:flex;justify-content:space-between;align-items:center">'
+   +'<span>掌握度 '+st.dots+' / '+PASSES+'　·　共 '+g.w.length+' 词</span>'+dots(st.dots)+'</div>';
+  if(ok)h+='<div class="note" style="color:var(--accent)">这一组已经掌握了。继续练可以巩固，也可以去下一组。</div>';
+  h+='<div class="mode-list">'
+   +mode('学','学习生词','先认识这 '+g.w.length+' 个词的意思和用法','learn')
+   +mode('填','选词填空','看例句，选出正确的词','blank')
+   +mode('复','复习生词','中德互译，混合抽测','review')
+   +mode('默','默写生词','听发音或看中文，写出德语','dict')
+   +'</div>'
+   +'<div class="note" style="padding-bottom:26px">默写要一轮全部答对才算一遍，累计 '+PASSES+' 遍解锁下一组。'
+   +(S.set.article?'名词需要写出冠词（der / die / das）。':'')+'</div>';
+  app.innerHTML=h;
+  bindBack(()=>go('home'));
+  app.querySelectorAll('.mode').forEach(b=>{
+    b.onclick=()=>startSession(b.dataset.m,i);
+  });
+}
+function mode(k,nm,sub,m){
+  return '<button class="mode" data-m="'+m+'"><span class="k">'+k+'</span>'
+   +'<span class="body"><span class="nm">'+nm+'</span><span class="sub">'+sub+'</span></span>'
+   +'<span class="arrow">›</span></button>';
+}
+function renderReadings(){
+  let h=topbar('阅读理解','Leseverstehen',true)+'<div class="list">';
+  READINGS.forEach(r=>{
+    const ok=unlockedReading(r);
+    h+='<button class="item'+(ok?'':' locked')+'" data-r="'+r.id+'"'+(ok?'':' disabled')+'>'
+     +'<span class="idx">'+(ok?'Aa':'锁')+'</span>'
+     +'<span class="body"><span class="nm">'+esc(r.t)+'<small>'+esc(r.zh)+'</small></span></span>'
+     +'<span class="cnt">'+r.qs.length+' 题</span></button>';
+  });
+  h+='</div><div class="note" style="padding-bottom:30px">文章会随词汇进度解锁。先学对应的词汇组，读起来会顺很多。</div>';
+  app.innerHTML=h;
+  bindBack(()=>go('home'));
+  app.querySelectorAll('.item[data-r]').forEach(b=>{b.onclick=()=>go('reading',{id:b.dataset.r});});
+}
+
+/* ============================================================
+   会话引擎
+   ============================================================ */
+function startSession(m,gi){
+  const g=GROUPS[gi];
+  const words=shuffle(g.w.map(pw));
+  ses={mode:m,gi:gi,words:words,i:0,wrong:0,answered:false,roundFailed:false};
+  gs(gi).seen=true; save();
+  if(m==='dict'){ ses.i=0; }
+  render();
+}
+
+function renderSession(){
+  const m=ses.mode;
+  if(m==='learn')  return renderLearn();
+  if(m==='blank')  return renderBlank();
+  if(m==='review') return renderReview();
+  if(m==='dict')   return renderDict();
+}
+
+/* --- 进度条 + 顶栏 --- */
+function sesTop(label){
+  const g=GROUPS[ses.gi];
+  const n=ses.words.length;
+  return topbar(label,g.t,true)
+   +'<div class="bar"><i style="width:'+(ses.i/n*100)+'%"></i></div>';
+}
+function exitSes(){ ses=null; go('group',{i:route.i!==undefined?route.i:0}); }
+
+/* ============================================================
+   模式一：学习生词
+   ============================================================ */
+let learnRevealed=false;
+function renderLearn(){
+  const w=ses.words[ses.i];
+  if(!w){ return endSession(); }
+  if(learnRevealed){
+    app.innerHTML=sesTop('学习生词 · '+(ses.i+1)+'/'+ses.words.length)
+     +'<div class="stage"><div class="center">'
+     +'<div class="de'+(w.de.length>16?' sm':'')+'">'
+       +(w.art?'<span class="art '+artClass(w.art)+'">'+esc(w.art)+'</span> ':'')+esc(w.bare)+'</div>'
+     +'<button class="speak" id="sp">'+SPEAK_ICON+'德语发音</button>'
+     +'<div class="zh">'+esc(w.zh)+'</div>'
+     +(w.hint?'<div class="hint">读音近似：'+esc(w.hint)+'</div>':'')
+     +'<div class="ex"><div class="ex-de de">'+sentHTML(w,w.blank)+'</div>'
+     +'<div class="zh">'+esc(w.exZh)+'</div></div>'
+     +'</div></div>'
+     +'<div class="actions"><button class="btn primary" id="nx">'
+     +(ses.i+1<ses.words.length?'下一个':'学完了')+'</button></div>';
+  }else{
+    app.innerHTML=sesTop('学习生词 · '+(ses.i+1)+'/'+ses.words.length)
+     +'<div class="stage"><div class="center">'
+     +'<div class="de'+(w.de.length>16?' sm':'')+'">'
+       +(w.art?'<span class="art '+artClass(w.art)+'">'+esc(w.art)+'</span> ':'')+esc(w.bare)+'</div>'
+     +'<button class="speak" id="sp">'+SPEAK_ICON+'德语发音</button>'
+     +'</div></div>'
+     +'<div class="actions"><button class="btn primary" id="nx">显示意思</button></div>';
+  }
+  bindBack(exitSes);
+  document.getElementById('sp').onclick=()=>speak(w.de);
+  document.getElementById('nx').onclick=()=>{
+    if(learnRevealed){learnRevealed=false;ses.i++;render();}
+    else{learnRevealed=true;render();}
+  };
+}
+
+/* ============================================================
+   模式二：选词填空
+   ============================================================ */
+function makeOptions(w,all,field){
+  const pool=shuffle(all.filter(x=>x[field]!==w[field])).slice(0,3).map(x=>x[field]);
+  return shuffle([w[field]].concat(pool));
+}
+function renderBlank(){
+  const w=ses.words[ses.i];
+  if(!w||!w.blank){ return endSession(); }
+  const all=ses.words.filter(x=>x.blank);
+  const opts=ses.opts||(ses.opts=makeOptions(w,all,'blank'));
+  let h=sesTop('选词填空 · '+(ses.i+1)+'/'+ses.words.length)
+   +'<div class="stage"><div style="padding-top:34px">'
+   +'<div class="de" style="font-size:clamp(21px,6vw,26px);line-height:1.55">'
+   +sentHTML(w, ses.picked===undefined?null:(ses.picked===w.blank?w.blank:false))
+   +'</div><div class="zh dim" style="margin-top:14px;font-size:15px">'+esc(w.exZh)+'</div>'
+   +'</div></div><div class="opts">';
+  opts.forEach((o,k)=>{
+    let cls='opt';
+    if(ses.picked!==undefined){
+      if(o===w.blank)cls+=' correct';
+      else if(o===ses.picked)cls+=' wrong';
+      else cls+=' muted';
+    }
+    h+='<button class="'+cls+'" data-o="'+esc(o)+'"'+(ses.picked!==undefined?' disabled':'')+'>'
+     +'<span class="n">'+'ABCD'[k]+'</span>'+esc(o)+'</button>';
+  });
+  h+='</div>';
+  if(ses.picked!==undefined){
+    h+='<div class="actions" style="padding-top:0"><button class="btn primary" id="nx">'
+     +(ses.i+1<ses.words.length?'下一题':'完成')+'</button></div>';
+  }else{h+='<div style="height:30px"></div>';}
+  app.innerHTML=h;
+  bindBack(exitSes);
+  app.querySelectorAll('.opt').forEach(b=>{
+    b.onclick=()=>{
+      if(ses.picked!==undefined)return;
+      ses.picked=b.dataset.o;
+      const ok=ses.picked===w.blank;
+      if(!ok)ses.wrong++;
+      render();
+    };
+  });
+  const nx=document.getElementById('nx');
+  if(nx)nx.onclick=()=>{ses.picked=undefined;ses.opts=null;ses.i++;render();};
+}
+
+/* ============================================================
+   模式三：复习（中德互译）
+   ============================================================ */
+function renderReview(){
+  const w=ses.words[ses.i];
+  if(!w)return endSession();
+  if(ses.dir===undefined)ses.dir=Math.random()<0.5?'de2zh':'zh2de';
+  const all=ses.words;
+  const field=ses.dir==='de2zh'?'zh':'bare';
+  const opts=ses.opts||(ses.opts=makeOptions(w,all,field));
+  const prompt=ses.dir==='de2zh'
+    ? '<div class="de'+(w.de.length>16?' sm':'')+'">'
+      +(w.art?'<span class="art '+artClass(w.art)+'">'+esc(w.art)+'</span> ':'')+esc(w.bare)+'</div>'
+    : '<div class="zh" style="font-size:26px">'+esc(w.zh)+'</div>';
+  let h=sesTop('复习 · '+(ses.i+1)+'/'+ses.words.length)
+   +'<div class="stage"><div class="center">'+prompt
+   +'<div class="hint" style="margin-top:12px">'
+   +(ses.dir==='de2zh'?'选出中文意思':'选出对应的德语')+'</div></div></div><div class="opts">';
+  opts.forEach((o,k)=>{
+    let cls='opt';
+    if(ses.picked!==undefined){
+      if(o===w[field])cls+=' correct';
+      else if(o===ses.picked)cls+=' wrong';
+      else cls+=' muted';
+    }
+    const isDe=(ses.dir==='zh2de');
+    h+='<button class="'+cls+'" data-o="'+esc(o)+'"'+(ses.picked!==undefined?' disabled':'')+'>'
+     +'<span class="n">'+'ABCD'[k]+'</span>'
+     +(isDe?'<span style="font-family:var(--font-de);font-size:18px">'+esc(o)+'</span>':esc(o))
+     +'</button>';
+  });
+  h+='</div>';
+  if(ses.picked!==undefined)
+    h+='<div class="actions" style="padding-top:0"><button class="btn primary" id="nx">'
+     +(ses.i+1<ses.words.length?'下一题':'完成')+'</button></div>';
+  else h+='<div style="height:30px"></div>';
+  app.innerHTML=h;
+  bindBack(exitSes);
+  app.querySelectorAll('.opt').forEach(b=>{
+    b.onclick=()=>{
+      if(ses.picked!==undefined)return;
+      ses.picked=b.dataset.o;
+      if(ses.picked!==w[field])ses.wrong++;
+      render();
+    };
+  });
+  const nx=document.getElementById('nx');
+  if(nx)nx.onclick=()=>{ses.picked=undefined;ses.opts=null;ses.dir=undefined;ses.i++;render();};
+}
+
+/* ============================================================
+   模式四：默写生词（听力/中文提示 → 写出德语）
+   ============================================================ */
+function norm(s){
+  return String(s).toLowerCase().trim().replace(/\s+/g,' ')
+   .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+   .replace(/[.,!?;:]/g,'');
+}
+function renderDict(){
+  const w=ses.words[ses.i];
+  if(!w)return endDictRound();
+  const expect = (w.art&&S.set.article) ? (w.art+' '+w.bare) : w.bare;
+  let h=sesTop('默写 · '+(ses.i+1)+'/'+ses.words.length)
+   +'<div class="stage"><div style="padding-top:26px">'
+   +'<div class="zh" style="font-size:24px">'+esc(w.zh)+'</div>'
+   +'<div class="hint" style="margin-top:10px">写出对应的德语'
+   +(w.art&&S.set.article?'（含冠词）':'')+'</div>'
+   +'<button class="speak" id="sp" style="margin-top:16px">'+SPEAK_ICON+'再听一次</button>'
+   +'<div style="margin-top:22px"><input class="input" id="in" autocomplete="off" '
+   +'autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="在这里输入德语"></div>'
+   +'<div class="specials"><button data-c="ä">ä</button><button data-c="ö">ö</button>'
+   +'<button data-c="ü">ü</button><button data-c="ß">ß</button></div>';
+  if(ses.judged){
+    const ok=ses.wasOk;
+    h+='<div class="judge '+(ok?'ok':'no')+'">'
+     +(ok?'正确　<b>'+esc(expect)+'</b>'
+         :'正确写法是　<b>'+esc(expect)+'</b>'
+          +(ses.reason==='art'?'　<span style="font-size:13px">别漏了冠词</span>':''))
+     +'</div>';
+  }
+  h+='</div></div><div class="actions">'
+   +(ses.judged
+     ?'<button class="btn primary" id="nx">'+(ses.i+1<ses.words.length?'下一个':'看本轮结果')+'</button>'
+     :'<button class="btn primary" id="ck">检查</button>')
+   +'</div>';
+  app.innerHTML=h;
+  bindBack(exitSes);
+  const inp=document.getElementById('in');
+  document.getElementById('sp').onclick=()=>speak(w.de);
+  app.querySelectorAll('.specials button').forEach(b=>{
+    b.onclick=()=>{
+      const p=inp.selectionStart||inp.value.length;
+      inp.value=inp.value.slice(0,p)+b.dataset.c+inp.value.slice(p);
+      inp.focus(); inp.setSelectionRange(p+1,p+1);
+    };
+  });
+  const check=()=>{
+    if(ses.judged)return;
+    const v=inp.value.trim();
+    if(!v)return;
+    ses.judged=true;
+    const target=norm(expect), got=norm(v);
+    ses.wasOk = got===target;
+    if(!ses.wasOk){
+      ses.reason = (w.art&&S.set.article&&got===norm(w.bare))?'art':'';
+      ses.wrong++;
+    }
+    render();
+  };
+  const ck=document.getElementById('ck');
+  if(ck)ck.onclick=check;
+  if(!ses.judged&&inp){
+    inp.onkeydown=e=>{if(e.key==='Enter')check();};
+    const spEl=document.getElementById('sp');
+    setTimeout(()=>{speak(w.de);},60);
+  }
+  const nx=document.getElementById('nx');
+  if(nx)nx.onclick=()=>{ses.i++;ses.judged=false;ses.wasOk=false;ses.reason='';render();};
+}
+function endDictRound(){
+  const perfect = ses.wrong===0;
+  const st=gs(ses.gi);
+  if(perfect){
+    st.dots=Math.min(PASSES,st.dots+1); save();
+  }else if(S.set.strict){
+    st.dots=0; save();
+  }
+  const g=GROUPS[ses.gi], ok=mastered(ses.gi);
+  const nextIdx=ses.gi+1;
+  let h=sesTop('本轮结果')
+   +'<div class="stage"><div class="center" style="text-align:center">'
+   +'<div class="de" style="font-size:34px">'+(perfect?'Sehr gut!':'Fast!')+'</div>'
+   +'<div class="zh" style="margin-top:12px">'
+   +(perfect?'一轮全部正确':'本轮错了 '+ses.wrong+' 个')+'</div>'
+   +'<div style="margin-top:26px;display:flex;justify-content:center">'+dots(st.dots)+'</div>'
+   +'<div class="hint" style="margin-top:12px">掌握度 '+st.dots+' / '+PASSES
+   +(perfect?'':'　（只有全对的一轮才算一遍）')+'</div>'
+   +(ok?'<div class="zh" style="margin-top:22px;color:var(--accent)">这一组掌握了。</div>':'')
+   +'</div></div>'
+   +'<div class="actions">'
+   +'<button class="btn primary" id="again">再默写一轮</button>'
+   +(ok&&nextIdx<GROUPS.length
+      ?'<button class="btn" id="next">进入下一组：'+esc(GROUPS[nextIdx].t)+'</button>':'')
+   +'<button class="btn ghost" id="bk2">回到这一组</button>'
+   +'</div>';
+  app.innerHTML=h;
+  bindBack(()=>{ses=null;go('home');});
+  document.getElementById('again').onclick=()=>{
+    const gi=ses.gi; ses=null; startSession('dict',gi);
+  };
+  const nb=document.getElementById('next');
+  if(nb)nb.onclick=()=>{const n=nextIdx;ses=null;go('group',{i:n});};
+  document.getElementById('bk2').onclick=()=>{const gi=ses.gi;ses=null;go('group',{i:gi});};
+}
+
+/* ============================================================
+   会话结束（非默写模式）
+   ============================================================ */
+function endSession(){
+  const m=ses.mode,gi=ses.gi;
+  const label={learn:'学习完成',blank:'填空完成',review:'复习完成'}[m]||'完成';
+  let h=sesTop(label)
+   +'<div class="stage"><div class="center" style="text-align:center">'
+   +'<div class="de" style="font-size:30px">Fertig!</div>'
+   +'<div class="zh" style="margin-top:12px">'
+   +(ses.wrong?('答错 '+ses.wrong+' 个，再练一轮会更牢'):'全部正确')+'</div>'
+   +'</div></div><div class="actions">'
+   +'<button class="btn primary" id="rt">再练一轮</button>'
+   +'<button class="btn ghost" id="bk2">回到这一组</button>'
+   +'</div>';
+  app.innerHTML=h;
+  bindBack(()=>{ses=null;go('home');});
+  document.getElementById('rt').onclick=()=>{ses=null;startSession(m,gi);};
+  document.getElementById('bk2').onclick=()=>{ses=null;go('group',{i:gi});};
+}
+
+/* ============================================================
+   阅读理解
+   ============================================================ */
+function renderReading(id){
+  const r=READINGS.find(x=>x.id===id);
+  if(!r)return go('readings');
+  if(!ses||ses.mode!=='read'||ses.rid!==id) ses=null;
+  let h=topbar(r.t,r.zh,true)
+   +'<div class="stage"><div style="padding-top:26px" class="passage">'
+   +r.de.map(p=>'<p>'+esc(p)+'</p>').join('')
+   +'</div>';
+  if(ses&&ses.showTr){
+    h+='<div class="trans">'+esc(r.tr)+'</div>';
+  }else{
+    h+='<div style="padding:4px 0 0"><button class="speak" id="tr">显示中文翻译</button></div>';
+  }
+  r.qs.forEach((q,qi)=>{
+    h+='<div class="q"><div class="qt">'+(qi+1)+'. '+esc(q.q)
+     +'<small>'+esc(q.de)+'</small></div><div class="opts" style="padding:0 0 4px">';
+    const picked=ses&&ses.ans?ses.ans[qi]:undefined;
+    q.o.forEach((o,oi)=>{
+      let cls='opt';
+      if(picked!==undefined){
+        if(oi===q.a)cls+=' correct';
+        else if(oi===picked)cls+=' wrong';
+        else cls+=' muted';
+      }
+      h+='<button class="'+cls+'" data-q="'+qi+'" data-i="'+oi+'"'
+       +(picked!==undefined?' disabled':'')+'>'
+       +'<span class="n">'+'ABC'[oi]+'</span>'+esc(o)+'</button>';
+    });
+    h+='</div></div>';
+  });
+  const answered=ses&&ses.ans?Object.keys(ses.ans).length:0;
+  h+='</div><div class="actions">'
+   +'<button class="btn primary" id="fin">'+(answered>=r.qs.length?'完成':'已答 '+answered+' / '+r.qs.length+' 题')+'</button>'
+   +'</div>';
+  app.innerHTML=h;
+  bindBack(()=>{ses=null;go('readings');});
+  document.getElementById('tr').onclick=()=>{ses=Object.assign({mode:'read',rid:id,ans:{},showTr:false},ses||{});ses.showTr=true;render();};
+  app.querySelectorAll('.opt[data-q]').forEach(b=>{
+    b.onclick=()=>{
+      if(!ses||!ses.ans)ses={mode:'read',rid:id,ans:{},showTr:false};
+      const qi=+b.dataset.q;
+      if(ses.ans[qi]!==undefined)return;
+      ses.ans[qi]=+b.dataset.i;
+      render();
+    };
+  });
+  document.getElementById('fin').onclick=()=>{
+    const right=r.qs.filter((q,qi)=>ses&&ses.ans&&ses.ans[qi]===q.a).length;
+    app.innerHTML=topbar(r.t,r.zh,true)
+     +'<div class="stage"><div class="center" style="text-align:center">'
+     +'<div class="de" style="font-size:32px">'+right+' / '+r.qs.length+'</div>'
+     +'<div class="zh" style="margin-top:12px">'
+     +(right===r.qs.length?'全部答对，这篇读懂了':'答对的题，回去看看原文的对应句子')+'</div>'
+     +'</div></div><div class="actions"><button class="btn primary" id="bk2">回到文章列表</button></div>';
+    bindBack(()=>{ses=null;go('readings');});
+    document.getElementById('bk2').onclick=()=>{ses=null;go('readings');};
+  };
+}
+
+/* ============================================================
+   设置
+   ============================================================ */
+function openSettings(){
+  let h=topbar('设置','Einstellungen',true)
+   +'<div class="mode-list">'
+   +'<button class="mode" id="t1"><span class="k">Aa</span><span class="body">'
+   +'<span class="nm">名词必须带冠词</span><span class="sub">默写时 der / die / das 算错就整题算错　'
+   +(S.set.article?'已开启':'已关闭')+'</span></span></button>'
+   +'<button class="mode" id="t2"><span class="k">!</span><span class="body">'
+   +'<span class="nm">严格模式</span><span class="sub">默写出错时掌握度清零重来　'
+   +(S.set.strict?'已开启':'已关闭')+'</span></span></button>'
+   +'<button class="mode" id="t3"><span class="k">♪</span><span class="body">'
+   +'<span class="nm">语速</span><span class="sub">当前 '+(S.set.rate===0.85?'正常':S.set.rate===0.6?'慢速':'很慢')+'</span></span></button>'
+   +'</div>'
+   +'<div class="note">严格模式关闭时，只有全对的一轮才计入掌握度，答错的那一轮不计入、也不清零。</div>'
+   +'<div class="mode-list" style="margin-top:14px">'
+   +'<button class="mode" id="rs"><span class="k">↺</span><span class="body">'
+   +'<span class="nm">清空全部进度</span><span class="sub">重新从第一组开始，无法撤销</span></span></button>'
+   +'</div><div style="height:30px"></div>';
+  app.innerHTML=h;
+  bindBack(()=>go('home'));
+  document.getElementById('t1').onclick=()=>{S.set.article=!S.set.article;save();openSettings();};
+  document.getElementById('t2').onclick=()=>{S.set.strict=!S.set.strict;save();openSettings();};
+  document.getElementById('t3').onclick=()=>{
+    S.set.rate = S.set.rate===0.85?0.6:S.set.rate===0.6?0.45:0.85; save(); openSettings();
+  };
+  document.getElementById('rs').onclick=()=>{
+    if(confirm('确定清空全部学习进度？这个操作无法撤销。')){S=JSON.parse(JSON.stringify(DEF));save();go('home');}
+  };
+}
+
+/* ---------- 启动 ---------- */
+load();
+render();
+
+</script>
+</body>
+</html>
