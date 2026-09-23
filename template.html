@@ -419,7 +419,8 @@ function renderHome(){
   if(!STORAGE_OK){
     h+='<div class="note" style="color:var(--no);padding-top:0;padding-bottom:4px">'
      +'⚠️ 这个浏览器不让本地文件保存数据，进度关掉页面就会丢。'
-     +'建议改用在线版，或者每次练完到「设置 → 进度备份」复制进度码存下来。</div>';
+     +'请改用在线版 https://jaden77196.github.io/deutsch-trainer/ （打开一次之后就能离线用），'
+     +'或者每次练完到「设置 → 进度备份」复制进度码存下来。</div>';
   }
   levels.forEach(lv=>{
     h+='<div class="lvhead"><span>'+esc(lv)+'</span><span class="lvline"></span></div><div class="list">';
@@ -1114,6 +1115,15 @@ function openSettings(){
 /* ---------- 启动 ---------- */
 load();
 render();
+
+/* ---------- 注册 Service Worker：在线版挂上之后就能离线用 ----------
+   挂上之后进度存在 github.io 这个固定来源下，不会因为换文件、
+   换路径而丢失。file:// 打开的本地版本注册不了，也不用注册。 */
+if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
 
 </script>
 </body>
