@@ -2145,6 +2145,7 @@ function render(){
   else if(route.v==='grammar')  renderGrammarList();
   else if(route.v==='lectures') renderLectureList();
   else if(route.v==='lecture')  renderLecture(route.i);
+  else if(route.v==='backup')   renderBackup();
 }
 
 function topbar(title,sub,back){
@@ -2167,6 +2168,11 @@ function renderHome(){
   GROUPS.forEach((g,i)=>{if(mastered(i))done++;});
   let h='<div class="head"><h1>Deutsch</h1>'
    +'<p>已掌握 '+done+' / '+GROUPS.length+' 组　·　每组五遍满分解锁下一组</p></div>';
+  if(!STORAGE_OK){
+    h+='<div class="note" style="color:var(--no);padding-top:0;padding-bottom:4px">'
+     +'⚠️ 这个浏览器不让本地文件保存数据，进度关掉页面就会丢。'
+     +'建议改用在线版，或者每次练完到「设置 → 进度备份」复制进度码存下来。</div>';
+  }
   levels.forEach(lv=>{
     h+='<div class="lvhead"><span>'+esc(lv)+'</span><span class="lvline"></span></div><div class="list">';
     GROUPS.forEach((g,i)=>{
@@ -2743,6 +2749,95 @@ function renderReading(id){
 }
 
 /* ============================================================
+   进度备份：导出/导入一串进度码
+   进度存在浏览器本地，换设备、换浏览器、或在 file:// 下打开单文件版时
+   都可能拿不到。一串可复制的码是唯一到处都可靠的办法。
+   ============================================================ */
+function storageAvailable(){
+  try{
+    localStorage.setItem('__t','1');
+    const ok=localStorage.getItem('__t')==='1';
+    localStorage.removeItem('__t');
+    return ok;
+  }catch(e){ return false; }
+}
+let STORAGE_OK = storageAvailable();
+
+function exportCode(){
+  const parts=[];
+  Object.keys(S.g).forEach(k=>{
+    const st=S.g[k]; if(!st)return;
+    if(st.dots||st.seen) parts.push(k.slice(1)+':'+(st.dots||0));
+  });
+  const cfg=[S.set.article?1:0, S.set.strict?1:0, S.set.allOpen?1:0,
+             S.set.rate===0.85?'a':S.set.rate===0.6?'b':'c'].join('');
+  return 'DT1.'+cfg+'.'+parts.join(',');
+}
+function importCode(code){
+  const m=String(code||'').trim().match(/^DT1\.([0-9ab]{4})\.(.*)$/);
+  if(!m) throw new Error('格式不对，请完整复制整串进度码');
+  const cfg=m[1], g={};
+  const body=m[2].trim();
+  if(body){
+    body.split(',').forEach(p=>{
+      const a=p.split(':');
+      const i=parseInt(a[0],10);
+      if(!isNaN(i)&&i>=0){
+        g['g'+i]={dots:Math.max(0,Math.min(PASSES,parseInt(a[1],10)||0)),seen:true,w:{}};
+      }
+    });
+  }
+  return {g:g, set:{article:cfg[0]==='1',strict:cfg[1]==='1',allOpen:cfg[2]==='1',
+          rate:cfg[3]==='a'?0.85:cfg[3]==='b'?0.6:0.45}};
+}
+function renderBackup(){
+  const code=exportCode();
+  let n=0; Object.keys(S.g).forEach(k=>{const st=S.g[k]; if(st&&(st.dots||st.seen))n++;});
+  app.innerHTML=topbar('进度备份','Sicherung',true)
+   +'<div class="note" style="padding-top:18px">进度存在这台设备的浏览器里。'
+   +'换设备、换浏览器、或者改用在线的单文件版时，用下面这串码把进度搬过去。</div>'
+   +'<div style="padding:6px var(--pad) 0">'
+   +'<div class="hint" style="margin-bottom:6px">当前进度码（'+n+' 组有记录）</div>'
+   +'<textarea class="input" id="exp" readonly style="height:104px;font-family:var(--font-mono);font-size:13px;line-height:1.5">'+esc(code)+'</textarea>'
+   +'<div style="margin-top:10px"><button class="btn" id="cp">复制进度码</button></div>'
+   +'</div>'
+   +'<div style="padding:26px var(--pad) 0">'
+   +'<div class="hint" style="margin-bottom:6px">导入：把进度码粘到这里</div>'
+   +'<textarea class="input" id="imp" placeholder="DT1.1110.0:5,1:3" style="height:104px;font-family:var(--font-mono);font-size:13px;line-height:1.5"></textarea>'
+   +'<div style="margin-top:10px"><button class="btn primary" id="do">导入并覆盖当前进度</button></div>'
+   +'<div id="msg" class="hint" style="margin-top:12px"></div>'
+   +'</div><div style="height:30px"></div>';
+  bindBack(()=>go('home'));
+  document.getElementById('cp').onclick=()=>{
+    const t=document.getElementById('exp');
+    let ok=false;
+    try{
+      t.removeAttribute('readonly'); t.select(); t.setSelectionRange(0,999999);
+      ok=document.execCommand('copy');
+      t.setAttribute('readonly','readonly');
+    }catch(e){}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t.value).then(()=>{},()=>{});
+      ok=true;
+    }
+    document.getElementById('cp').textContent = ok?'已复制到剪贴板':'请长按选中后复制';
+  };
+  document.getElementById('do').onclick=()=>{
+    const msg=document.getElementById('msg');
+    try{
+      const d=importCode(document.getElementById('imp').value);
+      S.g=d.g; S.set=d.set; save();
+      msg.textContent='导入成功，进度已更新';
+      msg.style.color='var(--ok)';
+      setTimeout(()=>go('home'),800);
+    }catch(e){
+      msg.textContent='导入失败：'+e.message;
+      msg.style.color='var(--no)';
+    }
+  };
+}
+
+/* ============================================================
    设置
    ============================================================ */
 function openSettings(){
@@ -2763,6 +2858,8 @@ function openSettings(){
    +'<div class="note">严格模式关闭时，只有全对的一轮才计入掌握度，答错的那一轮不计入、也不清零。'
    +'解锁全开后仍建议按顺序练——后面的组会用到前面的词。</div>'
    +'<div class="mode-list" style="margin-top:14px">'
+   +'<button class="mode" id="bk"><span class="k">⇄</span><span class="body">'
+   +'<span class="nm">进度备份</span><span class="sub">导出一串进度码，换设备时搬过去</span></span></button>'
    +'<button class="mode" id="rs"><span class="k">↺</span><span class="body">'
    +'<span class="nm">清空全部进度</span><span class="sub">重新从第一组开始，无法撤销</span></span></button>'
    +'</div><div style="height:30px"></div>';
@@ -2774,6 +2871,7 @@ function openSettings(){
     S.set.rate = S.set.rate===0.85?0.6:S.set.rate===0.6?0.45:0.85; save(); openSettings();
   };
   document.getElementById('t4').onclick=()=>{S.set.allOpen=!S.set.allOpen;save();openSettings();};
+  document.getElementById('bk').onclick=()=>go('backup');
   document.getElementById('rs').onclick=()=>{
     if(confirm('确定清空全部学习进度？这个操作无法撤销。')){S=JSON.parse(JSON.stringify(DEF));save();go('home');}
   };
