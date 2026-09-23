@@ -224,6 +224,29 @@ body{
 .trans{margin-top:24px;padding-top:18px;border-top:1px solid var(--rule-soft);
   font-size:15px;color:var(--ink-soft);line-height:1.9}
 
+/* ---------- 语法讲义卡片 ---------- */
+.core{padding:24px var(--pad) 0;font-size:18px;line-height:1.8}
+.core strong,.core b{color:var(--accent);font-weight:600}
+.rtable{margin:22px var(--pad) 0;border-top:1px solid var(--rule)}
+.rtable .r{padding:14px 0;border-bottom:1px solid var(--rule-soft)}
+.rtable .c1{font-size:13px;color:var(--ink-faint);line-height:1.5;margin-bottom:5px}
+.rtable .c2{font-size:15px;line-height:1.6}
+.rtable .c2 b{display:block;font-weight:600;color:var(--ink)}
+.rtable .c2 b.g-der{color:var(--der)}
+.rtable .c2 b.g-die{color:var(--die)}
+.rtable .c2 b.g-das{color:var(--das)}
+.rtable .c2 span{display:block;font-family:var(--font-de);font-size:14px;
+  color:var(--ink-soft);margin-top:4px;line-height:1.55}
+.regs{margin:22px var(--pad) 0}
+.regs .e{padding:12px 0;border-bottom:1px solid var(--rule-soft)}
+.regs .e .de{font-family:var(--font-de);font-size:17px;line-height:1.5}
+.regs .e .zh{font-size:14px;color:var(--ink-soft);margin-top:4px}
+.rnote{margin:22px var(--pad) 0;padding:15px 17px;background:var(--paper-2);
+  border-radius:var(--r);font-size:14px;line-height:1.85;color:var(--ink-soft)}
+.rnote strong{color:var(--ink)}
+.navrow{display:flex;gap:10px;padding:24px var(--pad) 8px}
+.navrow .btn{flex:1;font-size:15px;padding:15px 10px;min-height:52px}
+
 /* ---------- 进度条 ---------- */
 .bar{height:2px;background:var(--rule-soft);position:relative;overflow:hidden}
 .bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);transition:width .3s}
@@ -253,6 +276,7 @@ body{
 <script src="content-b2.js"></script>
 <script src="content-readings.js"></script>
 <script src="content-grammar.js"></script>
+<script src="content-lectures.js"></script>
 <script>
 /* ============================================================
    课程内容
@@ -267,6 +291,7 @@ const GROUPS = [].concat(
   window.CONTENT_PHRASES||[], window.CONTENT_B2||[]
 );
 const GRAMMAR = window.CONTENT_GRAMMAR || [];
+const LECTURES = window.CONTENT_LECTURES || [];
 
 /* 阅读理解：难度递进，after 表示学完第几组后解锁 */
 const READINGS = window.CONTENT_READINGS || [];
@@ -368,6 +393,8 @@ function render(){
   else if(route.v==='readings') renderReadings();
   else if(route.v==='reading')  renderReading(route.id);
   else if(route.v==='grammar')  renderGrammarList();
+  else if(route.v==='lectures') renderLectureList();
+  else if(route.v==='lecture')  renderLecture(route.i);
 }
 
 function topbar(title,sub,back){
@@ -405,8 +432,11 @@ function renderHome(){
     h+='</div>';
   });
   h+='<div class="lvhead"><span>语法</span><span class="lvline"></span></div><div class="list">'
+   +'<button class="item" id="lc"><span class="idx">☰</span><span class="body">'
+   +'<span class="nm">语法讲义<small>Grammatik-Spickzettel</small></span></span>'
+   +'<span class="cnt">'+LECTURES.length+' 条捷径</span></button>'
    +'<button class="item" id="gr"><span class="idx">§</span><span class="body">'
-   +'<span class="nm">语法专项训练<small>Grammatik</small></span></span>'
+   +'<span class="nm">语法专项训练<small>Grammatik üben</small></span></span>'
    +'<span class="cnt">'+GRAMMAR.length+' 个专题</span></button></div>';
   h+='<div class="lvhead"><span>阅读</span><span class="lvline"></span></div><div class="list">'
    +'<button class="item" id="rd"><span class="idx">Aa</span><span class="body">'
@@ -417,6 +447,7 @@ function renderHome(){
   app.querySelectorAll('.item[data-g]').forEach(b=>{b.onclick=()=>go('group',{i:+b.dataset.g});});
   document.getElementById('rd').onclick=()=>go('readings');
   document.getElementById('gr').onclick=()=>go('grammar');
+  document.getElementById('lc').onclick=()=>go('lectures');
   document.getElementById('st').onclick=openSettings;
 }
 function dots(n){
@@ -759,6 +790,62 @@ function endSession(){
   bindBack(()=>{ses=null;go('home');});
   document.getElementById('rt').onclick=()=>{ses=null;startSession(m,gi);};
   document.getElementById('bk2').onclick=()=>{ses=null;go('group',{i:gi});};
+}
+
+/* ============================================================
+   语法讲义（邪修速记）
+   ============================================================ */
+function renderLectureList(){
+  const levels=[...new Set(LECTURES.map(l=>l.lv||'A1'))];
+  let h=topbar('语法讲义','Spickzettel',true);
+  levels.forEach(lv=>{
+    h+='<div class="lvhead"><span>'+esc(lv)+'</span><span class="lvline"></span></div><div class="list">';
+    LECTURES.forEach((l,i)=>{
+      if((l.lv||'A1')!==lv)return;
+      h+='<button class="item" data-lc="'+i+'">'
+       +'<span class="idx">'+String(i+1).padStart(2,'0')+'</span>'
+       +'<span class="body"><span class="nm">'+esc(l.t)+'<small>'+esc(l.s||'')+'</small></span></span>'
+       +'<span class="cnt">›</span></button>';
+    });
+    h+='</div>';
+  });
+  h+='<div class="note" style="padding-bottom:30px">一条一个捷径，每条 30 秒读完。'
+   +'看不懂的部分先跳过，把那句核心规则记住就行——它比整张表管用。</div>';
+  app.innerHTML=h;
+  bindBack(()=>go('home'));
+  app.querySelectorAll('.item[data-lc]').forEach(b=>{b.onclick=()=>go('lecture',{i:+b.dataset.lc});});
+}
+function renderLecture(i){
+  const l=LECTURES[i];
+  if(!l)return go('lectures');
+  let h=topbar(l.t,l.s||'',true)+'<div class="core">'+l.core+'</div>';
+  if(l.rows&&l.rows.length){
+    h+='<div class="rtable">';
+    l.rows.forEach(r=>{
+      const g=/^(der|die|das)$/.test(String(r[1]||'').trim())?' g-'+String(r[1]).trim():'';
+      h+='<div class="r"><div class="c1">'+r[0]+'</div><div class="c2">'
+       +(r[1]?'<b class="'+g.trim()+'">'+r[1]+'</b>':'')
+       +(r[2]?'<span>'+r[2]+'</span>':'')
+       +'</div></div>';
+    });
+    h+='</div>';
+  }
+  if(l.egs&&l.egs.length){
+    h+='<div class="regs">';
+    l.egs.forEach(e=>{h+='<div class="e"><div class="de">'+e[0]+'</div><div class="zh">'+e[1]+'</div></div>';});
+    h+='</div>';
+  }
+  if(l.note)h+='<div class="rnote">'+l.note+'</div>';
+  h+='<div class="navrow">'
+   +(i>0?'<button class="btn" id="pv">上一条</button>':'')
+   +(i<LECTURES.length-1?'<button class="btn primary" id="nx">下一条</button>':'')
+   +'</div>'
+   +'<div class="foot" style="padding-top:6px"><div><button id="allc">回到讲义目录</button></div></div>';
+  app.innerHTML=h;
+  bindBack(()=>go('lectures'));
+  const pv=document.getElementById('pv'); if(pv)pv.onclick=()=>go('lecture',{i:i-1});
+  const nx=document.getElementById('nx'); if(nx)nx.onclick=()=>go('lecture',{i:i+1});
+  document.getElementById('allc').onclick=()=>go('lectures');
 }
 
 /* ============================================================
