@@ -130,7 +130,7 @@ body{
 .row .btn{flex:1}
 
 /* ---------- 选项 ---------- */
-.opts{display:flex;flex-direction:column;gap:10px;padding:20px 0 26px}
+.opts{display:flex;flex-direction:column;gap:10px;padding:20px var(--pad) 26px}
 .opt{
   font-family:inherit;font-size:17px;text-align:left;
   padding:15px 18px;border-radius:var(--r);border:1px solid var(--rule);
@@ -249,6 +249,8 @@ body{
 <script src="content-a1.js"></script>
 <script src="content-a2.js"></script>
 <script src="content-b1.js"></script>
+<script src="content-phrases.js"></script>
+<script src="content-b2.js"></script>
 <script src="content-readings.js"></script>
 <script src="content-grammar.js"></script>
 <script>
@@ -260,7 +262,10 @@ body{
      - 词性：n 名词 / v 动词 / a 形容词 / x 其他
    要加新词，直接在对应的 w 数组里加一行即可。
    ============================================================ */
-const GROUPS = [].concat(window.CONTENT_A1||[], window.CONTENT_A2||[], window.CONTENT_B1||[]);
+const GROUPS = [].concat(
+  window.CONTENT_A1||[], window.CONTENT_A2||[], window.CONTENT_B1||[],
+  window.CONTENT_PHRASES||[], window.CONTENT_B2||[]
+);
 const GRAMMAR = window.CONTENT_GRAMMAR || [];
 
 /* 阅读理解：难度递进，after 表示学完第几组后解锁 */
@@ -271,7 +276,7 @@ const READINGS = window.CONTENT_READINGS || [];
    ============================================================ */
 const KEY='deutsch.v1';
 const PASSES=5;                 // 满分几遍解锁下一组
-const DEF={g:{},set:{article:true,strict:true,rate:0.85}};
+const DEF={g:{},set:{article:true,strict:true,rate:0.85,allOpen:false}};
 let S=JSON.parse(JSON.stringify(DEF));
 
 function load(){
@@ -286,7 +291,7 @@ function gs(i){ // group state
   if(!S.g[k])S.g[k]={dots:0,seen:false,w:{}};
   return S.g[k];
 }
-function unlocked(i){ return i===0 || gs(i-1).dots>=PASSES; }
+function unlocked(i){ return S.set.allOpen || i===0 || gs(i-1).dots>=PASSES; }
 function mastered(i){ return gs(i).dots>=PASSES; }
 
 /* ---------- 工具 ---------- */
@@ -347,6 +352,7 @@ const SPEAK_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
    ============================================================ */
 let route={v:'home'};
 let ses=null;   // 当前练习会话
+let rd=null;    // 阅读理解状态（独立于 ses，否则会劫持 render() 的路由分发）
 const app=document.getElementById('app');
 
 function go(v,extra){
@@ -789,7 +795,7 @@ function renderGram(){
   const n=ses.items.length;
   let h=topbar(g.t,g.s||'',true)
    +'<div class="bar"><i style="width:'+(ses.i/n*100)+'%"></i></div>'
-   +'<div class="stage" style="padding-top:28px">'
+   +'<div style="padding:24px var(--pad) 0">'
    +'<div class="de" style="font-size:clamp(19px,5.4vw,23px);line-height:1.65">'+esc(it.q)+'</div>'
    +'</div><div class="opts">';
   it.opts.forEach((o,k)=>{
@@ -844,12 +850,12 @@ function endGrammar(){
 function renderReading(id){
   const r=READINGS.find(x=>x.id===id);
   if(!r)return go('readings');
-  if(!ses||ses.mode!=='read'||ses.rid!==id) ses=null;
+  if(!rd||rd.rid!==id) rd={rid:id,ans:{},showTr:false};
   let h=topbar(r.t,r.zh,true)
    +'<div class="stage"><div style="padding-top:26px" class="passage">'
    +r.de.map(p=>'<p>'+esc(p)+'</p>').join('')
    +'</div>';
-  if(ses&&ses.showTr){
+  if(rd.showTr){
     h+='<div class="trans">'+esc(r.tr)+'</div>';
   }else{
     h+='<div style="padding:4px 0 0"><button class="speak" id="tr">显示中文翻译</button></div>';
@@ -857,7 +863,7 @@ function renderReading(id){
   r.qs.forEach((q,qi)=>{
     h+='<div class="q"><div class="qt">'+(qi+1)+'. '+esc(q.q)
      +'<small>'+esc(q.de)+'</small></div><div class="opts" style="padding:0 0 4px">';
-    const picked=ses&&ses.ans?ses.ans[qi]:undefined;
+    const picked=rd.ans[qi];
     q.o.forEach((o,oi)=>{
       let cls='opt';
       if(picked!==undefined){
@@ -871,32 +877,31 @@ function renderReading(id){
     });
     h+='</div></div>';
   });
-  const answered=ses&&ses.ans?Object.keys(ses.ans).length:0;
+  const answered=Object.keys(rd.ans).length;
   h+='</div><div class="actions">'
    +'<button class="btn primary" id="fin">'+(answered>=r.qs.length?'完成':'已答 '+answered+' / '+r.qs.length+' 题')+'</button>'
    +'</div>';
   app.innerHTML=h;
-  bindBack(()=>{ses=null;go('readings');});
-  document.getElementById('tr').onclick=()=>{ses=Object.assign({mode:'read',rid:id,ans:{},showTr:false},ses||{});ses.showTr=true;render();};
+  bindBack(()=>{rd=null;go('readings');});
+  document.getElementById('tr').onclick=()=>{rd.showTr=true;render();};
   app.querySelectorAll('.opt[data-q]').forEach(b=>{
     b.onclick=()=>{
-      if(!ses||!ses.ans)ses={mode:'read',rid:id,ans:{},showTr:false};
       const qi=+b.dataset.q;
-      if(ses.ans[qi]!==undefined)return;
-      ses.ans[qi]=+b.dataset.i;
+      if(rd.ans[qi]!==undefined)return;
+      rd.ans[qi]=+b.dataset.i;
       render();
     };
   });
   document.getElementById('fin').onclick=()=>{
-    const right=r.qs.filter((q,qi)=>ses&&ses.ans&&ses.ans[qi]===q.a).length;
+    const right=r.qs.filter((q,qi)=>rd.ans[qi]===q.a).length;
     app.innerHTML=topbar(r.t,r.zh,true)
      +'<div class="stage"><div class="center" style="text-align:center">'
      +'<div class="de" style="font-size:32px">'+right+' / '+r.qs.length+'</div>'
      +'<div class="zh" style="margin-top:12px">'
      +(right===r.qs.length?'全部答对，这篇读懂了':'答对的题，回去看看原文的对应句子')+'</div>'
      +'</div></div><div class="actions"><button class="btn primary" id="bk2">回到文章列表</button></div>';
-    bindBack(()=>{ses=null;go('readings');});
-    document.getElementById('bk2').onclick=()=>{ses=null;go('readings');};
+    bindBack(()=>{rd=null;go('readings');});
+    document.getElementById('bk2').onclick=()=>{rd=null;go('readings');};
   };
 }
 
@@ -914,8 +919,12 @@ function openSettings(){
    +(S.set.strict?'已开启':'已关闭')+'</span></span></button>'
    +'<button class="mode" id="t3"><span class="k">♪</span><span class="body">'
    +'<span class="nm">语速</span><span class="sub">当前 '+(S.set.rate===0.85?'正常':S.set.rate===0.6?'慢速':'很慢')+'</span></span></button>'
+   +'<button class="mode" id="t4"><span class="k">⇅</span><span class="body">'
+   +'<span class="nm">解锁全部内容</span><span class="sub">跳过「五遍满分」的顺序限制，可以自由跳到任何一组　'
+   +(S.set.allOpen?'已开启':'已关闭')+'</span></span></button>'
    +'</div>'
-   +'<div class="note">严格模式关闭时，只有全对的一轮才计入掌握度，答错的那一轮不计入、也不清零。</div>'
+   +'<div class="note">严格模式关闭时，只有全对的一轮才计入掌握度，答错的那一轮不计入、也不清零。'
+   +'解锁全开后仍建议按顺序练——后面的组会用到前面的词。</div>'
    +'<div class="mode-list" style="margin-top:14px">'
    +'<button class="mode" id="rs"><span class="k">↺</span><span class="body">'
    +'<span class="nm">清空全部进度</span><span class="sub">重新从第一组开始，无法撤销</span></span></button>'
@@ -927,6 +936,7 @@ function openSettings(){
   document.getElementById('t3').onclick=()=>{
     S.set.rate = S.set.rate===0.85?0.6:S.set.rate===0.6?0.45:0.85; save(); openSettings();
   };
+  document.getElementById('t4').onclick=()=>{S.set.allOpen=!S.set.allOpen;save();openSettings();};
   document.getElementById('rs').onclick=()=>{
     if(confirm('确定清空全部学习进度？这个操作无法撤销。')){S=JSON.parse(JSON.stringify(DEF));save();go('home');}
   };
