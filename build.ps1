@@ -20,8 +20,8 @@ $files = @(
   'content-phrases.js',
   'content-b2.js',
   'content-readings.js',
-  'content-grammar.js',
-  'content-lectures.js'
+  'content-topics-a.js',
+  'content-topics-b.js'
 )
 
 $html = [System.IO.File]::ReadAllText($tpl)

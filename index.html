@@ -1489,269 +1489,636 @@ window.CONTENT_READINGS = [
 
 </script>
 <script>
-/* ==== content-grammar.js ==== */
+/* ==== content-topics-a.js ==== */
 /* ============================================================
-   语法专项训练
-   格式：{id, lv, t, why, items:[{q, a, opts, why}]}
-     q    题干，用 ___ 表示空
-     a    正确答案
-     opts 选项（一般 3–4 个）
-     why  讲解——语法题的价值就在这句
+   语法知识点 A1：讲义 + 练习 合体
+   每条 = 一段讲义（core/rows/egs/note）+ 一组针对这条的题（items）
+   格式同前：q 题干（___ 为空）a 正确答案 opts 选项 why 讲解
    ============================================================ */
-window.CONTENT_GRAMMAR = [
+window.CONTENT_TOPICS_A = [
 
-{id:'g-sein', lv:'A1', t:'sein 和 haben 的现在时', s:'Präsens: sein / haben',
- why:'这两个动词是所有句子的地基，但它们是强变化，必须背熟：sein = bin / bist / ist / sind / seid / sind；haben = habe / hast / hat / haben / habt / haben。',
+{id:'T1', lv:'A1', t:'sein 和 haben 现在时', s:'Präsens: sein / haben',
+ core:'这两个词是德语所有句子的地基，而且是<strong>强变化</strong>——不能套规则，只能背。先把这两行刻进脑子。',
+ rows:[
+  ['sein 是','ich bin · du bist · er/sie/es ist','wir sind · ihr seid · sie/Sie sind'],
+  ['haben 有','ich habe · du hast · er/sie/es hat','wir haben · ihr habt · sie/Sie haben']
+ ],
+ egs:[['Ich bin Student.','我是学生。'],['Sie hat zwei Kinder.','她有两个孩子。']],
+ note:'两个最容易错的点：<strong>er/sie/es 是 ist，不加 -t</strong>；<strong>ihr 配 seid</strong>（和 sind 只差一个字母）。',
  items:[
   {q:'Ich ___ Student.', a:'bin', opts:['bin','bist','ist'], why:'ich 配 bin。这几乎是德语第一句话。'},
   {q:'Du ___ aus China.', a:'bist', opts:['bin','bist','seid'], why:'du 配 bist。'},
-  {q:'Er ___ Lehrer.', a:'ist', opts:['ist','bist','sind'], why:'er / sie / es 都配 ist。'},
+  {q:'Er ___ Lehrer.', a:'ist', opts:['ist','bist','sind'], why:'er/sie/es 都配 ist，不加 -t。'},
   {q:'Wir ___ aus Deutschland.', a:'sind', opts:['sind','seid','ist'], why:'wir 配 sind。'},
-  {q:'Ihr ___ müde.', a:'seid', opts:['sind','seid','bist'], why:'ihr（你们）配 seid——这是最容易被忽略的一个，它和不规则的 sind 只差一个字母。'},
+  {q:'Ihr ___ müde.', a:'seid', opts:['sind','seid','bist'], why:'ihr（你们）配 seid——最容易忽略的一个。'},
   {q:'Ich ___ einen Bruder.', a:'habe', opts:['habe','hat','haben'], why:'ich 配 habe。'},
-  {q:'Sie ___ Zeit.', a:'hat', opts:['hat','habe','habt'], why:'sie（她）配 hat。'},
+  {q:'Sie (她) ___ Zeit.', a:'hat', opts:['hat','habe','habt'], why:'sie（她）配 hat。'},
   {q:'Wir ___ zwei Kinder.', a:'haben', opts:['haben','habt','hat'], why:'wir 配 haben。'}
  ]},
 
-{id:'g-regverb', lv:'A1', t:'规则动词现在时', s:'Regelmäßige Verben',
- why:'规则动词的词尾像模板一样固定：-e, -st, -t, -en, -t, -en。去掉词尾 -en 得到词干，再加这些词尾。',
+{id:'T2', lv:'A1', t:'规则动词现在时', s:'Regelmäßige Verben',
+ core:'规则动词的词尾像模板一样固定。去掉词尾 <strong>-en</strong> 得到词干，再加这六种词尾。',
+ rows:[
+  ['词尾模板','-e · -st · -t · -en · -t · -en','ich mache · du machst · er macht · wir machen · ihr macht · sie machen'],
+  ['词干以 -t/-d 结尾','中间要垫一个 e','arbeiten → du arbeitest · er arbeitet']
+ ],
+ egs:[['Ich lerne Deutsch.','我在学德语。'],['Er arbeitet in Berlin.','他在柏林工作。']],
+ note:'垫 e 的原因是<strong>读不出来</strong>——arbeit + st 没法念，所以变成 arbeitest。同理 du findest、du wartest。',
  items:[
   {q:'Ich ___ Deutsch. (lernen)', a:'lerne', opts:['lerne','lernst','lernt'], why:'ich 加 -e。'},
   {q:'Du ___ in Berlin. (wohnen)', a:'wohnst', opts:['wohne','wohnst','wohnt'], why:'du 加 -st。'},
-  {q:'Er ___ in einem Büro. (arbeiten)', a:'arbeitet', opts:['arbeite','arbeitest','arbeitet'], why:'词干以 -t 结尾时要加一个 e 再接词尾，否则读不出来：arbeit + e + t。'},
+  {q:'Er ___ in einem Büro. (arbeiten)', a:'arbeitet', opts:['arbeite','arbeitest','arbeitet'], why:'词干以 -t 结尾，垫 e 再接词尾：arbeit + e + t。'},
   {q:'Wir ___ nach Hamburg. (fahren)', a:'fahren', opts:['fahre','fahrt','fahren'], why:'wir 加 -en，和原形相同。'},
   {q:'Ihr ___ gern Musik. (hören)', a:'hört', opts:['höre','hört','hören'], why:'ihr 加 -t。'},
-  {q:'Sie (复数) ___ Brot. (kaufen)', a:'kaufen', opts:['kauft','kaufen','kaufst'], why:'sie（他们）加 -en。'},
   {q:'Du ___ gut. (kochen)', a:'kochst', opts:['kochst','kocht','koche'], why:'du 加 -st。'},
-  {q:'Ich ___ einen Brief. (schreiben)', a:'schreibe', opts:['schreibe','schreibst','schreibt'], why:'ich 加 -e。'}
+  {q:'Ich ___ einen Brief. (schreiben)', a:'schreibe', opts:['schreibe','schreibst','schreibt'], why:'ich 加 -e。'},
+  {q:'Sie (他们) ___ Brot. (kaufen)', a:'kaufen', opts:['kauft','kaufen','kaufst'], why:'sie（他们）加 -en。'}
  ]},
 
-{id:'g-nom', lv:'A1', t:'第一格：主语用格', s:'Nominativ',
- why:'第一格就是「谁在做」，做主语。定冠词：der（阳）/ die（阴）/ das（中）/ die（复数）。德语名词的性别是天生的，必须和单词一起记。',
+{id:'T3', lv:'A1', t:'名词性别不用背，看词尾', s:'Genus erkennen',
+ core:'德语名词的 der/die/das <strong>不是随机的</strong>。看到这些词尾，直接判，命中率九成以上。',
+ rows:[
+  ['-ung / -heit / -keit / -schaft / -tion / -tät','die','die Wohnung 公寓 · die Freiheit 自由 · die Zeitung 报纸'],
+  ['-er / -ling / -ist / -ismus（做某事的人）','der','der Lehrer 老师 · der Frühling 春天 · der Journalist 记者'],
+  ['-chen / -lein（小称）','das','das Mädchen 女孩 · das Brötchen 小面包'],
+  ['-ment / -um / -ma','das','das Dokument 文件 · das Zentrum 中心 · das Thema 主题']
+ ],
+ egs:[['Die Zeitung ist neu.','这份报纸是新的。'],['Das Mädchen spielt im Garten.','那个女孩在花园里玩。']],
+ note:'最容易翻车的一条：<strong>das Mädchen（女孩）是中性</strong>——因为 -chen 永远中性，跟人本身是男是女无关。同理 das Fräulein。',
  items:[
-  {q:'___ Mann liest ein Buch.', a:'Der', opts:['Der','Den','Dem'], why:'Mann 是阳性，做主语用第一格，所以 der。'},
-  {q:'___ Frau arbeitet hier.', a:'Die', opts:['Die','Der','Das'], why:'Frau 是阴性，第一格用 die。'},
-  {q:'___ Kind spielt im Garten.', a:'Das', opts:['Das','Der','Die'], why:'Kind 是中性，第一格用 das。'},
-  {q:'___ Kinder sind müde.', a:'Die', opts:['Die','Der','Das'], why:'复数一律用 die，不分性别。'},
+  {q:'___ Wohnung ist groß.', a:'Die', opts:['Die','Der','Das'], why:'-ung 结尾 → 阴性，用 die。'},
+  {q:'___ Zeitung liegt auf dem Tisch.', a:'Die', opts:['Die','Der','Das'], why:'-ung 结尾 → 阴性。'},
+  {q:'___ Lehrer kommt gleich.', a:'Der', opts:['Der','Die','Das'], why:'-er 表示做某事的人 → 阳性。'},
+  {q:'___ Mädchen spielt im Garten.', a:'Das', opts:['Das','Der','Die'], why:'-chen 是小称 → 中性。这也是最容易错的一条。'},
+  {q:'___ Dokument ist wichtig.', a:'Das', opts:['Das','Der','Die'], why:'-ment 结尾 → 中性。'},
+  {q:'___ Freiheit ist wichtig.', a:'Die', opts:['Die','Der','Das'], why:'-heit 结尾 → 阴性。'},
+  {q:'___ Journalist schreibt einen Artikel.', a:'Der', opts:['Der','Die','Das'], why:'-ist 表示人 → 阳性。'},
+  {q:'___ Zentrum der Stadt ist schön.', a:'Das', opts:['Das','Der','Die'], why:'-um 结尾 → 中性。'},
+  {q:'___ Möglichkeit gibt es nicht.', a:'Die', opts:['Die','Der','Das'], why:'-keit 结尾 → 阴性。'},
+  {q:'___ Frühling ist da.', a:'Der', opts:['Der','Die','Das'], why:'-ling 结尾 → 阳性。'}
+ ]},
+
+{id:'T4', lv:'A1', t:'名词复数：五种变法 + 一条铁律', s:'Plural',
+ core:'德语复数就五种结局。背不下来的时候，至少记住那条<strong>铁律</strong>——它能覆盖一大批词。',
+ rows:[
+  ['-e','der Tisch → die Tische','阳性多'],
+  ['-en / -n','die Frau → die Frauen','阴性多'],
+  ['-er','das Kind → die Kinder','中性多，常加变音'],
+  ['-s','das Auto → die Autos','外来词'],
+  ['不变','der Lehrer → die Lehrer','-er/-en 结尾的名词']
+ ],
+ egs:[['Die Wohnungen sind teuer.','这些公寓很贵。'],['Die Kinder spielen draußen.','孩子们在外面玩。']],
+ note:'<strong>铁律</strong>：以 -ung / -heit / -keit / -schaft 结尾的阴性名词，复数<strong>一律加 -en</strong>，没有例外。这一条就能覆盖你日常遇到的一大批词。',
+ items:[
+  {q:'die Wohnung → die ___', a:'Wohnungen', opts:['Wohnungen','Wohnunge','Wohnungs'], why:'铁律：-ung 结尾一律加 -en。'},
+  {q:'die Zeitung → die ___', a:'Zeitungen', opts:['Zeitungen','Zeitunge','Zeitungs'], why:'同样，-ung → -en。'},
+  {q:'die Möglichkeit → die ___', a:'Möglichkeiten', opts:['Möglichkeiten','Möglichkeite','Möglichkeits'], why:'-keit 结尾 → -en。'},
+  {q:'das Kind → die ___', a:'Kinder', opts:['Kinder','Kinden','Kinds'], why:'中性常用 -er。'},
+  {q:'das Auto → die ___', a:'Autos', opts:['Autos','Autoen','Autoe'], why:'外来词用 -s。'},
+  {q:'der Tisch → die ___', a:'Tische', opts:['Tische','Tischen','Tischer'], why:'阳性常用 -e。'},
+  {q:'die Frau → die ___', a:'Frauen', opts:['Frauen','Fraus','Fraue'], why:'阴性常用 -en。'},
+  {q:'der Lehrer → die ___', a:'Lehrer', opts:['Lehrer','Lehrere','Lehreren'], why:'-er 结尾的名词复数不变。'},
+  {q:'die Freiheit → die ___', a:'Freiheiten', opts:['Freiheiten','Freiheite','Freiheits'], why:'-heit 结尾 → -en。'},
+  {q:'das Haus → die ___', a:'Häuser', opts:['Häuser','Hausen','Hause'], why:'中性常加变音再接 -er。'}
+ ]},
+
+{id:'T5', lv:'A1', t:'第一格：谁在做', s:'Nominativ',
+ core:'第一格就是<strong>主语</strong>——「谁在做」。定冠词：der（阳）/ die（阴）/ das（中）/ die（复数）。',
+ rows:[
+  ['der','阳性','der Mann 男人 · der Tisch 桌子'],
+  ['die','阴性','die Frau 女人 · die Wohnung 公寓'],
+  ['das','中性','das Kind 孩子 · das Buch 书'],
+  ['die','复数（不分性别）','die Kinder 孩子们']
+ ],
+ egs:[['Der Mann liest ein Buch.','那个男人在读书。'],['Die Kinder sind müde.','孩子们累了。']],
+ note:'复数<strong>一律用 die</strong>，不管这些名词原本是阳是阴是中。这是第一格里唯一的「偷懒」点。',
+ items:[
+  {q:'___ Mann liest ein Buch.', a:'Der', opts:['Der','Den','Dem'], why:'Mann 阳性，做主语用第一格 der。'},
+  {q:'___ Frau arbeitet hier.', a:'Die', opts:['Die','Der','Das'], why:'Frau 阴性，第一格 die。'},
+  {q:'___ Kind spielt im Garten.', a:'Das', opts:['Das','Der','Die'], why:'Kind 中性，第一格 das。'},
+  {q:'___ Kinder sind müde.', a:'Die', opts:['Die','Der','Das'], why:'复数一律 die，不分性别。'},
   {q:'___ Tisch ist neu.', a:'Der', opts:['Der','Die','Das'], why:'Tisch 是阳性（der Tisch）。'},
-  {q:'___ Wohnung ist groß.', a:'Die', opts:['Die','Der','Das'], why:'Wohnung 是阴性（die Wohnung）。'},
-  {q:'___ Buch ist interessant.', a:'Das', opts:['Das','Der','Die'], why:'Buch 是中性（das Buch）。'},
-  {q:'___ Wasser ist kalt.', a:'Das', opts:['Das','Der','Die'], why:'Wasser 是中性（das Wasser）。'}
+  {q:'___ Wohnung ist groß.', a:'Die', opts:['Die','Der','Das'], why:'Wohnung 是阴性。'},
+  {q:'___ Buch ist interessant.', a:'Das', opts:['Das','Der','Die'], why:'Buch 是中性。'},
+  {q:'___ Wasser ist kalt.', a:'Das', opts:['Das','Der','Die'], why:'Wasser 是中性。'}
  ]},
 
-{id:'g-akk', lv:'A1', t:'第四格：宾语用格', s:'Akkusativ',
- why:'第四格是「动作直接落在谁身上」。只有阳性冠词会变：der → den。阴性 die、中性 das、复数 die 都不变。支配第四格的常见动词：sehen、kaufen、haben、lesen、essen、trinken、brauchen、suchen。',
+{id:'T6', lv:'A1', t:'第四格：只有阳性会变 der→den', s:'Akkusativ',
+ core:'这是整个格系统最大的简化：从第一格到第四格，<strong>只有阳性单数会变</strong>，其他全部原样。',
+ rows:[
+  ['der Mann','→ den Mann','阳性：变'],
+  ['die Frau','→ die Frau','阴性：不变'],
+  ['das Kind','→ das Kind','中性：不变'],
+  ['die Kinder','→ die Kinder','复数：不变'],
+  ['ein / mein','→ einen / meinen','只有阳性的不定冠词、物主代词要变']
+ ],
+ egs:[['Ich sehe den Mann.','我看见那个男人。'],['Ich sehe die Frau und das Kind.','我看见那个女人和孩子。']],
+ note:'做第四格题时你只需要判断一件事：<strong>这个词是阳性的吗？</strong>是就 der→den、ein→einen、mein→meinen；不是就别动。支配第四格的常见动词：sehen、kaufen、haben、lesen、essen、trinken、brauchen、suchen。',
  items:[
-  {q:'Ich sehe ___ Mann.', a:'den', opts:['der','den','dem'], why:'sehen 支配第四格，阳性 der 变 den。'},
-  {q:'Ich kaufe ___ Brot.', a:'das', opts:['das','dem','den'], why:'Brot 是中性，第四格不变，还是 das。'},
-  {q:'Er liest ___ Zeitung.', a:'die', opts:['die','der','den'], why:'Zeitung 是阴性，第四格不变，还是 die。'},
-  {q:'Wir haben ___ Hund.', a:'einen', opts:['ein','einen','einem'], why:'不定冠词阳性在第四格是 einen（ein → einen）。'},
-  {q:'Sie sucht ___ Schlüssel.', a:'den', opts:['der','den','dem'], why:'suchen 支配第四格，der Schlüssel → den Schlüssel。'},
-  {q:'Ich trinke ___ Kaffee.', a:'einen', opts:['ein','eine','einen'], why:'Kaffee 是阳性，第四格用 einen。'},
-  {q:'Ich brauche ___ Fahrkarte.', a:'eine', opts:['ein','eine','einen'], why:'Fahrkarte 是阴性，第四格用 eine。'},
-  {q:'Er isst ___ Apfel.', a:'einen', opts:['ein','einen','einem'], why:'Apfel 是阳性，第四格用 einen。'}
+  {q:'Ich sehe ___ Mann.', a:'den', opts:['der','den','dem'], why:'sehen 支配第四格，阳性 der → den。'},
+  {q:'Ich kaufe ___ Brot.', a:'das', opts:['das','dem','den'], why:'Brot 中性，第四格不变。'},
+  {q:'Er liest ___ Zeitung.', a:'die', opts:['die','der','den'], why:'Zeitung 阴性，第四格不变。'},
+  {q:'Wir haben ___ Hund.', a:'einen', opts:['ein','einen','einem'], why:'不定冠词阳性第四格：ein → einen。'},
+  {q:'Sie sucht ___ Schlüssel.', a:'den', opts:['der','den','dem'], why:'suchen 支配第四格，der Schlüssel → den。'},
+  {q:'Ich trinke ___ Kaffee.', a:'einen', opts:['ein','eine','einen'], why:'Kaffee 阳性，第四格 einen。'},
+  {q:'Ich brauche ___ Fahrkarte.', a:'eine', opts:['ein','eine','einen'], why:'Fahrkarte 阴性，第四格不变，仍是 eine。'},
+  {q:'Er isst ___ Apfel.', a:'einen', opts:['ein','einen','einem'], why:'Apfel 阳性，第四格 einen。'},
+  {q:'Ich habe ___ Bruder.', a:'einen', opts:['ein','einen','einem'], why:'阳性第四格 → einen。'},
+  {q:'Ich liebe ___ Familie.', a:'meine', opts:['mein','meine','meinen'], why:'Familie 阴性，第四格不变 → meine。'}
  ]},
 
-{id:'g-dat', lv:'A1', t:'第三格：间接宾语', s:'Dativ',
- why:'第三格是「给谁、对谁」。变化：der → dem，die → der，das → dem，复数 → den（名词还要加 -n）。支配第三格的常见动词：helfen、danken、gefallen、gehören。还有一批介词固定带第三格：mit、nach、bei、aus、von、zu、seit。',
+{id:'T7', lv:'A1', t:'第三格：给谁、对谁', s:'Dativ',
+ core:'第三格是「<strong>给谁</strong>、对谁」。和第四格不同，第三格里<strong>三种性别全都要变</strong>。',
+ rows:[
+  ['der → dem','阳性','Ich helfe dem Mann.'],
+  ['die → der','阴性','Ich helfe der Frau.'],
+  ['das → dem','中性','Ich helfe dem Kind.'],
+  ['die (复数) → den','复数，名词还要加 -n','Ich helfe den Kindern.']
+ ],
+ egs:[['Ich helfe dem Mann.','我帮那个男人。'],['Ich danke der Frau.','我感谢那位女士。']],
+ note:'<strong>动词决定配几格，必须连着记</strong>：helfen 帮、danken 感谢、gefallen 使喜欢、gehören 属于——这几个都硬性配第三格，没有例外。复数额外要记得给名词加 -n。',
  items:[
-  {q:'Ich helfe ___ Mann.', a:'dem', opts:['der','den','dem'], why:'helfen 支配第三格，阳性 der 变 dem。'},
-  {q:'Ich danke ___ Frau.', a:'der', opts:['die','der','dem'], why:'danken 支配第三格，阴性 die 变 der。'},
-  {q:'Ich fahre mit ___ Bus.', a:'dem', opts:['der','den','dem'], why:'mit 固定带第三格，Bus 是阳性 → dem。'},
-  {q:'Sie kommt aus ___ Schweiz.', a:'der', opts:['die','der','dem'], why:'aus 固定带第三格，Schweiz 是阴性 → der。'},
-  {q:'Das Buch gehört ___ Kind.', a:'dem', opts:['das','dem','den'], why:'gehören 支配第三格，Kind 是中性 → dem。'},
-  {q:'Ich gehe zu ___ Arzt.', a:'dem', opts:['der','dem','den'], why:'zu 固定带第三格，Arzt 是阳性 → dem。'},
-  {q:'Nach ___ Arbeit gehe ich nach Hause.', a:'der', opts:['die','der','dem'], why:'nach 固定带第三格，Arbeit 是阴性 → der。'},
-  {q:'Ich wohne bei ___ Eltern.', a:'den', opts:['die','den','der'], why:'bei 带第三格；复数在第三格是 den，名词还要加 -n：den Eltern。'}
+  {q:'Ich helfe ___ Mann.', a:'dem', opts:['der','den','dem'], why:'helfen 支配第三格，阳性 der → dem。'},
+  {q:'Ich danke ___ Frau.', a:'der', opts:['die','der','dem'], why:'danken 支配第三格，阴性 die → der。'},
+  {q:'Das Buch gehört ___ Kind.', a:'dem', opts:['das','dem','den'], why:'gehören 支配第三格，中性 das → dem。'},
+  {q:'Ich helfe ___ Kindern.', a:'den', opts:['die','den','der'], why:'复数第三格 → den，名词还要加 -n：den Kindern。'},
+  {q:'Der Film gefällt ___ Frau.', a:'der', opts:['die','der','dem'], why:'gefallen 支配第三格，阴性 → der。'},
+  {q:'Ich danke ___ Lehrer.', a:'dem', opts:['der','den','dem'], why:'阳性第三格 → dem。'},
+  {q:'Das gehört ___ Familie.', a:'der', opts:['die','der','dem'], why:'阴性第三格 → der。'},
+  {q:'Ich helfe ___ Studenten.', a:'dem', opts:['der','den','dem'], why:'阳性第三格 → dem。（单数 Student）'}
  ]},
 
-{id:'g-modal', lv:'A1', t:'情态动词现在时', s:'Modalverben',
- why:'情态动词有两个特点：一是单数第一、三人称同形（ich kann / er kann，都不加 -t）；二是它会占住句子的第二个位置，把主要动词挤到句子最末尾，用原形。',
+{id:'T8', lv:'A1', t:'物主代词：跟 ein 走就对了', s:'Possessivartikel',
+ core:'mein / dein / sein / ihr / unser / euer 的词尾<strong>和 ein 完全一样</strong>。学一套等于学八套。',
+ rows:[
+  ['我 / 你 / 他 / 她','mein · dein · sein · ihr',''],
+  ['我们 / 你们 / 他们 / 您','unser · euer · ihr · Ihr','尊称 Ihr 永远大写'],
+  ['词尾','mein / meine / meinen / meinem','跟 ein / eine / einen / einem 完全同步']
+ ],
+ egs:[['Das ist mein Bruder.','这是我弟弟。'],['Ich liebe meine Familie.','我爱我的家人。'],['Er sucht seinen Schlüssel.','他在找他的钥匙。']],
+ note:'两个坑：<strong>「她的」和「他们的」都是 ihr</strong>，靠上下文区分；<strong>「您的」是 Ihr</strong>，永远大写。另外 euer 后面加词尾时会掉一个 e：eure、euren。',
  items:[
-  {q:'Ich ___ Deutsch sprechen.', a:'kann', opts:['kann','kannst','könnt'], why:'ich 和 er 都用 kann。können 是「会、能」。'},
-  {q:'Du ___ mehr schlafen.', a:'musst', opts:['muss','musst','müsst'], why:'du 用 musst。müssen 是「必须」。'},
-  {q:'Er ___ heute arbeiten.', a:'muss', opts:['muss','musst','müssen'], why:'第三人称单数用 muss，不加 -t。'},
-  {q:'Wir ___ nach Berlin fahren.', a:'wollen', opts:['wollt','wollen','will'], why:'wollen 是「想要」。wir 用 wollen。'},
-  {q:'Ich ___ einen Kaffee.', a:'möchte', opts:['möchte','mag','möchtest'], why:'möchten 是礼貌的「想要」，点单万能句。ich 用 möchte。'},
-  {q:'Hier ___ man nicht rauchen.', a:'darf', opts:['darf','darfst','dürft'], why:'dürfen 是「被允许」。man 是泛指「人们」，配 darf。'},
-  {q:'Was ___ ich tun?', a:'soll', opts:['soll','sollst','sollen'], why:'sollen 是「应该」。'},
-  {q:'Ich ___ jetzt gehen.', a:'muss', opts:['muss','musst','müssen'], why:'注意语序：情态动词在第二位，主要动词 gehen 被推到句尾。'}
- ]},
-
-{id:'g-wortstellung', lv:'A1', t:'语序：动词占第二位', s:'Wortstellung',
- why:'德语主句的铁律：变位动词永远在第二个位置。如果时间、地点等被提到句首，主谓就要倒过来（动词仍是第二，主语挪到动词后面）。这一点和中文直觉完全不同。',
- items:[
-  {q:'Heute ___ ich nach Berlin.', a:'fahre', opts:['fahre','ich fahre','fahren'], why:'Heute 占第一位，动词必须占第二位，主语 ich 被挤到动词后面。'},
-  {q:'Ich ___ heute nach Berlin.', a:'fahre', opts:['fahre','fahren','fahre ich'], why:'主语开头时，动词紧随其后。'},
-  {q:'Am Montag ___ wir einen Termin.', a:'haben', opts:['haben','wir haben','hat'], why:'时间状语开头 → 动词第二位，主语后移。'},
-  {q:'___ du gern Musik?', a:'Hörst', opts:['Hörst','Du hörst','Hören'], why:'一般疑问句：动词提到最前面，没有疑问词。'},
-  {q:'Wo ___ du?', a:'wohnst', opts:['wohnst','du wohnst','wohnen'], why:'特殊疑问句：疑问词占第一位，动词仍占第二位。'},
-  {q:'Ich glaube, dass er morgen ___.', a:'kommt', opts:['kommt','kommen','er kommt'], why:'dass 引导的从句里，动词要挪到最末尾。'},
-  {q:'Nach der Arbeit ___ ich müde.', a:'bin', opts:['bin','ich bin','ist'], why:'介词短语开头 → 动词第二位。'},
-  {q:'___ Sie Deutsch?', a:'Sprechen', opts:['Sprechen','Sie sprechen','Spricht'], why:'一般疑问句，动词提前。'}
- ]},
-
-{id:'g-negation', lv:'A1', t:'否定：nicht 还是 kein', s:'Negation',
- why:'nicht 否定动词、形容词、整句；kein 只否定名词，而且当那个名词前面是 ein 或者没有冠词时用。kein 要像 ein 一样变格：kein / keine / keinen / keinem。',
- items:[
-  {q:'Das ist ___ Problem.', a:'kein', opts:['nicht','kein','keine'], why:'否定名词 Problem，且原本是 ein Problem，所以用 kein。'},
-  {q:'Ich habe ___ Zeit.', a:'keine', opts:['nicht','kein','keine'], why:'Zeit 是阴性，kein 变成 keine。'},
-  {q:'Ich verstehe ___.', a:'nicht', opts:['nicht','kein','keine'], why:'否定的是动词 verstehen，用 nicht。'},
-  {q:'Er hat ___ Geld.', a:'kein', opts:['nicht','kein','keine'], why:'Geld 是中性，kein 不变形。'},
-  {q:'Das Wetter ist ___ gut.', a:'nicht', opts:['nicht','kein','keine'], why:'否定形容词 gut，用 nicht。'},
-  {q:'Sie hat ___ Bruder.', a:'keinen', opts:['kein','keinen','keinem'], why:'Bruder 是阳性，且这里是第四格宾语，所以 keinen。'},
-  {q:'Ich komme ___.', a:'nicht', opts:['nicht','kein','keine'], why:'否定动词 kommen，用 nicht。'},
-  {q:'Wir haben ___ Auto.', a:'kein', opts:['nicht','kein','keine'], why:'Auto 是中性，用 kein。'}
- ]},
-
-{id:'g-possessiv', lv:'A1', t:'物主代词', s:'Possessivartikel',
- why:'我的 mein、你的 dein、他的 sein、她的 ihr、我们的 unser、你们的 euer、他们的 ihr、您的 Ihr。它们后面的词尾和 ein 完全一样，所以学一套就够：mein / meine / meinen / meinem。',
- items:[
-  {q:'Das ist ___ Bruder. (我)', a:'mein', opts:['mein','meine','meinen'], why:'Bruder 是阳性第一格，用 mein。'},
-  {q:'Das ist ___ Schwester. (我)', a:'meine', opts:['mein','meine','meinen'], why:'Schwester 是阴性，用 meine。'},
-  {q:'Wie heißt ___ Frau? (你)', a:'deine', opts:['dein','deine','deinen'], why:'Frau 是阴性，dein 加 -e 变 deine。'},
-  {q:'Ich liebe ___ Familie. (我)', a:'meine', opts:['mein','meine','meinen'], why:'Familie 是阴性，第四格也不变，仍是 meine。'},
-  {q:'Er sucht ___ Schlüssel. (他)', a:'seinen', opts:['sein','seinen','seinem'], why:'Schlüssel 是阳性，做第四格宾语 → seinen。'},
+  {q:'Das ist ___ Bruder. (我)', a:'mein', opts:['mein','meine','meinen'], why:'Bruder 阳性第一格 → mein。'},
+  {q:'Das ist ___ Schwester. (我)', a:'meine', opts:['mein','meine','meinen'], why:'Schwester 阴性 → meine。'},
+  {q:'Wie heißt ___ Frau? (你)', a:'deine', opts:['dein','deine','deinen'], why:'Frau 阴性 → deine。'},
+  {q:'Ich liebe ___ Familie. (我)', a:'meine', opts:['mein','meine','meinen'], why:'Familie 阴性，第四格不变 → meine。'},
+  {q:'Er sucht ___ Schlüssel. (他)', a:'seinen', opts:['sein','seinen','seinem'], why:'Schlüssel 阳性第四格 → seinen。'},
   {q:'___ Vater arbeitet hier. (她)', a:'Ihr', opts:['Ihr','Ihre','Sein'], why:'「她的」是 ihr，Vater 阳性第一格 → Ihr（句首大写）。'},
-  {q:'Wie ist ___ Nummer? (您)', a:'Ihre', opts:['Ihr','Ihre','deine'], why:'尊称「您」的物主代词是 Ihr，要大写；Nummer 阴性 → Ihre。'},
-  {q:'Wir lieben ___ Stadt. (我们)', a:'unsere', opts:['unser','unsere','unseren'], why:'Stadt 是阴性 → unsere。'}
+  {q:'Wie ist ___ Nummer? (您)', a:'Ihre', opts:['Ihr','Ihre','deine'], why:'尊称物主代词 Ihr 永远大写；Nummer 阴性 → Ihre。'},
+  {q:'Wir lieben ___ Stadt. (我们)', a:'unsere', opts:['unser','unsere','unseren'], why:'Stadt 阴性 → unsere。'}
  ]},
 
-{id:'g-perfekt', lv:'A2', t:'完成时：说过去的事', s:'Perfekt',
- why:'口语里说过去，几乎都用完成时。公式：haben 或 sein + 过去分词，两个部分分别占句子的第二位和末尾。绝大多数动词配 haben；表示移动或状态改变的动词（gehen、fahren、kommen、aufstehen）配 sein。',
+{id:'T9', lv:'A1', t:'否定：kein 还是 nicht', s:'Negation',
+ core:'一句话判断：<strong>否定名词用 kein，否定其他一切用 nicht。</strong>',
+ rows:[
+  ['kein','后面跟名词，且该名词前面是 ein 或没有冠词','Ich habe kein Geld. 我没钱'],
+  ['nicht','否定动词、形容词、整句','Ich verstehe nicht. 我不明白'],
+  ['kein 的变格','kein / keine / keinen / keinem','完全跟 ein 一样']
+ ],
+ egs:[['Das ist kein Problem.','这不是问题。'],['Das Wetter ist nicht gut.','天气不好。']],
+ note:'判断口诀：先看<strong>要否定的那个词是不是名词</strong>。是名词、而且前面是 ein 或没冠词 → kein；其余全部 nicht。所以 <strong>keinen</strong> 出现在阳性第四格（Ich habe keinen Bruder）。',
+ items:[
+  {q:'Das ist ___ Problem.', a:'kein', opts:['nicht','kein','keine'], why:'否定名词 Problem，原本是 ein Problem → kein。'},
+  {q:'Ich habe ___ Zeit.', a:'keine', opts:['nicht','kein','keine'], why:'Zeit 阴性 → keine。'},
+  {q:'Ich verstehe ___.', a:'nicht', opts:['nicht','kein','keine'], why:'否定动词 verstehen → nicht。'},
+  {q:'Er hat ___ Geld.', a:'kein', opts:['nicht','kein','keine'], why:'Geld 中性 → kein。'},
+  {q:'Das Wetter ist ___ gut.', a:'nicht', opts:['nicht','kein','keine'], why:'否定形容词 gut → nicht。'},
+  {q:'Sie hat ___ Bruder.', a:'keinen', opts:['kein','keinen','keinem'], why:'Bruder 阳性第四格 → keinen。'},
+  {q:'Ich komme ___.', a:'nicht', opts:['nicht','kein','keine'], why:'否定动词 kommen → nicht。'},
+  {q:'Wir haben ___ Auto.', a:'kein', opts:['nicht','kein','keine'], why:'Auto 中性 → kein。'},
+  {q:'Ich habe ___ Lust.', a:'keine', opts:['nicht','kein','keine'], why:'Lust 阴性 → keine。'},
+  {q:'Er ist ___ müde.', a:'nicht', opts:['nicht','kein','keine'], why:'否定形容词 müde → nicht。'}
+ ]},
+
+{id:'T10', lv:'A1', t:'陈述句：动词坐第二把交椅', s:'Wortstellung im Aussagesatz',
+ core:'德语主句里，<strong>变位动词永远在第二个位置</strong>。不管谁开头，这个位置不动。',
+ rows:[
+  ['主语开头','主语 + 动词 + …','Ich fahre heute nach Berlin.'],
+  ['别的成分开头','该成分 + <strong>动词</strong> + 主语 + …','Heute fahre ich nach Berlin.（倒装）'],
+  ['两个动作','情态动词占第二位，主要动词去末尾','Ich muss heute arbeiten.']
+ ],
+ egs:[['Am Montag haben wir einen Termin.','周一我们有个约。'],['Nach der Arbeit gehe ich einkaufen.','下班后我去买东西。']],
+ note:'中文习惯「时间 + 主语 + 动词」，德语是「时间 + <strong>动词</strong> + 主语」。所以句首只要不是主语，动词和主语就要<strong>换位置</strong>——这是语法要求，不是可选项。',
+ items:[
+  {q:'Heute ___ ich nach Berlin.', a:'fahre', opts:['fahre','ich fahre','fahren'], why:'Heute 占第一位，动词必须第二位，主语后移。'},
+  {q:'Ich ___ heute nach Berlin.', a:'fahre', opts:['fahre','fahren','fahre ich'], why:'主语开头时动词紧随其后。'},
+  {q:'Am Montag ___ wir einen Termin.', a:'haben', opts:['haben','wir haben','hat'], why:'时间状语开头 → 动词第二位。'},
+  {q:'Nach der Arbeit ___ ich müde.', a:'bin', opts:['bin','ich bin','ist'], why:'介词短语开头 → 动词第二位。'},
+  {q:'Morgen ___ er nach Köln.', a:'fährt', opts:['fährt','er fährt','fahren'], why:'时间词开头 → 动词第二位，主语后移。'},
+  {q:'Ich ___ heute keine Zeit.', a:'habe', opts:['habe','haben','habe ich'], why:'主语开头，动词紧随。'},
+  {q:'In Berlin ___ viele Menschen.', a:'wohnen', opts:['wohnen','Menschen wohnen','wohnt'], why:'地点开头 → 动词第二位。'},
+  {q:'Ich ___ Deutsch lernen.', a:'muss', opts:['muss','müssen','lerne'], why:'情态动词占第二位，主要动词 lernen 去末尾。'}
+ ]},
+
+{id:'T11', lv:'A1', t:'疑问句：两种问法', s:'Fragen',
+ core:'德语只有两种疑问句，都是<strong>靠动词的位置</strong>来区分。',
+ rows:[
+  ['一般疑问句（是/否）','动词提到<strong>最前面</strong>','Sprechen Sie Deutsch?'],
+  ['特殊疑问句（W 词）','W 词第一，<strong>动词仍第二</strong>','Wo wohnen Sie?'],
+  ['常用 W 词','wer 谁 · was 什么 · wo 哪里 · wann 何时 · wie 怎样 · warum 为什么','']
+ ],
+ egs:[['Kommen Sie aus China?','您来自中国吗？'],['Wann beginnt der Kurs?','课程什么时候开始？']],
+ note:'注意一般疑问句：动词提到最前面后，<strong>主语紧跟在动词后面</strong>。这是唯一一个动词不在第二位的主句情况——因为它被挤到了第一位。',
+ items:[
+  {q:'___ du gern Musik?', a:'Hörst', opts:['Hörst','Du hörst','Hören'], why:'一般疑问句，动词提到最前面。'},
+  {q:'Wo ___ du?', a:'wohnst', opts:['wohnst','du wohnst','wohnen'], why:'特殊疑问句：W 词第一，动词仍第二。'},
+  {q:'___ Sie Deutsch?', a:'Sprechen', opts:['Sprechen','Sie sprechen','Spricht'], why:'一般疑问句，动词提前。'},
+  {q:'Wann ___ der Kurs?', a:'beginnt', opts:['beginnt','beginnt der','beginnen'], why:'W 词开头，动词第二位。'},
+  {q:'___ du Zeit?', a:'Hast', opts:['Hast','Du hast','Hat'], why:'一般疑问句，动词最前面。'},
+  {q:'Warum ___ du nicht?', a:'kommst', opts:['kommst','du kommst','kommen'], why:'W 词第一，动词第二。'},
+  {q:'___ er aus Deutschland?', a:'Kommt', opts:['Kommt','Er kommt','Kommen'], why:'一般疑问句。'},
+  {q:'Wie ___ Sie?', a:'heißen', opts:['heißen','Sie heißen','heißt'], why:'W 词第一，动词第二。'}
+ ]},
+
+{id:'T12', lv:'A1', t:'情态动词：ich 和 er 长得一样', s:'Modalverben',
+ core:'情态动词有两个特点。一是单数第一、三人称<strong>同形，都不加 -t</strong>；二是它占住第二位，把主要动词<strong>赶到句子末尾</strong>。',
+ rows:[
+  ['können 能','ich kann / er kann','（不是 kannt）'],
+  ['müssen 必须','ich muss / er muss',''],
+  ['wollen 想','ich will / er will',''],
+  ['dürfen 被允许','ich darf / er darf',''],
+  ['möchten 想要（礼貌）','ich möchte / er möchte','点单万能词']
+ ],
+ egs:[['Ich kann Deutsch sprechen.','我会说德语。'],['Er muss heute arbeiten.','他今天必须工作。']],
+ note:'第二个特点比第一个更要紧：情态动词占住第二位后，<strong>主要动词用原形、放到句子最末尾</strong>。所以是「Er muss heute <strong>arbeiten</strong>」，不是「arbeitet」。',
+ items:[
+  {q:'Ich ___ Deutsch sprechen.', a:'kann', opts:['kann','kannst','könnt'], why:'ich 和 er 都用 kann。'},
+  {q:'Du ___ mehr schlafen.', a:'musst', opts:['muss','musst','müsst'], why:'du 用 musst。'},
+  {q:'Er ___ heute arbeiten.', a:'muss', opts:['muss','musst','müssen'], why:'第三人称单数用 muss，不加 -t。'},
+  {q:'Wir ___ nach Berlin fahren.', a:'wollen', opts:['wollt','wollen','will'], why:'wir 用 wollen。'},
+  {q:'Ich ___ einen Kaffee.', a:'möchte', opts:['möchte','mag','möchtest'], why:'möchten 是礼貌的「想要」，点单万能句。'},
+  {q:'Hier ___ man nicht rauchen.', a:'darf', opts:['darf','darfst','dürft'], why:'dürfen 是「被允许」；man 泛指「人们」，配 darf。'},
+  {q:'Was ___ ich tun?', a:'soll', opts:['soll','sollst','sollen'], why:'sollen 是「应该」。'},
+  {q:'Ich ___ jetzt gehen.', a:'muss', opts:['muss','musst','müssen'], why:'注意语序：情态动词第二位，主要动词 gehen 在末尾。'}
+ ]},
+
+{id:'T13', lv:'A1', t:'介词配格（一）：第三格口诀', s:'Präpositionen mit Dativ',
+ core:'有一批介词<strong>死配第三格</strong>，没有例外。念成一串背下来，比理解原理快得多。',
+ rows:[
+  ['口诀','mit · nach · bei · aus · von · zu · seit',''],
+  ['mit','和…一起、用（工具）','Ich fahre mit dem Bus. 我坐公交'],
+  ['nach','去（城市/国家）、在…之后','nach Berlin · nach der Arbeit'],
+  ['bei','在…那里（人）','bei meinen Eltern 在我父母家'],
+  ['aus','来自','aus China 来自中国'],
+  ['von','从…、…的','von Berlin bis München'],
+  ['zu','去（人/机构）','zum Arzt 去看医生'],
+  ['seit','自从','seit einem Jahr 一年以来']
+ ],
+ egs:[['Ich fahre mit dem Fahrrad.','我骑自行车。'],['Sie kommt aus der Schweiz.','她来自瑞士。']],
+ note:'第三格里<strong>三种性别全都要变</strong>：der→dem、die→der、das→dem、复数→den（名词加 -n）。所以 mit <strong>dem</strong> Bus、bei <strong>der</strong> Arbeit、zu <strong>dem</strong> Arzt。',
+ items:[
+  {q:'Ich fahre mit ___ Bus.', a:'dem', opts:['der','den','dem'], why:'mit 固定第三格，Bus 阳性 → dem。'},
+  {q:'Sie kommt aus ___ Schweiz.', a:'der', opts:['die','der','dem'], why:'aus 固定第三格，Schweiz 阴性 → der。'},
+  {q:'Ich gehe zu ___ Arzt.', a:'dem', opts:['der','dem','den'], why:'zu 固定第三格，Arzt 阳性 → dem。'},
+  {q:'Nach ___ Arbeit gehe ich nach Hause.', a:'der', opts:['die','der','dem'], why:'nach 固定第三格，Arbeit 阴性 → der。'},
+  {q:'Ich wohne bei ___ Eltern.', a:'den', opts:['die','den','der'], why:'bei 带第三格；复数 → den，名词加 -n：den Eltern。'},
+  {q:'Ich lerne seit ___ Jahr Deutsch.', a:'einem', opts:['ein','einem','einen'], why:'seit 固定第三格，Jahr 中性 → einem。'},
+  {q:'Ich fahre mit ___ Fahrrad.', a:'dem', opts:['das','dem','den'], why:'mit 第三格，Fahrrad 中性 → dem。'},
+  {q:'Er kommt von ___ Bahnhof.', a:'dem', opts:['der','dem','den'], why:'von 第三格，Bahnhof 阳性 → dem。'}
+ ]},
+
+{id:'T14', lv:'A1', t:'介词配格（二）：第四格口诀', s:'Präpositionen mit Akkusativ',
+ core:'另一批介词<strong>死配第四格</strong>。数量比第三格那批少，记住这五个就够了。',
+ rows:[
+  ['口诀','für · ohne · gegen · um · durch','"为了不带对抗绕过去"'],
+  ['für','为了、给','für dich 给你'],
+  ['ohne','没有','ohne Zucker 不加糖'],
+  ['gegen','反对、对抗、大约（时间）','gegen mich 反对我'],
+  ['um','围绕、在（几点）','um acht 在八点'],
+  ['durch','穿过、通过','durch die Stadt 穿过城市']
+ ],
+ egs:[['Das ist für meine Mutter.','这是给我妈妈的。'],['Ich trinke Kaffee ohne Zucker.','我喝咖啡不加糖。']],
+ note:'第四格里<strong>只有阳性会变</strong>：für <strong>den</strong> Mann，但 für <strong>die</strong> Frau、für <strong>das</strong> Kind 都不变。所以这批介词的重点只有一半：遇到阳性才要动。',
+ items:[
+  {q:'Das Geschenk ist für ___ Mutter.', a:'die', opts:['die','der','dem'], why:'für 固定第四格，Mutter 阴性 → 不变，die。'},
+  {q:'Wir fahren durch ___ Stadt.', a:'die', opts:['die','der','dem'], why:'durch 第四格，Stadt 阴性 → die。'},
+  {q:'Er kommt ohne ___ Frau.', a:'seine', opts:['sein','seine','seinem'], why:'ohne 第四格；Frau 阴性，物主代词加 -e → seine。'},
+  {q:'Der Zug fährt um ___ Uhr.', a:'acht', opts:['acht','achte','achten'], why:'um 表示钟点，直接接数字，不加冠词。'},
+  {q:'Das ist ein Geschenk für ___ Bruder.', a:'meinen', opts:['mein','meinen','meinem'], why:'für 第四格，Bruder 阳性 → meinen。'},
+  {q:'Er kämpft gegen ___ Wind.', a:'den', opts:['der','den','dem'], why:'gegen 第四格，Wind 阳性 → den。'},
+  {q:'Ich gehe durch ___ Park.', a:'den', opts:['der','den','dem'], why:'durch 第四格，Park 阳性 → den。'},
+  {q:'Das ist für ___ Kind.', a:'das', opts:['das','dem','den'], why:'für 第四格，Kind 中性 → 不变，das。'}
+ ]},
+
+{id:'T15', lv:'A1', t:'介词配格（三）：双向介词一个判断', s:'Wechselpräpositionen',
+ core:'第三类介词带几格<strong>不固定</strong>——取决于一个判断：<strong>有移动方向吗？有就第四格，没有就第三格。</strong>',
+ rows:[
+  ['九个双向介词','in · an · auf · über · unter · vor · hinter · neben · zwischen',''],
+  ['去哪里（有方向）','第四格','Ich gehe in die Stadt.'],
+  ['在哪里（无方向）','第三格','Ich bin in der Stadt.'],
+  ['三组典型动词','legen/liegen 放/躺 · stellen/stehen 竖放/立 · hängen/hängen 挂/挂着','及物的配四格，不及物的配三格']
+ ],
+ egs:[['Ich lege das Buch auf den Tisch.','我把书放到桌上。（放上去 → 四格）'],['Das Buch liegt auf dem Tisch.','书在桌上。（在那儿 → 三格）']],
+ note:'这一条不要背表格，<strong>每次问自己一句「有动作方向吗」</strong>就行。德语把「放」和「在」拆成两个不同的动词，正是为了配合这个区分——搞混这两个是外国人最明显的破绽之一。',
+ items:[
+  {q:'Ich gehe in ___ Stadt.', a:'die', opts:['die','der','dem'], why:'in + 去哪里 → 第四格，Stadt 阴性 → die。'},
+  {q:'Ich bin in ___ Stadt.', a:'der', opts:['die','der','dem'], why:'in + 在哪里 → 第三格，Stadt 阴性 → der。'},
+  {q:'Das Buch liegt auf ___ Tisch.', a:'dem', opts:['den','dem','der'], why:'auf + 在哪里（静态）→ 第三格，Tisch 阳性 → dem。'},
+  {q:'Ich lege das Buch auf ___ Tisch.', a:'den', opts:['den','dem','der'], why:'auf + 放上去（有方向）→ 第四格，Tisch 阳性 → den。'},
+  {q:'Die Katze sitzt unter ___ Tisch.', a:'dem', opts:['den','dem','der'], why:'sitzen 是静态 → 第三格。'},
+  {q:'Die Katze läuft unter ___ Tisch.', a:'den', opts:['den','dem','der'], why:'laufen 有方向 → 第四格。'},
+  {q:'Ich hänge das Bild an ___ Wand.', a:'die', opts:['die','der','dem'], why:'挂上去有方向 → 第四格，Wand 阴性 → die。'},
+  {q:'Das Bild hängt an ___ Wand.', a:'der', opts:['die','der','dem'], why:'挂着是静态 → 第三格，Wand 阴性 → der。'}
+ ]}
+];
+
+</script>
+<script>
+/* ==== content-topics-b.js ==== */
+/* ============================================================
+   语法知识点 A2 / B1：讲义 + 练习 合体
+   ============================================================ */
+window.CONTENT_TOPICS_B = [
+
+{id:'T16', lv:'A2', t:'完成时：默认 haben，只有一种情况用 sein', s:'Perfekt: haben oder sein',
+ core:'口语里说过去几乎都用完成时。拿不准就用 <strong>haben</strong>——只有「移动」或「状态改变」的动词才用 sein。',
+ rows:[
+  ['配 sein','表示移动或状态变化','gehen 走 · kommen 来 · fahren 乘车 · fliegen 飞 · aufstehen 起床 · einschlafen 入睡 · sterben 死'],
+  ['必须记住的三个例外','不移动但也配 sein','sein 是 · bleiben 停留 · werden 变成'],
+  ['其他全部','配 haben','essen · trinken · lesen · kaufen · machen · arbeiten …'],
+  ['公式','haben/sein 占第二位 + 过去分词在末尾','Ich habe Deutsch gelernt.']
+ ],
+ egs:[['Ich habe Deutsch gelernt.','我学了德语。'],['Wir sind nach Berlin gefahren.','我们去了柏林。']],
+ note:'背一个小故事串住 sein 家族：<strong>「来了、走了、飞了、起来了、睡着了、死了、留下了、变了」</strong>——全是位置或状态发生变化的。',
  items:[
   {q:'Ich ___ gestern Deutsch gelernt.', a:'habe', opts:['habe','bin','hatte'], why:'lernen 配 haben。'},
-  {q:'Wir ___ nach Berlin gefahren.', a:'sind', opts:['haben','sind','waren'], why:'fahren 表示移动，配 sein。'},
+  {q:'Wir ___ nach Berlin gefahren.', a:'sind', opts:['haben','sind','waren'], why:'fahren 表示移动 → sein。'},
   {q:'Er ___ einen Kaffee getrunken.', a:'hat', opts:['hat','ist','hatte'], why:'trinken 配 haben。'},
-  {q:'Sie ___ um sieben aufgestanden.', a:'ist', opts:['hat','ist','sind'], why:'aufstehen 表示状态改变，配 sein。'},
+  {q:'Sie ___ um sieben aufgestanden.', a:'ist', opts:['hat','ist','sind'], why:'aufstehen 是状态改变 → sein。'},
   {q:'Ich ___ das Buch gelesen.', a:'habe', opts:['habe','bin','hatte'], why:'lesen 配 haben。'},
-  {q:'___ du schon gegessen?', a:'Hast', opts:['Hast','Bist','Hattest'], why:'essen 配 haben；一般疑问句动词提到句首。'},
-  {q:'Wir ___ gestern zu Hause geblieben.', a:'sind', opts:['haben','sind','waren'], why:'bleiben 表示位置状态持续，配 sein（这是个要单独记的）。'},
+  {q:'___ du schon gegessen?', a:'Hast', opts:['Hast','Bist','Hattest'], why:'essen 配 haben；一般疑问句动词提前。'},
+  {q:'Wir ___ gestern zu Hause geblieben.', a:'sind', opts:['haben','sind','waren'], why:'bleiben 是必须单独记的例外，配 sein。'},
   {q:'Er ___ mir geholfen.', a:'hat', opts:['hat','ist','hatte'], why:'helfen 配 haben。'}
  ]},
 
-{id:'g-partizip', lv:'A2', t:'过去分词怎么造', s:'Partizip II',
- why:'规则动词：ge + 词干 + t，比如 machen → gemacht。强变化动词要单独背，多数是 ge + 词干 + en，而且词干里的元音会变，比如 sprechen → gesprochen。前缀不可分的动词（be-、ver-、er-）不加 ge：besuchen → besucht。',
+{id:'T17', lv:'A2', t:'过去分词怎么造', s:'Partizip II',
+ core:'规则动词：<strong>ge + 词干 + t</strong>。强变化动词要单独背，多数是 <strong>ge + 词干 + en</strong>，而且词干元音会变。',
+ rows:[
+  ['规则','ge + 词干 + t','machen → gemacht · kaufen → gekauft'],
+  ['强变化','ge + 词干(变音) + en','sprechen → gesprochen · trinken → getrunken'],
+  ['前缀 be-/ver-/er- 不可分','<strong>不加 ge</strong>','besuchen → besucht · verstehen → verstanden'],
+  ['可分动词','ge 插在<strong>前缀和词干中间</strong>','aufstehen → aufgestanden · einkaufen → eingekauft']
+ ],
+ egs:[['Ich habe das Museum besucht.','我参观了博物馆。'],['Er ist um sieben aufgestanden.','他七点起床的。']],
+ note:'最容易错的是<strong>可分动词</strong>：ge 不是加在最前面，而是<strong>插进前缀后面</strong>——auf<strong>ge</strong>standen，不是 geaufstanden。',
  items:[
   {q:'machen → Ich habe das ___.', a:'gemacht', opts:['gemacht','gemachtet','machen'], why:'规则：ge + mach + t。'},
   {q:'sprechen → Er hat Deutsch ___.', a:'gesprochen', opts:['gesprecht','gesprochen','gesprechen'], why:'强变化，元音 e → o，词尾 -en。'},
-  {q:'kaufen → Ich habe Brot ___.', a:'gekauft', opts:['gekauft','gekaufen','kaufte'], why:'规则：ge + kauf + t。'},
   {q:'besuchen → Wir haben Museen ___.', a:'besucht', opts:['gebesucht','besucht','besuchen'], why:'be- 前缀不可分，不加 ge。'},
   {q:'verstehen → Ich habe das ___.', a:'verstanden', opts:['geverstanden','verstanden','verstehte'], why:'ver- 前缀不可分，不加 ge。'},
-  {q:'fahren → Wir sind nach Köln ___.', a:'gefahren', opts:['gefahrt','gefahren','gefuhren'], why:'强变化，a → a，词尾 -en。'},
+  {q:'fahren → Wir sind nach Köln ___.', a:'gefahren', opts:['gefahrt','gefahren','gefuhren'], why:'强变化，词尾 -en。'},
   {q:'essen → Ich habe Reis ___.', a:'gegessen', opts:['geesst','gegessen','gegesset'], why:'强变化：essen → gegessen。'},
-  {q:'trinken → Er hat Wasser ___.', a:'getrunken', opts:['getrinkt','getrunken','getrankt'], why:'强变化：trinken → getrunken。'}
+  {q:'trinken → Er hat Wasser ___.', a:'getrunken', opts:['getrinkt','getrunken','getrankt'], why:'强变化：trinken → getrunken。'},
+  {q:'aufstehen → Ich bin früh ___.', a:'aufgestanden', opts:['geaufstanden','aufgestanden','aufstehen'], why:'可分动词：ge 插在前缀 auf 后面。'}
  ]},
 
-{id:'g-praeteritum', lv:'A2', t:'过去时：war / hatte / 情态动词', s:'Präteritum',
- why:'口语里一般动词用完成时，但三个词例外，说过去时更自然：sein → war，haben → hatte，以及所有情态动词（können → konnte，müssen → musste）。它们不加 ge，直接变。',
+{id:'T18', lv:'A2', t:'过去时：war / hatte / 情态动词', s:'Präteritum',
+ core:'口语里一般动词用完成时，但有三类词例外，说过去时更自然：<strong>sein、haben、所有情态动词</strong>。',
+ rows:[
+  ['sein','war · warst · war · waren · wart · waren','Ich war müde.'],
+  ['haben','hatte · hattest · hatte · hatten · hattet · hatten','Ich hatte Zeit.'],
+  ['können','konnte','注意丢掉变音'],
+  ['müssen','musste',''],
+  ['wollen','wollte',''],
+  ['dürfen','durfte','']
+ ],
+ egs:[['Ich war gestern zu Hause.','我昨天在家。'],['Er konnte nicht kommen.','他没法来。']],
+ note:'情态动词的过去时有个小陷阱：<strong>变音全丢</strong>。können → konnte（不是 könnte），müssen → musste（不是 müsste）。带变音的 <strong>könnte / müsste 是虚拟式</strong>，是另一个意思。',
  items:[
   {q:'Ich ___ gestern müde.', a:'war', opts:['war','ist','hatte'], why:'sein 的过去时：war / warst / war / waren / wart / waren。'},
   {q:'Wir ___ damals in Berlin.', a:'waren', opts:['waren','sind','hatten'], why:'wir 用 waren。'},
   {q:'Ich ___ keine Zeit.', a:'hatte', opts:['hatte','war','habe'], why:'haben 的过去时：hatte / hattest / hatte / hatten / hattet / hatten。'},
-  {q:'Er ___ nicht kommen.', a:'konnte', opts:['konnte','kann','könnte'], why:'können 的过去时是 konnte，注意丢掉变音。'},
+  {q:'Er ___ nicht kommen.', a:'konnte', opts:['konnte','kann','könnte'], why:'können 的过去时是 konnte，丢掉变音。'},
   {q:'Ich ___ gestern arbeiten.', a:'musste', opts:['musste','muss','müsste'], why:'müssen 的过去时是 musste。'},
   {q:'Sie ___ nach Hause gehen.', a:'wollte', opts:['wollte','will','wolltest'], why:'wollen 的过去时是 wollte。'},
   {q:'Als Kind ___ ich nicht schwimmen.', a:'konnte', opts:['konnte','kann','könnte'], why:'说过去的能力，用 konnte。'},
   {q:'Wir ___ viel Spaß.', a:'hatten', opts:['hatten','waren','haben'], why:'「我们有乐趣」用 haben 的过去时 hatten。'}
  ]},
 
-{id:'g-trennbar', lv:'A2', t:'可分动词', s:'Trennbare Verben',
- why:'德语有一大类动词带前缀，主句里前缀会「飞」到句子最末尾：aufstehen → Ich stehe um sieben auf。常见的有 auf-、an-、aus-、ein-、mit-、zu-、ab-。要判断能不能分，看前缀是不是重读——重读就能分。',
+{id:'T19', lv:'A2', t:'可分动词：前缀飞到句尾', s:'Trennbare Verben',
+ core:'主句里，可分动词的<strong>前缀永远被甩到句子最末尾</strong>。',
+ rows:[
+  ['aufstehen','Ich stehe um sieben <strong>auf</strong>.','我七点起床'],
+  ['einkaufen','Wir kaufen heute <strong>ein</strong>.','我们今天购物'],
+  ['anrufen','Ich rufe dich später <strong>an</strong>.','我晚点打给你'],
+  ['zumachen','Mach bitte die Tür <strong>zu</strong>!','请把门关上']
+ ],
+ egs:[['Der Zug fährt um acht ab.','火车八点出发。'],['Ich mache den Fernseher an.','我打开电视。']],
+ note:'怎么判断能不能分？<strong>看前缀重不重读。</strong>重读的能分（<strong>AUF</strong>stehen、<strong>EIN</strong>kaufen）；不重读的不能分（be<strong>SU</strong>chen、ver<strong>STE</strong>hen）——这类加 ge 时也不加 ge-。',
  items:[
-  {q:'Ich ___ um sieben ___. (aufstehen)', a:'stehe / auf', opts:['stehe / auf','aufstehe / —','stehe / an'], why:'aufstehen 可分，前缀 auf 飞到句尾。'},
-  {q:'Er ___ den Fernseher ___. (anmachen)', a:'macht / an', opts:['macht / an','anmacht / —','macht / auf'], why:'anmachen 可分，an 到句尾。'},
-  {q:'Wir ___ heute ___. (einkaufen)', a:'kaufen / ein', opts:['kaufen / ein','einkaufen / —','kaufen / aus'], why:'einkaufen 可分。'},
-  {q:'Bitte ___ Sie das Fenster ___. (zumachen)', a:'machen / zu', opts:['machen / zu','zumachen / —','machen / ab'], why:'zumachen 可分。'},
-  {q:'Ich ___ meine Freundin ___. (anrufen)', a:'rufe / an', opts:['rufe / an','anrufe / —','rufe / auf'], why:'anrufen 可分，an 到句尾。'},
-  {q:'Der Zug ___ um acht ___. (abfahren)', a:'fährt / ab', opts:['fährt / ab','abfährt / —','fährt / an'], why:'abfahren 可分。'},
-  {q:'___ du bitte ___? (mitkommen)', a:'Kommst / mit', opts:['Kommst / mit','Mitkommst / —','Kommst / an'], why:'一般疑问句里动词提前，前缀仍在句尾。'},
+  {q:'Ich ___ um sieben ___. (aufstehen)', a:'stehe / auf', opts:['stehe / auf','aufstehe / —','stehe / an'], why:'可分，前缀 auf 飞到句尾。'},
+  {q:'Er ___ den Fernseher ___. (anmachen)', a:'macht / an', opts:['macht / an','anmacht / —','macht / auf'], why:'可分，an 到句尾。'},
+  {q:'Wir ___ heute ___. (einkaufen)', a:'kaufen / ein', opts:['kaufen / ein','einkaufen / —','kaufen / aus'], why:'可分。'},
+  {q:'Bitte ___ Sie das Fenster ___. (zumachen)', a:'machen / zu', opts:['machen / zu','zumachen / —','machen / ab'], why:'可分。'},
+  {q:'Ich ___ meine Freundin ___. (anrufen)', a:'rufe / an', opts:['rufe / an','anrufe / —','rufe / auf'], why:'可分。'},
+  {q:'Der Zug ___ um acht ___. (abfahren)', a:'fährt / ab', opts:['fährt / ab','abfährt / —','fährt / an'], why:'可分。'},
+  {q:'___ du bitte ___? (mitkommen)', a:'Kommst / mit', opts:['Kommst / mit','Mitkommst / —','Kommst / an'], why:'一般疑问句动词提前，前缀仍在句尾。'},
   {q:'Ich ___ heute nicht ___. (mitkommen)', a:'komme / mit', opts:['komme / mit','mitkomme / —','komme / an'], why:'前缀 mit 始终在末尾。'}
  ]},
 
-{id:'g-praeposition', lv:'A2', t:'介词配格', s:'Präpositionen',
- why:'介词分三类。固定第三格：mit、nach、bei、aus、von、zu、seit。固定第四格：für、ohne、gegen、um、durch。还有一类「双向介词」：in、an、auf、über、unter、vor、hinter、neben、zwischen——表示「去哪里」用第四格，表示「在哪里」用第三格。',
- items:[
-  {q:'Ich fahre mit ___ Fahrrad.', a:'dem', opts:['das','dem','den'], why:'mit 固定第三格，Fahrrad 中性 → dem。'},
-  {q:'Das Geschenk ist für ___ Mutter.', a:'die', opts:['die','der','dem'], why:'für 固定第四格，Mutter 阴性 → die（第四格不变）。'},
-  {q:'Ich gehe in ___ Stadt.', a:'die', opts:['die','der','dem'], why:'in + 去哪里 → 第四格，Stadt 阴性 → die。'},
-  {q:'Ich bin in ___ Stadt.', a:'der', opts:['die','der','dem'], why:'in + 在哪里 → 第三格，Stadt 阴性 → der。'},
-  {q:'Das Buch liegt auf ___ Tisch.', a:'dem', opts:['den','dem','der'], why:'auf + 在哪里（静态）→ 第三格，Tisch 阳性 → dem。'},
-  {q:'Ich lege das Buch auf ___ Tisch.', a:'den', opts:['den','dem','der'], why:'auf + 放上去（动态方向）→ 第四格，Tisch 阳性 → den。'},
-  {q:'Wir fahren durch ___ Stadt.', a:'die', opts:['die','der','dem'], why:'durch 固定第四格，Stadt 阴性 → die。'},
-  {q:'Seit ___ Jahr lerne ich Deutsch.', a:'einem', opts:['ein','einem','einen'], why:'seit 固定第三格，Jahr 中性 → einem。'}
- ]},
-
-{id:'g-adjektiv', lv:'A2', t:'形容词词尾', s:'Adjektivendungen',
- why:'形容词放在名词前要加词尾，规则取决于前面有没有冠词。定冠词后（der/die/das）：-e 或 -en，因为冠词已经把性别说清楚了。不定冠词后（ein/kein/物主代词）：要补上冠词没说的信息，所以阳性和中性第一格用 -er/-es。',
- items:[
-  {q:'Der ___ Mann ist mein Nachbar. (alt)', a:'alte', opts:['alt','alte','alten'], why:'定冠词后第一格单数：加 -e。'},
-  {q:'Die ___ Frau ist Lehrerin. (jung)', a:'junge', opts:['jung','junge','jungen'], why:'定冠词后阴性第一格：加 -e。'},
-  {q:'Das ___ Kind spielt. (klein)', a:'kleine', opts:['klein','kleine','kleines'], why:'定冠词后中性第一格：加 -e。'},
-  {q:'Ein ___ Mann wartet. (alt)', a:'alter', opts:['alt','alter','altes'], why:'不定冠词后阳性第一格：ein 没显示性别，形容词要加 -er。'},
-  {q:'Ein ___ Kind spielt. (klein)', a:'kleines', opts:['klein','kleine','kleines'], why:'不定冠词后中性第一格：加 -es。'},
-  {q:'Ich kaufe ein ___ Auto. (neu)', a:'neues', opts:['neu','neue','neues'], why:'中性第一/第四格同形 → neues。'},
-  {q:'Ich sehe den ___ Mann. (alt)', a:'alten', opts:['alte','alten','altem'], why:'定冠词后第四格阳性：加 -en。'},
-  {q:'Ich habe eine ___ Wohnung. (groß)', a:'große', opts:['groß','große','großen'], why:'不定冠词后阴性：eine 已显示阴性，形容词加 -e。'}
- ]},
-
-{id:'g-nebensatz', lv:'A2', t:'从句：动词去末尾', s:'Nebensätze',
- why:'这是德语和中文差别最大的地方。dass（那）、weil（因为）、wenn（如果/当）、obwohl（虽然）引导的从句里，变位动词要挪到整个从句的最末尾。主句和从句之间用逗号隔开。',
+{id:'T20', lv:'A2', t:'从句：动词滚到最后', s:'Nebensatz',
+ core:'见到 <strong>dass / weil / wenn / obwohl / ob</strong>，从句里的动词就搬家到<strong>整句最末尾</strong>。',
+ rows:[
+  ['dass 那','Ich weiß, dass er morgen <strong>kommt</strong>.','我知道他明天来'],
+  ['weil 因为','Ich bleibe zu Hause, weil es <strong>regnet</strong>.','我待在家，因为下雨'],
+  ['wenn 如果/当','Wenn du Zeit <strong>hast</strong>, komm vorbei.','你有空就过来'],
+  ['obwohl 虽然','Er arbeitet, obwohl er müde <strong>ist</strong>.','他虽然累还在工作'],
+  ['带情态动词时','情态动词在末尾，主要动词在它前面','weil sie arbeiten <strong>will</strong>']
+ ],
+ egs:[['Ich weiß, dass er morgen kommt.','我知道他明天来。'],['Sie lernt Deutsch, weil sie in Berlin arbeiten will.','她学德语，因为她想在柏林工作。']],
+ note:'这是德语和中文差别最大的地方。记住一个画面：<strong>从句像是被「倒过来」说的</strong>，动词收尾。从句和主句之间永远有逗号。',
  items:[
   {q:'Ich weiß, dass er morgen ___.', a:'kommt', opts:['kommt','kommen','er kommt'], why:'dass 从句，动词到末尾。'},
   {q:'Ich bleibe zu Hause, weil ich krank ___.', a:'bin', opts:['bin','ist','bin ich'], why:'weil 从句，动词 bin 到末尾。'},
   {q:'___, kommst du zu mir? (如果)', a:'Wenn du Zeit hast', opts:['Wenn du Zeit hast','Wenn hast du Zeit','Wenn du hast Zeit'], why:'wenn 从句里动词 hast 到末尾。'},
   {q:'Er sagt, dass er keine Zeit ___.', a:'hat', opts:['hat','haben','hat er'], why:'dass 从句，hat 到末尾。'},
-  {q:'Sie lernt Deutsch, weil sie in Berlin ___ will.', a:'arbeiten', opts:['arbeitet','arbeiten','arbeitet sie'], why:'从句里有情态动词时，情态动词在末尾，主要动词在它前面。'},
+  {q:'Sie lernt Deutsch, weil sie in Berlin ___ will.', a:'arbeiten', opts:['arbeitet','arbeiten','arbeitet sie'], why:'情态动词在末尾，主要动词在它前面。'},
   {q:'Ich weiß nicht, ob er ___.', a:'kommt', opts:['kommt','kommen','er kommt'], why:'ob（是否）引导的从句也是动词到末尾。'},
   {q:'___, gehe ich nicht zur Arbeit. (因为下雨)', a:'Weil es regnet', opts:['Weil es regnet','Weil regnet es','Weil es regnen'], why:'weil 从句动词 regnet 到末尾。'},
   {q:'Er arbeitet viel, obwohl er müde ___.', a:'ist', opts:['ist','ist er','sein'], why:'obwohl 从句，动词到末尾。'}
  ]},
 
-{id:'g-reflexiv', lv:'A2', t:'反身动词', s:'Reflexivverben',
- why:'反身动词的动作回到自己身上，要配反身代词：mich / dich / sich / uns / euch / sich。常见的有 sich freuen（高兴）、sich interessieren für（对……感兴趣）、sich treffen（见面）、sich waschen（洗）。',
+{id:'T21', lv:'A2', t:'形容词词尾：默认 -en，只有三处例外', s:'Adjektivendungen',
+ core:'这是德语最臭名昭著的表。但用「<strong>默认值 + 例外</strong>」的思路，你只需要记三行。',
+ rows:[
+  ['默认 → -en','几乎所有复数、所有第三格、所有第二格、阳性第四格','die alten Männer · mit dem alten Mann · den alten Mann'],
+  ['例外一 → -e','定冠词 + 单数','der alte Mann · die alte Frau · das alte Haus'],
+  ['例外二 → -er','不定冠词 + 阳性主格','ein alter Mann'],
+  ['例外三 → -es','不定冠词 + 中性主格/第四格','ein altes Haus']
+ ],
+ egs:[['Der alte Mann wartet.','那位老人在等。'],['Ein alter Mann wartet.','一位老人在等。'],['Ich sehe den alten Mann.','我看见那位老人。']],
+ note:'背后的逻辑只有一句：<strong>冠词已经把性别说清楚了，形容词就偷懒用 -e/-en；冠词没说清楚的（ein 看不出阳性还是中性），形容词就自己扛起 -er/-es。</strong>理解这句，就不用背表了。',
+ items:[
+  {q:'Der ___ Mann ist mein Nachbar. (alt)', a:'alte', opts:['alt','alte','alten'], why:'定冠词 + 单数 → -e。'},
+  {q:'Die ___ Frau ist Lehrerin. (jung)', a:'junge', opts:['jung','junge','jungen'], why:'定冠词 + 单数 → -e。'},
+  {q:'Das ___ Kind spielt. (klein)', a:'kleine', opts:['klein','kleine','kleines'], why:'定冠词 + 单数 → -e。'},
+  {q:'Ein ___ Mann wartet. (alt)', a:'alter', opts:['alt','alter','altes'], why:'ein 看不出性别 → 形容词自己扛 -er。'},
+  {q:'Ein ___ Kind spielt. (klein)', a:'kleines', opts:['klein','kleine','kleines'], why:'ein 看不出中性 → 形容词自己扛 -es。'},
+  {q:'Ich sehe den ___ Mann. (alt)', a:'alten', opts:['alte','alten','altem'], why:'阳性第四格属于「默认」→ -en。'},
+  {q:'Ich habe eine ___ Wohnung. (groß)', a:'große', opts:['groß','große','großen'], why:'eine 已显示阴性 → 形容词用 -e。'},
+  {q:'Die ___ Männer arbeiten. (alt)', a:'alten', opts:['alte','alten','alter'], why:'复数属于「默认」→ -en。'}
+ ]},
+
+{id:'T22', lv:'A2', t:'命令式：三步造出来', s:'Imperativ',
+ core:'对谁说，就按那个人的规则改。<strong>不需要额外记新形式</strong>——都是现有形式的删减。',
+ rows:[
+  ['对 du（熟人）','去掉 -st，去掉 du','du machst → <strong>Mach!</strong> · du kommst → <strong>Komm!</strong>'],
+  ['对 ihr（一群人）','去掉 -t','ihr macht → <strong>Macht!</strong>'],
+  ['对 Sie（尊称）','动词原形 + Sie，语序倒过来','<strong>Machen Sie!</strong> · <strong>Kommen Sie!</strong>'],
+  ['提建议（我们）','动词 + wir','<strong>Gehen wir!</strong> 我们去吧']
+ ],
+ egs:[['Mach die Tür zu!','把门关上！'],['Kommen Sie bitte herein.','请您进来。']],
+ note:'对 du 的命令式里，<strong>词干元音 e→i/ie 的动词保留变化</strong>：du nimmst → <strong>Nimm!</strong>（不是 Nehm!）、du liest → <strong>Lies!</strong>、du gibst → <strong>Gib!</strong>',
+ items:[
+  {q:'___ die Tür zu! (du zumachen)', a:'Mach', opts:['Mach','Machst','Machen'], why:'对 du：去掉 -st，去掉 du → Mach!（加语气词 bitte 更礼貌）'},
+  {q:'___ mir bitte! (du helfen)', a:'Hilf', opts:['Hilf','Helf','Hilfst'], why:'e→i 的动词保留变化：du hilfst → Hilf!'},
+  {q:'___ Sie bitte herein! (kommen)', a:'Kommen', opts:['Kommen','Komm','Kommst'], why:'对 Sie：动词原形 + Sie。'},
+  {q:'___ das Buch! (du lesen)', a:'Lies', opts:['Lies','Les','Liest'], why:'e→ie 的动词保留变化：du liest → Lies!'},
+  {q:'___ bitte langsamer! (ihr sprechen)', a:'Sprecht', opts:['Sprecht','Sprich','Sprechen'], why:'对 ihr：去掉 -t → Sprecht!'},
+  {q:'___ wir nach Hause! (gehen)', a:'Gehen', opts:['Gehen','Geht','Geh'], why:'提建议用 动词 + wir。'},
+  {q:'___ mir das Buch! (du geben)', a:'Gib', opts:['Gib','Geb','Gibst'], why:'e→i：du gibst → Gib!'},
+  {q:'___ Sie mir bitte! (helfen)', a:'Helfen', opts:['Helfen','Hilf','Helfen Sie mir'], why:'对 Sie 用原形 + Sie，不用变音。'}
+ ]},
+
+{id:'T23', lv:'A2', t:'比较级与最高级', s:'Komparativ und Superlativ',
+ core:'和英语几乎一样，只是词尾不同：比较级加 <strong>-er</strong>，最高级 <strong>am -sten</strong>。',
+ rows:[
+  ['原级','schnell 快','so schnell wie 和…一样快'],
+  ['比较级','schnell<strong>er</strong> 更快','schneller <strong>als</strong> du 比你快'],
+  ['最高级','am schnell<strong>sten</strong> 最快',''],
+  ['常用不规则','gut → besser → am besten','viel → mehr → am meisten · gern → lieber → am liebsten']
+ ],
+ egs:[['Der Zug ist schneller als der Bus.','火车比公交快。'],['Ich trinke lieber Kaffee.','我更爱喝咖啡。']],
+ note:'<strong>als 是「比」，wie 是「和…一样」</strong>，别混。「gern 的比较级」特别好用：Ich trinke gern Tee（我喜欢喝茶）→ Ich trinke <strong>lieber</strong> Kaffee（我更爱喝咖啡）。',
+ items:[
+  {q:'Der Zug ist ___ als der Bus. (schnell)', a:'schneller', opts:['schnell','schneller','am schnellsten'], why:'比较级加 -er。'},
+  {q:'Er ist ___ als ich. (groß)', a:'größer', opts:['großer','größer','am größten'], why:'单音节形容词常加变音：groß → größer。'},
+  {q:'Das ist ___ Film, den ich kenne. (gut)', a:'der beste', opts:['der gute','der bessere','der beste'], why:'gut 的最高级是不规则的 beste。'},
+  {q:'Ich trinke ___ Tee als Kaffee. (gern)', a:'lieber', opts:['gerner','lieber','am liebsten'], why:'gern 的比较级是 lieber。'},
+  {q:'Sie ist ___ als ihre Schwester. (alt)', a:'älter', opts:['alter','älter','am ältesten'], why:'alt → älter，加变音。'},
+  {q:'Berlin ist ___ als München. (groß)', a:'größer', opts:['großer','größer','größte'], why:'比较级 -er + 变音。'},
+  {q:'Am ___ gehe ich schwimmen. (gern)', a:'liebsten', opts:['gernsten','liebsten','meisten'], why:'gern 的最高级是 am liebsten。'},
+  {q:'Das ist genauso ___ wie das andere. (teuer)', a:'teuer', opts:['teuer','teurer','am teuersten'], why:'「和…一样」用 so ... wie，中间用原级。'}
+ ]},
+
+{id:'T24', lv:'A2', t:'反身动词：动作弹回自己', s:'Reflexive Verben',
+ core:'动作回到自己身上时，要加一个「反身代词」，它<strong>像人称代词一样跟着人称变</strong>。',
+ rows:[
+  ['第四格反身','mich · dich · sich · uns · euch · sich','Ich freue <strong>mich</strong>. 我很高兴'],
+  ['第三格反身','mir · dir · sich · uns · euch · sich','Ich wasche <strong>mir</strong> die Hände. 我洗手'],
+  ['高频反身动词','sich freuen 高兴 · sich interessieren für 对…感兴趣 · sich treffen 见面 · sich erholen 休养 · sich beeilen 赶紧','']
+ ],
+ egs:[['Ich freue mich auf den Urlaub.','我期待假期。'],['Beeilt euch!','你们快点！']],
+ note:'怎么判断用第四格还是第三格反身代词？<strong>句子里已经有第四格宾语了，反身代词就用第三格。</strong>Ich wasche mich（没别的宾语 → 四格）；Ich wasche <strong>mir</strong> die Hände（die Hände 是四格 → 反身用三格）。',
  items:[
   {q:'Ich freue ___ auf den Urlaub.', a:'mich', opts:['mich','mir','sich'], why:'ich 的反身代词是 mich（第四格）。'},
   {q:'Wie fühlst du ___?', a:'dich', opts:['dich','dir','sich'], why:'du 配 dich。'},
   {q:'Er interessiert ___ für Musik.', a:'sich', opts:['sich','ihm','ihn'], why:'er/sie/es 的反身代词都是 sich。'},
   {q:'Wir treffen ___ um acht.', a:'uns', opts:['uns','euch','sich'], why:'wir 配 uns。'},
   {q:'Beeilt ___ bitte!', a:'euch', opts:['euch','uns','sich'], why:'ihr 配 euch。'},
-  {q:'Ich muss ___ noch duschen.', a:'mich', opts:['mich','mir','sich'], why:'sich duschen 反身，ich 用 mich。'},
-  {q:'Sie (复数) freuen ___ auf das Fest.', a:'sich', opts:['sich','sie','ihnen'], why:'第三人称复数反身代词仍是 sich。'},
-  {q:'Ich habe ___ erkältet.', a:'mich', opts:['mich','mir','sich'], why:'sich erkälten（感冒），ich 用 mich。'}
+  {q:'Ich muss ___ noch duschen.', a:'mich', opts:['mich','mir','sich'], why:'sich duschen，ich 用 mich。'},
+  {q:'Ich wasche ___ die Hände.', a:'mir', opts:['mich','mir','sich'], why:'die Hände 已经是第四格宾语 → 反身代词用第三格 mir。'},
+  {q:'Sie (复数) freuen ___ auf das Fest.', a:'sich', opts:['sich','sie','ihnen'], why:'第三人称复数反身代词仍是 sich。'}
  ]},
 
-{id:'g-konjunktiv2', lv:'B1', t:'虚拟式 II：礼貌与假设', s:'Konjunktiv II',
- why:'Konjunktiv II 有两个核心用法：一是让请求变得客气（Könnten Sie...? 比 Können Sie...? 委婉得多），二是说「如果……就……」的非现实假设。常见形式：könnte、hätte、wäre、würde、müsste。',
+{id:'T25', lv:'A2', t:'人称代词的三格和四格', s:'Personalpronomen',
+ core:'人称代词也有格的变化。<strong>只有 er 和 du/ich 变化明显</strong>，其他多数第二、三格长得像。',
+ rows:[
+  ['第一格','ich · du · er · sie · es · wir · ihr · sie · Sie','谁在做'],
+  ['第四格','mich · dich · <strong>ihn</strong> · sie · es · uns · euch · sie · Sie','动作落在谁身上'],
+  ['第三格','mir · dir · <strong>ihm</strong> · <strong>ihr</strong> · ihm · uns · euch · <strong>ihnen</strong> · Ihnen','给谁']
+ ],
+ egs:[['Ich sehe ihn.','我看见他。'],['Ich helfe ihm.','我帮他。']],
+ note:'最容易混的两组：<strong>er → ihn（四格）/ ihm（三格）</strong>；<strong>sie（她）→ sie（四格）/ ihr（三格）</strong>。另外复数「他们」的第三格是 <strong>ihnen</strong>，别和 ihr 搞混。',
  items:[
-  {q:'___ Sie mir bitte helfen?', a:'Könnten', opts:['Können','Könnten','Konnten'], why:'Könnten 比 Können 客气得多，是德语礼貌请求的标准说法。'},
-  {q:'Ich ___ gern ein Zimmer reservieren.', a:'würde', opts:['werde','würde','wurde'], why:'würde + 不定式 是最常用的委婉表达。'},
-  {q:'Wenn ich Zeit ___, käme ich mit.', a:'hätte', opts:['hatte','hätte','habe'], why:'hätte 是 haben 的虚拟式，表示「假如我有」。'},
+  {q:'Ich sehe ___. (er)', a:'ihn', opts:['er','ihn','ihm'], why:'er 的第四格是 ihn。'},
+  {q:'Ich helfe ___. (er)', a:'ihm', opts:['ihn','ihm','ihr'], why:'helfen 配第三格 → ihm。'},
+  {q:'Ich sehe ___. (sie 她)', a:'sie', opts:['sie','ihr','ihn'], why:'sie（她）第四格不变，仍是 sie。'},
+  {q:'Ich danke ___. (sie 她)', a:'ihr', opts:['sie','ihr','ihm'], why:'danken 配第三格，sie（她）→ ihr。'},
+  {q:'Kannst du ___ helfen? (ich)', a:'mir', opts:['mich','mir','ich'], why:'helfen 配第三格 → mir。'},
+  {q:'Ich rufe ___ morgen an. (du)', a:'dich', opts:['du','dich','dir'], why:'anrufen 支配第四格 → dich。'},
+  {q:'Ich gebe ___ das Buch. (sie 复数)', a:'ihnen', opts:['sie','ihnen','ihr'], why:'复数「他们」的第三格是 ihnen。'},
+  {q:'Ich sehe ___. (wir)', a:'uns', opts:['wir','uns','euch'], why:'wir 的第四格是 uns（和第三格同形）。'}
+ ]},
+
+{id:'T26', lv:'A2', t:'时间介词：am / im / um / vor / nach / seit', s:'Zeitpräpositionen',
+ core:'说时间用哪个介词，<strong>看后面跟的是什么类型的时间词</strong>，规则很死。',
+ rows:[
+  ['am','+ 星期、日期、一天中的时段','am Montag · am 3. Mai · am Abend'],
+  ['im','+ 月份、季节、年份','im Mai · im Sommer · im Jahr 2026'],
+  ['um','+ 钟点','um acht Uhr'],
+  ['vor','+ 第三格，在…之前','vor dem Essen 饭前'],
+  ['nach','+ 第三格，在…之后','nach der Arbeit 下班后'],
+  ['seit','+ 第三格，自从','seit einer Woche 一周以来']
+ ],
+ egs:[['Am Montag habe ich frei.','周一我休息。'],['Nach der Arbeit gehe ich einkaufen.','下班后我去买东西。']],
+ note:'三个最容易错的：<strong>am Abend 但 in der Nacht</strong>（夜晚用 in）；<strong>im Jahr 2026 但 2026 单独说时不用介词</strong>；<strong>seit 后面必须是第三格</strong>，而且它只能配现在还持续的事。',
+ items:[
+  {q:'___ Montag habe ich frei.', a:'Am', opts:['Am','Im','Um'], why:'星期前用 am。'},
+  {q:'___ Sommer fahren wir ans Meer.', a:'Im', opts:['Am','Im','Um'], why:'季节前用 im。'},
+  {q:'Der Kurs beginnt ___ acht Uhr.', a:'um', opts:['am','im','um'], why:'钟点前用 um。'},
+  {q:'___ der Arbeit gehe ich nach Hause.', a:'Nach', opts:['Vor','Nach','Seit'], why:'nach + 第三格 = 之后。'},
+  {q:'Ich lerne ___ einem Jahr Deutsch.', a:'seit', opts:['vor','nach','seit'], why:'seit + 第三格 = 自从（持续至今）。'},
+  {q:'___ dem Essen trinken wir Kaffee.', a:'Nach', opts:['Nach','Seit','Um'], why:'饭后 → nach dem Essen。'},
+  {q:'___ Mai ist es warm.', a:'Im', opts:['Am','Im','Um'], why:'月份前用 im。'},
+  {q:'___ Abend sehe ich fern.', a:'Am', opts:['Am','Im','Um'], why:'一天中的时段用 am（但 in der Nacht 是例外）。'}
+ ]},
+
+{id:'T27', lv:'B1', t:'虚拟式 II：客气话的万能公式', s:'Konjunktiv II',
+ core:'两个用途：让请求<strong>变客气</strong>，说<strong>非现实的假设</strong>。靠几个固定词就能全部搞定。',
+ rows:[
+  ['würde + 原形','最万能，任何动词都能用','Ich würde gern mitkommen. 我很乐意一起来'],
+  ['hätte','haben 的虚拟式','Ich hätte gern einen Kaffee. 我想要杯咖啡'],
+  ['wäre','sein 的虚拟式','Das wäre schön. 那就太好了'],
+  ['könnte','können 的虚拟式','Könnten Sie mir helfen? 您能帮我吗'],
+  ['非现实假设','wenn + 虚拟式','Wenn ich Zeit hätte, käme ich mit. 如果我有时间就来了']
+ ],
+ egs:[['Könnten Sie das wiederholen?','您能重复一遍吗？'],['An deiner Stelle würde ich mehr lernen.','我要是你就多学点。']],
+ note:'最实用的一条：<strong>把 Können 换成 Könnten，礼貌程度立刻上一个台阶。</strong>德国人问路、点单、提要求几乎都用 Könnten。注意它和过去时 konnte 只差一个变音，意思完全不同。',
+ items:[
+  {q:'___ Sie mir bitte helfen?', a:'Könnten', opts:['Können','Könnten','Konnten'], why:'Könnten 比 Können 客气得多。'},
+  {q:'Ich ___ gern ein Zimmer reservieren.', a:'würde', opts:['werde','würde','wurde'], why:'würde + 不定式是最常用的委婉表达。'},
+  {q:'Wenn ich Zeit ___, käme ich mit.', a:'hätte', opts:['hatte','hätte','habe'], why:'hätte 是 haben 的虚拟式。'},
   {q:'Wenn ich reich ___, würde ich reisen.', a:'wäre', opts:['war','wäre','bin'], why:'wäre 是 sein 的虚拟式。'},
-  {q:'___ Sie mir den Weg zeigen?', a:'Könnten', opts:['Können','Könnten','Konnten'], why:'问路时用 Könnten 会礼貌很多。'},
-  {q:'Ich ___ lieber Tee als Kaffee.', a:'hätte', opts:['habe','hätte','hatte'], why:'hätte gern / hätte lieber 是点单和表达偏好的黄金句型。'},
+  {q:'Ich ___ lieber Tee als Kaffee.', a:'hätte', opts:['habe','hätte','hatte'], why:'hätte gern / hätte lieber 是表达偏好的黄金句型。'},
   {q:'An deiner Stelle ___ ich mehr lernen.', a:'würde', opts:['werde','würde','wurde'], why:'「如果我是你」用 würde。'},
-  {q:'___ es möglich, dass Sie später kommen?', a:'Wäre', opts:['War','Wäre','Ist'], why:'Wäre es möglich... 是礼貌询问「有可能……吗」。'}
+  {q:'___ es möglich, dass Sie später kommen?', a:'Wäre', opts:['War','Wäre','Ist'], why:'Wäre es möglich... 是礼貌询问「有可能……吗」。'},
+  {q:'___ Sie mir den Weg zeigen?', a:'Könnten', opts:['Können','Könnten','Konnten'], why:'问路时用 Könnten 礼貌很多。'}
  ]},
 
-{id:'g-passiv', lv:'B1', t:'被动语态', s:'Passiv',
- why:'被动语态把重点从「谁做的」移到「发生了什么」。公式：werden + 过去分词。施动者用 von 引出。口语里更常用 man 代替被动，但读懂被动是 B1 的硬要求。',
+{id:'T28', lv:'B1', t:'连接词分三类，语序各不同', s:'Konnektoren',
+ core:'拿到一个连接词，先问：<strong>它占不占句首的位置？</strong>三类词的语序完全不同。',
+ rows:[
+  ['不占位置','und · aber · oder · denn','语序完全不变'],
+  ['占第一位','deshalb 所以 · trotzdem 尽管如此 · dann 然后 · also 因此','动词紧随其后，主语后移'],
+  ['引导从句','weil 因为 · obwohl 虽然 · dass 那 · wenn 如果','动词滚到从句末尾']
+ ],
+ egs:[['Es regnet, deshalb bleibe ich zu Hause.','下雨，所以我待在家。'],['Ich bleibe zu Hause, weil es regnet.','我待在家，因为下雨。']],
+ note:'同一个意思，用 deshalb 和用 weil，句子结构完全相反：<strong>deshalb 后面动词紧跟，weil 后面动词垫底。</strong>记住这一对，这一类就通了。',
  items:[
-  {q:'Das Haus ___ 1990 gebaut.', a:'wurde', opts:['wurde','ward','wird'], why:'过去时的被动：wurde + 过去分词。'},
-  {q:'Die Briefe ___ jeden Tag gebracht.', a:'werden', opts:['werden','wird','wurden'], why:'复数主语用 werden（现在时被动）。'},
-  {q:'Das Auto ___ von meinem Vater repariert.', a:'wurde', opts:['wurde','wird','war'], why:'被动 + von 引出施动者。'},
-  {q:'Hier ___ Deutsch gesprochen.', a:'wird', opts:['wird','werden','wurde'], why:'单数主语，现在时被动 → wird。'},
-  {q:'Die Prüfung ___ nächste Woche geschrieben.', a:'wird', opts:['wird','werden','wurde'], why:'将来发生的被动，用现在时被动表达即可。'},
-  {q:'Das Problem ___ schnell gelöst.', a:'wurde', opts:['wurde','wird','war'], why:'说已完成的被动动作 → wurde。'},
-  {q:'In Deutschland ___ viel Bier getrunken.', a:'wird', opts:['wird','werden','wurde'], why:'Bier 是不可数，视为单数 → wird。'},
-  {q:'Die Kinder ___ von der Lehrerin betreut.', a:'werden', opts:['werden','wird','wurden'], why:'复数主语 + 现在时 → werden。'}
+  {q:'Es regnet, ___ ich bleibe zu Hause.', a:'deshalb', opts:['deshalb','weil','und'], why:'deshalb 占第一位，后面紧跟动词，主语后移。'},
+  {q:'Ich bleibe zu Hause, ___ es regnet.', a:'weil', opts:['deshalb','weil','aber'], why:'weil 引导从句，动词 regnet 去末尾。'},
+  {q:'Es regnet, ___ gehe ich spazieren.', a:'trotzdem', opts:['trotzdem','weil','deshalb'], why:'trotzdem 表让步，占第一位，动词第二位。'},
+  {q:'Ich mag Tee, ___ ich trinke lieber Kaffee.', a:'aber', opts:['aber','deshalb','weil'], why:'aber 是并列连词，不占位置。'},
+  {q:'Er ist müde, ___ er arbeitet weiter.', a:'obwohl', opts:['obwohl','deshalb','und'], why:'obwohl 引导从句，动词去末尾。'},
+  {q:'Zuerst esse ich, ___ gehe ich zur Arbeit.', a:'dann', opts:['dann','weil','obwohl'], why:'dann 占第一位，动词紧随其后。'},
+  {q:'Ich lerne Deutsch, ___ ich in Berlin arbeiten will.', a:'weil', opts:['weil','deshalb','aber'], why:'表原因的从句用 weil，动词到末尾。'},
+  {q:'Er hat viel gelernt, ___ hat er die Prüfung bestanden.', a:'deshalb', opts:['deshalb','obwohl','aber'], why:'前因后果用 deshalb，并引起主谓倒装。'}
  ]},
 
-{id:'g-relativsatz', lv:'B1', t:'关系从句', s:'Relativsatz',
- why:'关系从句用来修饰前面的名词，由关系代词引导，而关系代词的性别和数要跟着前面的名词走，格则由它在从句里做什么成分决定。从句里的动词照例去末尾。',
+{id:'T29', lv:'B1', t:'关系从句：性别跟名词，格看成分', s:'Relativsatz',
+ core:'两个判断：关系代词的<strong>性别和单复数跟着前面那个名词</strong>，<strong>格看它在从句里干什么活儿</strong>。',
+ rows:[
+  ['做主语','第一格','Der Mann, <strong>der</strong> dort steht, … 站在那儿的男人'],
+  ['做第四格宾语','第四格','Die Frau, <strong>die</strong> ich traf, … 我遇到的那位女士'],
+  ['做第三格宾语','第三格','Der Freund, <strong>dem</strong> ich helfe, … 我帮的那位朋友'],
+  ['带介词','介词决定格','Die Stadt, in <strong>der</strong> ich wohne, … 我住的城市']
+ ],
+ egs:[['Das Buch, das ich lese, ist spannend.','我在读的这本书很精彩。'],['Der Kollege, mit dem ich arbeite, ist nett.','跟我共事的同事人很好。']],
+ note:'别忘了从句的老规矩：<strong>动词去末尾</strong>。「Der Mann, der dort <strong>steht</strong>」——steht 在最末尾。上面例子里逗号后的部分整个是修饰语，插在句子中间。',
  items:[
-  {q:'Der Mann, ___ dort steht, ist mein Chef.', a:'der', opts:['der','den','dem'], why:'Mann 是阳性，且在从句里做主语 → 第一格 der。'},
-  {q:'Die Frau, ___ ich gestern traf, ist Ärztin.', a:'die', opts:['die','der','den'], why:'Frau 阴性，在从句里做第四格宾语 → die（阴性第四格同形）。'},
+  {q:'Der Mann, ___ dort steht, ist mein Chef.', a:'der', opts:['der','den','dem'], why:'Mann 阳性，在从句里做主语 → 第一格 der。'},
+  {q:'Die Frau, ___ ich gestern traf, ist Ärztin.', a:'die', opts:['die','der','den'], why:'Frau 阴性，做第四格宾语 → die（阴性四格同形）。'},
   {q:'Das Buch, ___ ich lese, ist spannend.', a:'das', opts:['das','den','dem'], why:'Buch 中性，第四格 → das。'},
   {q:'Der Freund, ___ ich helfe, wohnt hier.', a:'dem', opts:['der','den','dem'], why:'helfen 支配第三格 → 阳性第三格 dem。'},
   {q:'Die Stadt, in ___ ich wohne, ist schön.', a:'der', opts:['die','der','dem'], why:'in + 在哪里 → 第三格，Stadt 阴性 → der。'},
@@ -1760,21 +2127,58 @@ window.CONTENT_GRAMMAR = [
   {q:'Das Haus, ___ wir gekauft haben, ist alt.', a:'das', opts:['das','dem','den'], why:'中性第四格 → das。'}
  ]},
 
-{id:'g-konnektor', lv:'B1', t:'连词与语序', s:'Konnektoren',
- why:'这是德语写作和口语的关键分水岭。三类词对语序的影响完全不同：und/aber/oder 不占位置；deshalb/trotzdem/dann 占第一位，所以动词要紧接着占第二位；weil/obwohl 引导从句，动词去末尾。',
+{id:'T30', lv:'B1', t:'被动语态：werden + 过去分词', s:'Passiv',
+ core:'公式只有一个：<strong>werden + 过去分词</strong>。过去时换成 wurde，其余不变。',
+ rows:[
+  ['现在时','Das Haus <strong>wird</strong> gebaut.','这房子在建'],
+  ['过去时','Das Haus <strong>wurde</strong> gebaut.','这房子（当时）在建'],
+  ['带情态动词','Das Haus <strong>muss</strong> gebaut <strong>werden</strong>.','这房子必须建'],
+  ['施动者用 von','Das wurde <strong>von</strong> meinem Vater repariert.','这是我爸修的']
+ ],
+ egs:[['Hier wird Deutsch gesprochen.','这里说德语。'],['Die Briefe werden jeden Tag gebracht.','信件每天送来。']],
+ note:'口语里德国人更爱用 <strong>man</strong> 代替被动：不用「Das wird gemacht」，直接说「<strong>Man macht das</strong>」，意思一样还省事。但书面语和考试要能看懂被动。',
  items:[
-  {q:'Es regnet, ___ ich bleibe zu Hause.', a:'deshalb', opts:['deshalb','weil','und'], why:'deshalb（所以）占第一位，后面紧跟动词，主语后移。'},
-  {q:'Ich bleibe zu Hause, ___ es regnet.', a:'weil', opts:['deshalb','weil','aber'], why:'weil 引导从句，动词 regnet 去末尾。'},
-  {q:'Es regnet, ___ gehe ich spazieren.', a:'trotzdem', opts:['trotzdem','weil','deshalb'], why:'trotzdem（尽管如此）表示让步，占第一位，动词第二位。'},
-  {q:'Ich mag Tee, ___ ich trinke lieber Kaffee.', a:'aber', opts:['aber','deshalb','weil'], why:'aber 是并列连词，不占位置，语序不变。'},
-  {q:'Er ist müde, ___ er arbeitet weiter.', a:'obwohl', opts:['obwohl','deshalb','und'], why:'obwohl（虽然）引导从句，动词去末尾。'},
-  {q:'Zuerst esse ich, ___ gehe ich zur Arbeit.', a:'dann', opts:['dann','weil','obwohl'], why:'dann（然后）占第一位，动词紧随其后。'},
-  {q:'Ich lerne Deutsch, ___ ich in Berlin arbeiten will.', a:'weil', opts:['weil','deshalb','aber'], why:'表原因的从句用 weil，动词到末尾。'},
-  {q:'Er hat viel gelernt, ___ hat er die Prüfung bestanden.', a:'deshalb', opts:['deshalb','obwohl','aber'], why:'前因后果，用 deshalb 并引起主谓倒装。'}
+  {q:'Das Haus ___ 1990 gebaut.', a:'wurde', opts:['wurde','wird','ward'], why:'过去时的被动：wurde + 过去分词。'},
+  {q:'Die Briefe ___ jeden Tag gebracht.', a:'werden', opts:['werden','wird','wurden'], why:'复数主语用 werden（现在时被动）。'},
+  {q:'Das Auto ___ von meinem Vater repariert.', a:'wurde', opts:['wurde','wird','war'], why:'被动 + von 引出施动者。'},
+  {q:'Hier ___ Deutsch gesprochen.', a:'wird', opts:['wird','werden','wurde'], why:'单数主语，现在时被动 → wird。'},
+  {q:'Die Prüfung ___ nächste Woche geschrieben.', a:'wird', opts:['wird','werden','wurde'], why:'将来发生的被动，用现在时被动表达即可。'},
+  {q:'Das Problem ___ schnell gelöst.', a:'wurde', opts:['wurde','wird','war'], why:'已完成的被动动作 → wurde。'},
+  {q:'In Deutschland ___ viel Bier getrunken.', a:'wird', opts:['wird','werden','wurde'], why:'Bier 不可数，视为单数 → wird。'},
+  {q:'Die Kinder ___ von der Lehrerin betreut.', a:'werden', opts:['werden','wird','wurden'], why:'复数主语 + 现在时 → werden。'}
  ]},
 
-{id:'g-genitiv', lv:'B1', t:'第二格与所属', s:'Genitiv',
- why:'第二格表示「谁的」，书面色彩较重。阳性、中性的冠词变 des，名词还要加 -s 或 -es：das Auto des Mannes。口语里更常说 von + 第三格，但看懂第二格是 B1 必须的。',
+{id:'T31', lv:'B1', t:'带 zu 的不定式：zu 插在中间', s:'Infinitiv mit zu',
+ core:'很多动词后面接「<strong>zu + 原形</strong>」。可分动词的话，<strong>zu 插在前缀和词干中间</strong>。',
+ rows:[
+  ['普通动词','zu + 原形','Ich habe Lust, ins Kino <strong>zu gehen</strong>.'],
+  ['可分动词','zu 插进中间','Ich versuche, früher <strong>aufzustehen</strong>.'],
+  ['常见搭配','Lust haben 有兴趣 · Zeit haben 有时间 · versuchen 尝试 · vergessen 忘记 · bitten 请求','全都 + zu + 不定式'],
+  ['对比','情态动词<strong>不带</strong> zu','Ich muss gehen.（不是 zu gehen）']
+ ],
+ egs:[['Ich habe keine Zeit zu kommen.','我没时间来。'],['Er hat vergessen, mich anzurufen.','他忘了给我打电话。']],
+ note:'一个硬规矩：<strong>情态动词不带 zu</strong>（Ich muss gehen），<strong>普通动词要带 zu</strong>（Ich versuche zu gehen）。可分动词就把 zu 塞进去：an<strong>zu</strong>rufen、auf<strong>zu</strong>stehen。',
+ items:[
+  {q:'Ich habe Lust, ins Kino ___.', a:'zu gehen', opts:['zu gehen','gehen zu','zu gegangen'], why:'Lust haben + zu + 不定式。'},
+  {q:'Es ist wichtig, jeden Tag ___.', a:'zu üben', opts:['zu üben','üben zu','geübt'], why:'Es ist wichtig + zu + 不定式。'},
+  {q:'Ich versuche, früher ___.', a:'aufzustehen', opts:['aufzustehen','zu aufstehen','aufstehen zu'], why:'可分动词：zu 插在 auf 和 stehen 中间。'},
+  {q:'Er hat vergessen, mich ___.', a:'anzurufen', opts:['anzurufen','zu anrufen','anrufen zu'], why:'可分动词 anrufen → anzurufen。'},
+  {q:'Ich freue mich darauf, dich ___.', a:'zu sehen', opts:['zu sehen','sehen zu','gesehen'], why:'sich freuen auf + zu + 不定式。'},
+  {q:'Sie hat keine Zeit, ___.', a:'zu kommen', opts:['zu kommen','kommen zu','gekommen'], why:'Zeit haben + zu + 不定式。'},
+  {q:'Ich muss jetzt ___.', a:'gehen', opts:['zu gehen','gehen','gegangen'], why:'情态动词不带 zu。'},
+  {q:'Ich bitte dich, mir ___.', a:'zu helfen', opts:['zu helfen','helfen zu','geholfen'], why:'bitten + zu + 不定式。'}
+ ]},
+
+{id:'T32', lv:'B1', t:'第二格：口语能绕就绕', s:'Genitiv',
+ core:'第二格表示「谁的」，书面气重。<strong>口语里德国人几乎都用 von + 第三格代替。</strong>',
+ rows:[
+  ['书面 / 第二格','das Auto <strong>des</strong> Mannes','那个男人的车（阳性名词还要加 -es）'],
+  ['口语 / von + 三格','das Auto <strong>von dem</strong> Mann','意思完全一样'],
+  ['人名最省事','<strong>Christinas</strong> Auto','克里斯蒂娜的车（直接加 s）'],
+  ['阴性中性','die Farbe <strong>der</strong> Wand · die Tür <strong>des</strong> Hauses','']
+ ],
+ egs:[['Das ist das Auto meines Vaters.','这是我爸爸的车。'],['Wegen des Wetters bleiben wir hier.','因为天气我们留在这儿。']],
+ note:'有几个介词后面<strong>必须</strong>用第二格，躲不掉，考试也常考：<strong>wegen 因为、trotz 尽管、während 在…期间</strong>。其他场合你用 von 绕过去，德国人完全听得懂。',
  items:[
   {q:'Das ist das Auto ___ Mannes.', a:'des', opts:['des','dem','der'], why:'Mannes 是阳性第二格，冠词 des，名词加 -es。'},
   {q:'Die Farbe ___ Wand ist weiß.', a:'der', opts:['der','die','des'], why:'Wand 阴性，第二格用 der。'},
@@ -1786,244 +2190,27 @@ window.CONTENT_GRAMMAR = [
   {q:'Das Ende ___ Films war traurig.', a:'des', opts:['des','dem','der'], why:'Film 阳性第二格 → des。'}
  ]},
 
-{id:'g-infinitivzu', lv:'B1', t:'带 zu 的不定式', s:'Infinitiv mit zu',
- why:'很多动词和表达后面接「zu + 动词原形」，zu 放在动词原形前面，可分动词的 zu 插在前缀和词干之间：aufzustehen。常见搭配：Ich habe Lust, ... zu ...；Es ist wichtig, ... zu ...；Ich versuche, ... zu ...。',
+{id:'T33', lv:'B1', t:'别逐字翻译中文', s:'Nicht wörtlich übersetzen',
+ core:'很多错句不是语法不会，是<strong>把中文的词一个个搬过去</strong>。这些是最高频的翻车点。',
+ rows:[
+  ['我很热','Ich bin heiß ✗','Mir ist warm ✓（德语用第三格说感受）'],
+  ['我喜欢','没有「喜欢」这个动词','Ich mag … / Ich … gern ✓'],
+  ['我同意你','','Ich stimme dir zu ✓（zu 在末尾，可分动词）'],
+  ['这对我很难','','Das ist schwer für mich ✓（für + 第四格）'],
+  ['我有兴趣','','Ich habe Interesse an … ✓（不是 Interesse 单独用）']
+ ],
+ egs:[['Mir ist kalt.','我冷。（不是 Ich bin kalt）'],['Ich stimme dir zu.','我同意你。']],
+ note:'另一个重灾区：<strong>「是」不要滥用</strong>。中文「我很累」是 Ich bin müde，但中文「我饿了」不能说 Ich bin hungrig 之外的 Ich habe Hunger——<strong>德语说身体感受多用 Mir ist … 或 Ich habe …</strong>，而不是 Ich bin …。',
  items:[
-  {q:'Ich habe Lust, ins Kino ___.', a:'zu gehen', opts:['zu gehen','gehen zu','zu gegangen'], why:'Lust haben + zu + 不定式。'},
-  {q:'Es ist wichtig, jeden Tag ___.', a:'zu üben', opts:['zu üben','üben zu','geübt'], why:'Es ist wichtig + zu + 不定式。'},
-  {q:'Ich versuche, früher ___.', a:'aufzustehen', opts:['aufzustehen','zu aufstehen','aufstehen zu'], why:'可分动词：zu 插在 auf 和 stehen 中间。'},
-  {q:'Er hat vergessen, mich ___.', a:'anzurufen', opts:['anzurufen','zu anrufen','anrufen zu'], why:'可分动词 anrufen → anzurufen。'},
-  {q:'Ich freue mich darauf, dich ___.', a:'zu sehen', opts:['zu sehen','sehen zu','gesehen'], why:'sich freuen auf + zu + 不定式。'},
-  {q:'Sie hat keine Zeit, ___.', a:'zu kommen', opts:['zu kommen','kommen zu','gekommen'], why:'Zeit haben + zu + 不定式。'},
-  {q:'Es ist schwer, Deutsch ___.', a:'zu lernen', opts:['zu lernen','lernen zu','gelernt'], why:'简单不定式加 zu。'},
-  {q:'Ich bitte dich, mir ___.', a:'zu helfen', opts:['zu helfen','helfen zu','geholfen'], why:'bitten + zu + 不定式。'}
+  {q:'「我很热」→ ___', a:'Mir ist warm.', opts:['Ich bin warm.','Mir ist warm.','Ich habe warm.'], why:'德语说身体感受用第三格：Mir ist warm / kalt / schlecht。'},
+  {q:'「我饿了」→ ___', a:'Ich habe Hunger.', opts:['Ich bin Hunger.','Ich habe Hunger.','Mir ist Hunger.'], why:'饥饿、口渴、恐惧这类用 haben：Hunger / Durst / Angst haben。'},
+  {q:'「我同意你」→ ___', a:'Ich stimme dir zu.', opts:['Ich stimme dir.', 'Ich stimme dir zu.','Ich bin einverstanden dich.'], why:'zustimmen 是可分动词，zu 必须在末尾。'},
+  {q:'「我喜欢喝茶」→ ___', a:'Ich trinke gern Tee.', opts:['Ich mag trinken Tee.','Ich trinke gern Tee.','Ich bin gern Tee.'], why:'德语没有单独的「喜欢」动词，用 gern 或 mögen。'},
+  {q:'「这对我来说很难」→ ___', a:'Das ist schwer für mich.', opts:['Das ist schwer zu mich.','Das ist schwer für mich.','Das ist schwer an mich.'], why:'「对某人来说」用 für + 第四格。'},
+  {q:'「我冷」→ ___', a:'Mir ist kalt.', opts:['Ich bin kalt.','Mir ist kalt.','Ich habe kalt.'], why:'说「我冷」用 Mir ist kalt；Ich bin kalt 意思是「我这个人很冷淡」。'},
+  {q:'「我对音乐感兴趣」→ ___', a:'Ich interessiere mich für Musik.', opts:['Ich bin interessiert Musik.','Ich interessiere mich für Musik.','Ich habe Interesse Musik.'], why:'sich interessieren für + 第四格。'},
+  {q:'「这取决于天气」→ ___', a:'Das hängt vom Wetter ab.', opts:['Das kommt vom Wetter.', 'Das hängt vom Wetter ab.','Das ist vom Wetter.'], why:'abhängen von，可分动词前缀 ab 在末尾。'}
  ]}
-];
-
-</script>
-<script>
-/* ==== content-lectures.js ==== */
-/* ============================================================
-   语法讲义（邪修版）
-   一条一个「捷径」，不是教科书。格式：
-     core  一句话核心（必须能一眼记住）
-     rows  可选小表 [词尾/情况, 结果, 例子]
-     egs   可选例句 [[德语, 中文]]
-     note  可选提醒/例外
-   ============================================================ */
-window.CONTENT_LECTURES = [
-
-{id:'L1', lv:'A1', t:'名词性别不用背，看词尾', s:'Genus erkennen', core:'德语名词的 der/die/das 不是随机的。看到这些词尾，直接判，命中率九成以上。',
- rows:[
-  ['-ung / -heit / -keit / -schaft / -tion / -tät','die','die Wohnung 公寓 · die Freiheit 自由 · die Zeitung 报纸'],
-  ['-er / -ling / -ist / -ismus（做某事的人）','der','der Lehrer 老师 · der Frühling 春天 · der Journalist 记者'],
-  ['-chen / -lein（小称）','das','das Mädchen 女孩 · das Brötchen 小面包'],
-  ['-ment / -um / -ma','das','das Dokument 文件 · das Zentrum 中心 · das Thema 主题']
- ],
- egs:[['Die Zeitung ist neu.','这份报纸是新的。'],['Das Mädchen spielt im Garten.','那个女孩在花园里玩。']],
- note:'最容易翻车的一条：das Mädchen（女孩）是<strong>中性</strong>——因为 -chen 永远中性，跟人本身是男是女无关。同理 das Fräulein。'},
-
-{id:'L2', lv:'A1', t:'三个格，一句话说清', s:'Die drei Fälle', core:'别背表格。就问自己三句话：谁在做（第一格）？动作直接落在谁身上（第四格）？给谁做的（第三格）？',
- rows:[
-  ['第一格 Nominativ','谁在做 → 主语','Der Mann liest. 男人在读书'],
-  ['第四格 Akkusativ','动作直接落在谁身上 → 直接宾语','Ich sehe den Mann. 我看见那个男人'],
-  ['第三格 Dativ','给谁 / 对谁 → 间接宾语','Ich helfe dem Mann. 我帮那个男人']
- ],
- note:'中文没有格，所以你不需要理解它，只需要会问那三句话。动词决定了后面接几格——所以动词要连着格一起记，比如 <strong>helfen 永远配第三格</strong>，没有例外。'},
-
-{id:'L3', lv:'A1', t:'只有阳性会变：der → den', s:'Der Kern des Akkusativs', core:'这是整个德语格系统最大的简化：从第一格到第四格，<strong>只有阳性单数会变</strong>，其他全部原样。',
- rows:[
-  ['der Mann','→ den Mann','阳性：变'],
-  ['die Frau','→ die Frau','阴性：不变'],
-  ['das Kind','→ das Kind','中性：不变'],
-  ['die Kinder','→ die Kinder','复数：不变']
- ],
- egs:[['Ich sehe den Mann.','我看见那个男人。'],['Ich sehe die Frau / das Kind.','我看见那个女人／那个孩子。']],
- note:'所以做第四格题时，你只需要做一个判断：<strong>这个词是阳性的吗？</strong>是就 der→den、ein→einen、mein→meinen；不是就别动。'},
-
-{id:'L4', lv:'A1', t:'介词带几格：两个口诀 + 一个判断', s:'Präpositionen', core:'介词分三类。前两类死记口诀，第三类用一个判断解决。',
- rows:[
-  ['第三格口诀','mit · nach · bei · aus · von · zu · seit','嘴上一串念下来'],
-  ['第四格口诀','für · ohne · gegen · um · durch','"为了不带对抗绕过去"'],
-  ['双向介词','in · an · auf · über · unter · vor · hinter · neben · zwischen','去哪里→四格／在哪里→三格']
- ],
- egs:[['Ich fahre mit dem Bus.','我坐公交。（mit 永远三格）'],['Ich lege das Buch auf den Tisch.','我把书放到桌上。（放上去→四格）'],['Das Buch liegt auf dem Tisch.','书在桌上。（在那儿→三格）']],
- note:'双向介词只有这一个判断：<strong>有移动方向吗？有就四格，没有就三格。</strong>legen/liegen、stellen/stehen、hängen 这几对动词就是专门考这个的。'},
-
-{id:'L5', lv:'A1', t:'动词永远坐第二把交椅', s:'Wortstellung', core:'德语主句里，变位动词永远在第二个位置。<strong>不管谁开头，这个位置不动。</strong>',
- rows:[
-  ['Ich fahre heute nach Berlin.','主语开头 → 动词第二','我今天去柏林'],
-  ['Heute fahre ich nach Berlin.','时间开头 → 动词仍第二，主语被挤到后面','今天我（倒装）去柏林']
- ],
- egs:[['Am Montag haben wir einen Termin.','周一我们有个约。'],['Nach der Arbeit gehe ich einkaufen.','下班后我去买东西。']],
- note:'中文习惯「时间+主语+动词」，德语是「时间+<strong>动词</strong>+主语」。所以只要句首不是主语，动词和主语就要<strong>换位置</strong>——这叫倒装，不是可选项，是语法要求。'},
-
-{id:'L6', lv:'A1', t:'从句：动词滚到最后', s:'Nebensatz', core:'见到 <strong>dass / weil / wenn / obwohl / ob</strong>，从句里的动词就搬家到<strong>整句最末尾</strong>。',
- rows:[
-  ['主句','Ich bleibe zu Hause, ...','我待在家'],
-  ['+ weil','..., weil es regnet.','因为下雨（动词 regnet 到末尾）']
- ],
- egs:[['Ich weiß, dass er morgen kommt.','我知道他明天来。'],['Ich lerne Deutsch, weil ich in Berlin arbeiten will.','我学德语，因为我想在柏林工作。']],
- note:'这是德语和中文差别最大的地方，也是中国学生最容易错的地方。记住一个画面：<strong>从句像是被「倒过来」说的</strong>，动词收尾。从句和主句之间永远有逗号。'},
-
-{id:'L7', lv:'A1', t:'情态动词：ich 和 er 长得一样', s:'Modalverben', core:'情态动词的单数第一人称和第三人称<strong>同形，而且都不加 -t</strong>。',
- rows:[
-  ['können','ich kann / er kann','（不是 kannt）'],
-  ['müssen','ich muss / er muss',''],
-  ['wollen','ich will / er will',''],
-  ['dürfen','ich darf / er darf','']
- ],
- egs:[['Ich kann Deutsch sprechen.','我会说德语。'],['Er muss heute arbeiten.','他今天必须工作。']],
- note:'第二个更要紧的点：情态动词占住第二位后，<strong>主要动词被赶到句子最末尾，用原形</strong>。所以是「Er muss heute <strong>arbeiten</strong>」，不是「Er muss heute arbeitet」。'},
-
-{id:'L8', lv:'A1', t:'否定：kein 还是 nicht', s:'Negation', core:'一句话判断：<strong>否定名词用 kein，否定其他一切用 nicht。</strong>',
- rows:[
-  ['kein','后面跟名词，且那个名词前面是 ein 或者没有冠词','Ich habe kein Geld. / Das ist kein Problem.'],
-  ['nicht','否定动词、形容词、整句','Ich verstehe nicht. / Das ist nicht gut.']
- ],
- note:'kein 像 ein 一样变：kein / keine / keinen / keinem。所以 <strong>keinen</strong> 用于阳性第四格（Ich habe keinen Bruder）。'},
-
-{id:'L9', lv:'A1', t:'完成时：默认 haben，只有一种情况用 sein', s:'Perfekt: haben oder sein', core:'拿不准就用 <strong>haben</strong>。只有「移动」或「状态改变」的动词用 sein。',
- rows:[
-  ['配 sein 的动词','表示移动或状态变化','gehen 走 · kommen 来 · fahren 乘车 · fliegen 飞 · aufstehen 起床 · einschlafen 入睡 · sterben 死'],
-  ['必须记住的三个例外','不动但也配 sein','sein 是 · bleiben 停留 · werden 变成'],
-  ['其他全部','配 haben','essen · trinken · lesen · kaufen · machen · arbeiten …']
- ],
- egs:[['Ich habe Deutsch gelernt.','我学了德语。'],['Wir sind nach Berlin gefahren.','我们去了柏林。']],
- note:'背一个小故事串住 sein 家族：<strong>「来了、走了、飞了、起来了、睡着了、死了、留下了、变了」</strong>——全是位置或状态发生变化的。'},
-
-{id:'L10', lv:'A1', t:'复数：五种变法 + 一条铁律', s:'Plural', core:'德语复数就五种结局，背不下来的话，至少记住那条铁律。',
- rows:[
-  ['-e','der Tisch → die Tische','常见，阳性多'],
-  ['-en / -n','die Frau → die Frauen','阴性多'],
-  ['-er','das Kind → die Kinder','中性多（常加变音）'],
-  ['-s','das Auto → die Autos','外来词'],
-  ['不变','der Lehrer → die Lehrer','-er/-en 结尾的阳阴名词']
- ],
- note:'<strong>铁律</strong>：以 -ung / -heit / -keit / -schaft 结尾的阴性名词，复数一律加 -en，没有例外（die Wohnung → die Wohnungen）。这一条就能覆盖你日常遇到的一大批词。'},
-
-{id:'L11', lv:'A2', t:'形容词词尾：默认 -en，只有三处例外', s:'Adjektivendungen', core:'这是德语最臭名昭著的表。但用「默认值 + 例外」的思路，你只需要记三行。',
- rows:[
-  ['默认情况','-en','几乎所有复数、所有第三格、所有第二格、阳性第四格'],
-  ['例外一：定冠词 + 单数','-e','der alte Mann / die alte Frau / das alte Haus'],
-  ['例外二：不定冠词 + 阳性主格','-er','ein alter Mann'],
-  ['例外三：不定冠词 + 中性主格/第四格','-es','ein altes Haus']
- ],
- egs:[['Der alte Mann wartet.','那位老人在等。'],['Ein alter Mann wartet.','一位老人在等。'],['Ich sehe den alten Mann.','我看见那位老人。']],
- note:'背后的逻辑只有一句：<strong>冠词已经把性别说清楚了，形容词就偷懒用 -e/-en；冠词没说清楚的（ein 看不出阳性还是中性），形容词就自己扛起 -er/-es。</strong>理解这句，你就不用背表了。'},
-
-{id:'L12', lv:'A2', t:'可分动词：前缀飞到句尾', s:'Trennbare Verben', core:'主句里，可分动词的<strong>前缀永远被甩到句子最末尾</strong>。',
- rows:[
-  ['aufstehen','Ich stehe um sieben auf.','我七点起床'],
-  ['einkaufen','Wir kaufen heute ein.','我们今天购物'],
-  ['anrufen','Ich rufe dich später an.','我晚点打给你'],
-  ['zumachen','Mach bitte die Tür zu!','请把门关上！']
- ],
- note:'怎么判断能不能分？<strong>看前缀重不重读。</strong>重读的能分（AUFstehen、EINkaufen）；不重读的不能分（beSUchen、verSTEHen、erZÄHlen）——这类加 ge 时也不加 ge-。'},
-
-{id:'L13', lv:'A2', t:'命令式：三步造出来', s:'Imperativ', core:'对谁说，就按那个人的规则改，不需要额外记新形式。',
- rows:[
-  ['对 du（熟人）','去掉 -st，去掉 du','du machst → <strong>Mach!</strong> · du kommst → <strong>Komm!</strong>'],
-  ['对 ihr（一群人）','去掉 -t，保留 ihr 位置去掉','ihr macht → <strong>Macht!</strong>'],
-  ['对 Sie（尊称）','动词原形 + Sie，语序倒过来','<strong>Machen Sie!</strong> · <strong>Kommen Sie!</strong>']
- ],
- note:'对 du 的命令式里，<strong>词干元音 e→i/ie 的动词保留变化</strong>：du nimmst → <strong>Nimm!</strong>（不是 Nehm!）、du liest → <strong>Lies!</strong>。'},
-
-{id:'L14', lv:'A2', t:'被动语态：werden + 过去分词', s:'Passiv', core:'公式就一个：<strong>werden + 过去分词</strong>。过去时换成 wurde，其余不变。',
- rows:[
-  ['现在时','Das Haus <strong>wird</strong> gebaut.','这房子在建'],
-  ['过去时','Das Haus <strong>wurde</strong> gebaut.','这房子（当时）在建'],
-  ['带情态动词','Das Haus <strong>muss</strong> gebaut <strong>werden</strong>.','这房子必须建']
- ],
- note:'口语里德国人更爱用 <strong>man</strong> 代替被动：不用说「Das wird gemacht」，直接说「<strong>Man macht das</strong>」，意思一样还省事。但考试和书面语要能看懂被动。'},
-
-{id:'L15', lv:'A2', t:'比较级：-er，最高级 am -sten', s:'Komparativ und Superlativ', core:'和英语几乎一样，只是词尾不同。',
- rows:[
-  ['原级','schnell 快',''],
-  ['比较级','schnell<strong>er</strong> 更快','+ als = 比…（schneller als du）'],
-  ['最高级','am schnell<strong>sten</strong> 最快',''],
-  ['常用不规则','gut → besser → am besten','viel → mehr → am meisten · gern → lieber → am liebsten']
- ],
- note:'「gern 的比较级」特别好用：「Ich trinke gern Tee」是「我喜欢喝茶」，「Ich trinke <strong>lieber</strong> Kaffee」就是「我更爱喝咖啡」——点单时显得地道。'},
-
-{id:'L16', lv:'B1', t:'虚拟式 II：客气话的万能公式', s:'Konjunktiv II', core:'把「我想要」说得客气，把「如果…就…」说得非现实，全靠这几个词。',
- rows:[
-  ['würde + 原形','最万能，任何动词都能用','Ich würde gern mitkommen. 我很乐意一起来'],
-  ['hätte','haben 的虚拟式','Ich hätte gern einen Kaffee. 我想要杯咖啡'],
-  ['wäre','sein 的虚拟式','Das wäre schön. 那就太好了'],
-  ['könnte','können 的虚拟式','Könnten Sie mir helfen? 您能帮我吗']
- ],
- egs:[['Wenn ich Zeit hätte, käme ich mit.','如果我有时间，我就一起来了。'],['Könnten Sie das wiederholen?','您能重复一遍吗？']],
- note:'最实用的一条：<strong>把 Können 换成 Könnten，礼貌程度立刻上一个台阶。</strong>德国人问路、点单、提要求，几乎都用 Könnten。'},
-
-{id:'L17', lv:'B1', t:'关系从句：性别跟名词，格看成分', s:'Relativsatz', core:'两个判断：关系代词的<strong>性别和单复数跟着前面那个名词</strong>，<strong>格看它在从句里干什么活儿</strong>。',
- rows:[
-  ['做主语','第一格','Der Mann, <strong>der</strong> dort steht, ...'],
-  ['做第四格宾语','第四格','Die Frau, <strong>die</strong> ich traf, ...'],
-  ['做第三格宾语','第三格','Der Freund, <strong>dem</strong> ich helfe, ...']
- ],
- note:'别忘了从句的老规矩：<strong>动词去末尾</strong>。「Der Mann, der dort <strong>steht</strong>」——steht 在最后。'},
-
-{id:'L18', lv:'B1', t:'连接词分三类，语序各不同', s:'Konnektoren', core:'这是德语写作和口语的分水岭。拿到一个连接词，先问：<strong>它占不占句首位置？</strong>',
- rows:[
-  ['不占位置','und · aber · oder · denn','语序完全不变'],
-  ['占第一位','deshalb · trotzdem · dann · also','动词紧随其后，主语后移'],
-  ['引导从句','weil · obwohl · dass · wenn','动词滚到从句末尾']
- ],
- egs:[['Es regnet, deshalb bleibe ich zu Hause.','下雨，所以我待在家。'],['Ich bleibe zu Hause, weil es regnet.','我待在家，因为下雨。']],
- note:'同一个意思，用 deshalb 和用 weil，句子结构完全相反：<strong>deshalb 后面动词紧跟，weil 后面动词垫底。</strong>记住这一对，这一类就通了。'},
-
-{id:'L19', lv:'B1', t:'带 zu 的不定式：zu 插在中间', s:'Infinitiv mit zu', core:'很多动词后面接「zu + 原形」。可分动词的话，<strong>zu 插在前缀和词干中间</strong>。',
- rows:[
-  ['普通动词','zu + 原形','Ich habe Lust, ins Kino <strong>zu gehen</strong>.'],
-  ['可分动词','zu 插进中间','Ich versuche, früher <strong>aufzustehen</strong>.'],
-  ['常见搭配','Lust haben / Zeit haben / versuchen / vergessen / bitten','全是 + zu + 不定式']
- ],
- note:'对比一下就很清楚：<strong>情态动词不带 zu</strong>（Ich muss gehen），<strong>普通动词要带 zu</strong>（Ich versuche zu gehen）。这是德语的一个硬规矩。'},
-
-{id:'L20', lv:'B1', t:'第二格口语能绕就绕', s:'Genitiv', core:'第二格书面气重，口语里德国人几乎都用 <strong>von + 第三格</strong>代替。',
- rows:[
-  ['书面 / 第二格','das Auto <strong>des</strong> Mannes','那个男人的车'],
-  ['口语 / von + 三格','das Auto <strong>von dem</strong> Mann','意思完全一样'],
-  ['人名最省事','<strong>Christinas</strong> Auto','克里斯蒂娜的车（直接加 s）']
- ],
- note:'但「wegen / trotz / während」这几个介词后面<strong>必须</strong>用第二格（wegen des Wetters），这个躲不掉，考试也常考。'},
-
-{id:'L21', lv:'A1', t:'一个动作，两种动词：legen/liegen 这类', s:'Positionsverben', core:'德语把「放」和「在」拆成两个不同的动词，这是中文里没有的区分，但用起来特别准。',
- rows:[
-  ['legen（放，及物）','我把书放到桌上','Ich <strong>lege</strong> das Buch auf den Tisch.（四格）'],
-  ['liegen（躺着，不及物）','书在桌上','Das Buch <strong>liegt</strong> auf dem Tisch.（三格）'],
-  ['stellen / stehen','竖着放 / 竖着立','Ich stelle die Flasche hin. / Die Flasche steht.'],
-  ['hängen / hängen','挂（及物）/ 挂着','Ich hänge das Bild auf. / Das Bild hängt.']
- ],
- note:'规律：<strong>及物的那个配第四格（有动作、有对象），不及物的那个配第三格。</strong>搞混这两个是外国人最明显的破绽之一。'},
-
-{id:'L22', lv:'A2', t:'物主代词：跟 ein 走就对了', s:'Possessivartikel', core:'mein/dein/sein/ihr/unser/euer 的词尾<strong>和 ein 一模一样</strong>。学一套等于学八套。',
- rows:[
-  ['我 / 你 / 他 / 她','mein / dein / sein / ihr',''],
-  ['我们 / 你们 / 他们 / 您','unser / euer / ihr / Ihr','尊称 Ihr 永远大写'],
-  ['词尾规则','mein / meine / meinen / meinem','跟 ein / eine / einen / einem 完全同步']
- ],
- egs:[['Das ist mein Bruder.','这是我弟弟。'],['Ich liebe meine Familie.','我爱我的家人。'],['Er sucht seinen Schlüssel.','他在找他的钥匙。']],
- note:'一个坑：「她的」和「他们的」都是 <strong>ihr</strong>，靠动词和上下文区分；「您的」是 <strong>Ihr</strong>，永远大写。'},
-
-{id:'L23', lv:'B1', t:'别逐字翻译中文', s:'Nicht wörtlich übersetzen', core:'很多错句不是语法不会，是<strong>把中文的词一个个搬过去</strong>。这些是最高频的翻车点。',
- rows:[
-  ['我很热','Ich bin heiß ✗ → Mir ist warm ✓','德语用第三格说感受'],
-  ['我有兴趣','Ich habe Interesse ✓','这个和中文一致'],
-  ['我喜欢','Ich mag / Ich finde ... gut','没有「喜欢」这个动词，用 mag 或 gern'],
-  ['我同意你','Ich stimme dir zu ✓','zu 在末尾（可分动词）'],
-  ['这对我来说很难','Das ist schwer für mich ✓','用 für + 第四格']
- ],
- note:'另一个重灾区：<strong>「是」不要滥用</strong>。中文「我是学生」是 Ich bin Student；但「我觉得累」不能说 Ich bin müde 之外的 Ich bin 累。德语说感受多用 <strong>Mir ist ...</strong> 或 <strong>Ich habe ...</strong>。'},
-
-{id:'L24', lv:'A2', t:'反身动词：动作弹回自己', s:'Reflexive Verben', core:'动作回到自己身上时，要加一个「反身代词」，而且它<strong>像人称代词一样跟着变</strong>。',
- rows:[
-  ['第四格反身','mich / dich / sich / uns / euch / sich','Ich freue <strong>mich</strong>. 我很高兴'],
-  ['第三格反身','mir / dir / sich / uns / euch / sich','Ich wasche <strong>mir</strong> die Hände. 我洗手'],
-  ['高频反身动词','sich freuen / sich interessieren für / sich treffen / sich erholen / sich beeilen','']
- ],
- note:'怎么判断用第四格还是第三格反身代词？<strong>句子里已经有第四格宾语了，反身代词就用第三格</strong>。Ich wasche mich（没别的宾语→四格）；Ich wasche mir die Hände（die Hände 是四格→反身用三格）。'}
 ];
 
 </script>
@@ -2040,8 +2227,7 @@ const GROUPS = [].concat(
   window.CONTENT_A1||[], window.CONTENT_A2||[], window.CONTENT_B1||[],
   window.CONTENT_PHRASES||[], window.CONTENT_B2||[]
 );
-const GRAMMAR = window.CONTENT_GRAMMAR || [];
-const LECTURES = window.CONTENT_LECTURES || [];
+const TOPICS = [].concat(window.CONTENT_TOPICS_A||[], window.CONTENT_TOPICS_B||[]);
 
 /* 阅读理解：难度递进，after 表示学完第几组后解锁 */
 const READINGS = window.CONTENT_READINGS || [];
@@ -2142,9 +2328,8 @@ function render(){
   else if(route.v==='group')    renderGroup(route.i);
   else if(route.v==='readings') renderReadings();
   else if(route.v==='reading')  renderReading(route.id);
-  else if(route.v==='grammar')  renderGrammarList();
-  else if(route.v==='lectures') renderLectureList();
-  else if(route.v==='lecture')  renderLecture(route.i);
+  else if(route.v==='topics')   renderTopicList();
+  else if(route.v==='topic')    renderTopic(route.i);
   else if(route.v==='backup')   renderBackup();
 }
 
@@ -2188,12 +2373,9 @@ function renderHome(){
     h+='</div>';
   });
   h+='<div class="lvhead"><span>语法</span><span class="lvline"></span></div><div class="list">'
-   +'<button class="item" id="lc"><span class="idx">☰</span><span class="body">'
-   +'<span class="nm">语法讲义<small>Grammatik-Spickzettel</small></span></span>'
-   +'<span class="cnt">'+LECTURES.length+' 条捷径</span></button>'
-   +'<button class="item" id="gr"><span class="idx">§</span><span class="body">'
-   +'<span class="nm">语法专项训练<small>Grammatik üben</small></span></span>'
-   +'<span class="cnt">'+GRAMMAR.length+' 个专题</span></button></div>';
+   +'<button class="item" id="tp"><span class="idx">§</span><span class="body">'
+   +'<span class="nm">语法精讲 + 练习<small>Grammatik</small></span></span>'
+   +'<span class="cnt">'+TOPICS.length+' 个知识点</span></button></div>';
   h+='<div class="lvhead"><span>阅读</span><span class="lvline"></span></div><div class="list">'
    +'<button class="item" id="rd"><span class="idx">Aa</span><span class="body">'
    +'<span class="nm">阅读理解<small>Leseverstehen</small></span></span>'
@@ -2202,8 +2384,7 @@ function renderHome(){
   app.innerHTML=h;
   app.querySelectorAll('.item[data-g]').forEach(b=>{b.onclick=()=>go('group',{i:+b.dataset.g});});
   document.getElementById('rd').onclick=()=>go('readings');
-  document.getElementById('gr').onclick=()=>go('grammar');
-  document.getElementById('lc').onclick=()=>go('lectures');
+  document.getElementById('tp').onclick=()=>go('topics');
   document.getElementById('st').onclick=openSettings;
 }
 function dots(n){
@@ -2275,7 +2456,7 @@ function renderSession(){
   if(m==='blank')  return renderBlank();
   if(m==='review') return renderReview();
   if(m==='dict')   return renderDict();
-  if(m==='gram')   return renderGram();
+  if(m==='tq')     return renderTopicQuiz();
 }
 
 /* --- 进度条 + 顶栏 --- */
@@ -2549,35 +2730,39 @@ function endSession(){
 }
 
 /* ============================================================
-   语法讲义（邪修速记）
+   语法精讲 + 练习（讲义与习题绑在一条里）
    ============================================================ */
-function renderLectureList(){
-  const levels=[...new Set(LECTURES.map(l=>l.lv||'A1'))];
-  let h=topbar('语法讲义','Spickzettel',true);
+function topicDone(ti){ const st=gs(2000+ti); return !!st.done; }
+
+function renderTopicList(){
+  const levels=[...new Set(TOPICS.map(t=>t.lv||'A1'))];
+  let h=topbar('语法精讲 + 练习','Grammatik',true);
   levels.forEach(lv=>{
     h+='<div class="lvhead"><span>'+esc(lv)+'</span><span class="lvline"></span></div><div class="list">';
-    LECTURES.forEach((l,i)=>{
-      if((l.lv||'A1')!==lv)return;
-      h+='<button class="item" data-lc="'+i+'">'
-       +'<span class="idx">'+String(i+1).padStart(2,'0')+'</span>'
-       +'<span class="body"><span class="nm">'+esc(l.t)+'<small>'+esc(l.s||'')+'</small></span></span>'
-       +'<span class="cnt">›</span></button>';
+    TOPICS.forEach((t,i)=>{
+      if((t.lv||'A1')!==lv)return;
+      const ok=topicDone(i);
+      h+='<button class="item'+(ok?' done':'')+'" data-tp="'+i+'">'
+       +'<span class="idx">'+(ok?'✓':String(i+1).padStart(2,'0'))+'</span>'
+       +'<span class="body"><span class="nm">'+esc(t.t)+'<small>'+esc(t.s||'')+'</small></span></span>'
+       +'<span class="cnt">'+t.items.length+' 题</span></button>';
     });
     h+='</div>';
   });
-  h+='<div class="note" style="padding-bottom:30px">一条一个捷径，每条 30 秒读完。'
-   +'看不懂的部分先跳过，把那句核心规则记住就行——它比整张表管用。</div>';
+  h+='<div class="note" style="padding-bottom:30px">每条先讲规则、再练题。'
+   +'<strong>答错时会自动把这条的核心规则弹出来</strong>，不用翻回去找。</div>';
   app.innerHTML=h;
   bindBack(()=>go('home'));
-  app.querySelectorAll('.item[data-lc]').forEach(b=>{b.onclick=()=>go('lecture',{i:+b.dataset.lc});});
+  app.querySelectorAll('.item[data-tp]').forEach(b=>{b.onclick=()=>go('topic',{i:+b.dataset.tp});});
 }
-function renderLecture(i){
-  const l=LECTURES[i];
-  if(!l)return go('lectures');
-  let h=topbar(l.t,l.s||'',true)+'<div class="core">'+l.core+'</div>';
-  if(l.rows&&l.rows.length){
+
+function renderTopic(i){
+  const t=TOPICS[i];
+  if(!t)return go('topics');
+  let h=topbar(t.t,t.s||'',true)+'<div class="core">'+t.core+'</div>';
+  if(t.rows&&t.rows.length){
     h+='<div class="rtable">';
-    l.rows.forEach(r=>{
+    t.rows.forEach(r=>{
       const g=/^(der|die|das)$/.test(String(r[1]||'').trim())?' g-'+String(r[1]).trim():'';
       h+='<div class="r"><div class="c1">'+r[0]+'</div><div class="c2">'
        +(r[1]?'<b class="'+g.trim()+'">'+r[1]+'</b>':'')
@@ -2586,59 +2771,40 @@ function renderLecture(i){
     });
     h+='</div>';
   }
-  if(l.egs&&l.egs.length){
+  if(t.egs&&t.egs.length){
     h+='<div class="regs">';
-    l.egs.forEach(e=>{h+='<div class="e"><div class="de">'+e[0]+'</div><div class="zh">'+e[1]+'</div></div>';});
+    t.egs.forEach(e=>{h+='<div class="e"><div class="de">'+e[0]+'</div><div class="zh">'+e[1]+'</div></div>';});
     h+='</div>';
   }
-  if(l.note)h+='<div class="rnote">'+l.note+'</div>';
-  h+='<div class="navrow">'
+  if(t.note)h+='<div class="rnote">'+t.note+'</div>';
+  h+='<div class="navrow"><button class="btn primary" id="quiz">练这 '+t.items.length+' 题</button></div>'
+   +'<div class="navrow" style="padding-top:0">'
    +(i>0?'<button class="btn" id="pv">上一条</button>':'')
-   +(i<LECTURES.length-1?'<button class="btn primary" id="nx">下一条</button>':'')
+   +(i<TOPICS.length-1?'<button class="btn" id="nx">下一条</button>':'')
    +'</div>'
-   +'<div class="foot" style="padding-top:6px"><div><button id="allc">回到讲义目录</button></div></div>';
+   +'<div class="foot" style="padding-top:6px"><div><button id="allc">回到目录</button></div></div>';
   app.innerHTML=h;
-  bindBack(()=>go('lectures'));
-  const pv=document.getElementById('pv'); if(pv)pv.onclick=()=>go('lecture',{i:i-1});
-  const nx=document.getElementById('nx'); if(nx)nx.onclick=()=>go('lecture',{i:i+1});
-  document.getElementById('allc').onclick=()=>go('lectures');
+  bindBack(()=>go('topics'));
+  document.getElementById('quiz').onclick=()=>startTopicQuiz(i);
+  const pv=document.getElementById('pv'); if(pv)pv.onclick=()=>go('topic',{i:i-1});
+  const nx=document.getElementById('nx'); if(nx)nx.onclick=()=>go('topic',{i:i+1});
+  document.getElementById('allc').onclick=()=>go('topics');
 }
 
-/* ============================================================
-   语法专项训练
-   ============================================================ */
-function renderGrammarList(){
-  const levels=[...new Set(GRAMMAR.map(g=>g.lv||'A1'))];
-  let h=topbar('语法专项训练','Grammatik',true);
-  levels.forEach(lv=>{
-    h+='<div class="lvhead"><span>'+esc(lv)+'</span><span class="lvline"></span></div><div class="list">';
-    GRAMMAR.forEach((g,i)=>{
-      if((g.lv||'A1')!==lv)return;
-      const ok=gs(1000+i).done;
-      h+='<button class="item'+(ok?' done':'')+'" data-gr="'+i+'">'
-       +'<span class="idx">'+(ok?'✓':'§')+'</span>'
-       +'<span class="body"><span class="nm">'+esc(g.t)+'<small>'+esc(g.s||'')+'</small></span></span>'
-       +'<span class="cnt">'+g.items.length+' 题</span></button>';
-    });
-    h+='</div>';
-  });
-  h+='<div class="note" style="padding-bottom:30px">每题答完都会给出讲解。答错不扣分，但建议把讲解读完再往下走。</div>';
-  app.innerHTML=h;
-  bindBack(()=>go('home'));
-  app.querySelectorAll('.item[data-gr]').forEach(b=>{b.onclick=()=>startGrammar(+b.dataset.gr);});
-}
-function startGrammar(gi){
-  const g=GRAMMAR[gi];
-  ses={mode:'gram',gi:gi,g:g,items:shuffle(g.items),i:0,wrong:0,picked:undefined};
+/* ---------- 这条知识点专属的练习 ---------- */
+function startTopicQuiz(ti){
+  const t=TOPICS[ti];
+  ses={mode:'tq',ti:ti,t:t,items:shuffle(t.items),i:0,wrong:0,picked:undefined};
   render();
 }
-function renderGram(){
-  const g=ses.g,it=ses.items[ses.i];
-  if(!it)return endGrammar();
+function renderTopicQuiz(){
+  const t=ses.t, it=ses.items[ses.i];
+  if(!it)return endTopicQuiz();
   const n=ses.items.length;
-  let h=topbar(g.t,g.s||'',true)
+  let h=topbar(t.t,t.s||'',true)
    +'<div class="bar"><i style="width:'+(ses.i/n*100)+'%"></i></div>'
-   +'<div style="padding:24px var(--pad) 0">'
+   +'<div style="padding:22px var(--pad) 0">'
+   +'<div class="hint" style="margin:0 0 8px">第 '+(ses.i+1)+' / '+n+' 题</div>'
    +'<div class="de" style="font-size:clamp(19px,5.4vw,23px);line-height:1.65">'+esc(it.q)+'</div>'
    +'</div><div class="opts">';
   it.opts.forEach((o,k)=>{
@@ -2653,12 +2819,17 @@ function renderGram(){
   });
   h+='</div>';
   if(ses.picked!==undefined){
-    h+='<div class="judge '+(ses.picked===it.a?'ok':'no')+'" style="margin:0 var(--pad)">'+esc(it.why)+'</div>'
-     +'<div class="actions" style="padding:16px var(--pad) 30px"><button class="btn primary" id="nx">'
-     +(ses.i+1<n?'下一题':'看结果')+'</button></div>';
+    const right=(ses.picked===it.a);
+    if(!right){
+      h+='<div class="rnote" style="margin:0 var(--pad)"><strong>回顾这条的规则</strong><br>'+t.core+'</div>';
+    }
+    h+='<div class="judge '+(right?'ok':'no')+'" style="margin:16px var(--pad) 0">'+esc(it.why)+'</div>'
+     +'<div class="actions" style="padding:18px var(--pad) 30px">'
+     +'<button class="btn primary" id="nx">'+(ses.i+1>=n?'看结果':'下一题')+'</button></div>';
   }else h+='<div style="height:30px"></div>';
   app.innerHTML=h;
-  bindBack(()=>{ses=null;go('grammar');});
+  const ti=ses.ti;
+  bindBack(()=>{ses=null;go('topic',{i:ti});});
   app.querySelectorAll('.opt').forEach(b=>{
     b.onclick=()=>{
       if(ses.picked!==undefined)return;
@@ -2670,23 +2841,23 @@ function renderGram(){
   const nx=document.getElementById('nx');
   if(nx)nx.onclick=()=>{ses.picked=undefined;ses.i++;render();};
 }
-function endGrammar(){
-  const gi=ses.gi,wrong=ses.wrong,n=ses.items.length;
-  if(wrong===0)gs(1000+gi).done=true;
-  save();
-  app.innerHTML=topbar('结果',ses.g.t,true)
+function endTopicQuiz(){
+  const ti=ses.ti, t=ses.t, wrong=ses.wrong, n=ses.items.length;
+  if(wrong===0){ gs(2000+ti).done=true; save(); }
+  app.innerHTML=topbar('结果',t.t,true)
    +'<div class="stage"><div class="center" style="text-align:center">'
-   +'<div class="de" style="font-size:32px">'+(n-wrong)+' / '+n+'</div>'
+   +'<div class="de" style="font-size:34px">'+(n-wrong)+' / '+n+'</div>'
    +'<div class="zh" style="margin-top:12px">'
-   +(wrong===0?'全部正确，这个专题通过了':('错了 '+wrong+' 题，建议重做一遍'))+'</div>'
+   +(wrong===0?'全对，这条过了':'错了 '+wrong+' 题，回去把讲义再看一遍')+'</div>'
    +'</div></div><div class="actions">'
-   +'<button class="btn primary" id="rt">重做这个专题</button>'
-   +'<button class="btn ghost" id="bk2">回到语法列表</button></div>';
-  bindBack(()=>{ses=null;go('grammar');});
-  document.getElementById('rt').onclick=()=>{ses=null;startGrammar(gi);};
-  document.getElementById('bk2').onclick=()=>{ses=null;go('grammar');};
+   +'<button class="btn primary" id="re">重做这 '+n+' 题</button>'
+   +'<button class="btn" id="rd">再看这条讲义</button>'
+   +'<button class="btn ghost" id="bk2">回到目录</button></div>';
+  bindBack(()=>{ses=null;go('topics');});
+  document.getElementById('re').onclick=()=>{ses=null;startTopicQuiz(ti);};
+  document.getElementById('rd').onclick=()=>{ses=null;go('topic',{i:ti});};
+  document.getElementById('bk2').onclick=()=>{ses=null;go('topics');};
 }
-
 /* ============================================================
    阅读理解
    ============================================================ */

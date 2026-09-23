@@ -275,8 +275,8 @@ body{
 <script src="content-phrases.js"></script>
 <script src="content-b2.js"></script>
 <script src="content-readings.js"></script>
-<script src="content-grammar.js"></script>
-<script src="content-lectures.js"></script>
+<script src="content-topics-a.js"></script>
+<script src="content-topics-b.js"></script>
 <script>
 /* ============================================================
    课程内容
@@ -290,8 +290,7 @@ const GROUPS = [].concat(
   window.CONTENT_A1||[], window.CONTENT_A2||[], window.CONTENT_B1||[],
   window.CONTENT_PHRASES||[], window.CONTENT_B2||[]
 );
-const GRAMMAR = window.CONTENT_GRAMMAR || [];
-const LECTURES = window.CONTENT_LECTURES || [];
+const TOPICS = [].concat(window.CONTENT_TOPICS_A||[], window.CONTENT_TOPICS_B||[]);
 
 /* 阅读理解：难度递进，after 表示学完第几组后解锁 */
 const READINGS = window.CONTENT_READINGS || [];
@@ -392,9 +391,8 @@ function render(){
   else if(route.v==='group')    renderGroup(route.i);
   else if(route.v==='readings') renderReadings();
   else if(route.v==='reading')  renderReading(route.id);
-  else if(route.v==='grammar')  renderGrammarList();
-  else if(route.v==='lectures') renderLectureList();
-  else if(route.v==='lecture')  renderLecture(route.i);
+  else if(route.v==='topics')   renderTopicList();
+  else if(route.v==='topic')    renderTopic(route.i);
   else if(route.v==='backup')   renderBackup();
 }
 
@@ -438,12 +436,9 @@ function renderHome(){
     h+='</div>';
   });
   h+='<div class="lvhead"><span>语法</span><span class="lvline"></span></div><div class="list">'
-   +'<button class="item" id="lc"><span class="idx">☰</span><span class="body">'
-   +'<span class="nm">语法讲义<small>Grammatik-Spickzettel</small></span></span>'
-   +'<span class="cnt">'+LECTURES.length+' 条捷径</span></button>'
-   +'<button class="item" id="gr"><span class="idx">§</span><span class="body">'
-   +'<span class="nm">语法专项训练<small>Grammatik üben</small></span></span>'
-   +'<span class="cnt">'+GRAMMAR.length+' 个专题</span></button></div>';
+   +'<button class="item" id="tp"><span class="idx">§</span><span class="body">'
+   +'<span class="nm">语法精讲 + 练习<small>Grammatik</small></span></span>'
+   +'<span class="cnt">'+TOPICS.length+' 个知识点</span></button></div>';
   h+='<div class="lvhead"><span>阅读</span><span class="lvline"></span></div><div class="list">'
    +'<button class="item" id="rd"><span class="idx">Aa</span><span class="body">'
    +'<span class="nm">阅读理解<small>Leseverstehen</small></span></span>'
@@ -452,8 +447,7 @@ function renderHome(){
   app.innerHTML=h;
   app.querySelectorAll('.item[data-g]').forEach(b=>{b.onclick=()=>go('group',{i:+b.dataset.g});});
   document.getElementById('rd').onclick=()=>go('readings');
-  document.getElementById('gr').onclick=()=>go('grammar');
-  document.getElementById('lc').onclick=()=>go('lectures');
+  document.getElementById('tp').onclick=()=>go('topics');
   document.getElementById('st').onclick=openSettings;
 }
 function dots(n){
@@ -525,7 +519,7 @@ function renderSession(){
   if(m==='blank')  return renderBlank();
   if(m==='review') return renderReview();
   if(m==='dict')   return renderDict();
-  if(m==='gram')   return renderGram();
+  if(m==='tq')     return renderTopicQuiz();
 }
 
 /* --- 进度条 + 顶栏 --- */
@@ -799,35 +793,39 @@ function endSession(){
 }
 
 /* ============================================================
-   语法讲义（邪修速记）
+   语法精讲 + 练习（讲义与习题绑在一条里）
    ============================================================ */
-function renderLectureList(){
-  const levels=[...new Set(LECTURES.map(l=>l.lv||'A1'))];
-  let h=topbar('语法讲义','Spickzettel',true);
+function topicDone(ti){ const st=gs(2000+ti); return !!st.done; }
+
+function renderTopicList(){
+  const levels=[...new Set(TOPICS.map(t=>t.lv||'A1'))];
+  let h=topbar('语法精讲 + 练习','Grammatik',true);
   levels.forEach(lv=>{
     h+='<div class="lvhead"><span>'+esc(lv)+'</span><span class="lvline"></span></div><div class="list">';
-    LECTURES.forEach((l,i)=>{
-      if((l.lv||'A1')!==lv)return;
-      h+='<button class="item" data-lc="'+i+'">'
-       +'<span class="idx">'+String(i+1).padStart(2,'0')+'</span>'
-       +'<span class="body"><span class="nm">'+esc(l.t)+'<small>'+esc(l.s||'')+'</small></span></span>'
-       +'<span class="cnt">›</span></button>';
+    TOPICS.forEach((t,i)=>{
+      if((t.lv||'A1')!==lv)return;
+      const ok=topicDone(i);
+      h+='<button class="item'+(ok?' done':'')+'" data-tp="'+i+'">'
+       +'<span class="idx">'+(ok?'✓':String(i+1).padStart(2,'0'))+'</span>'
+       +'<span class="body"><span class="nm">'+esc(t.t)+'<small>'+esc(t.s||'')+'</small></span></span>'
+       +'<span class="cnt">'+t.items.length+' 题</span></button>';
     });
     h+='</div>';
   });
-  h+='<div class="note" style="padding-bottom:30px">一条一个捷径，每条 30 秒读完。'
-   +'看不懂的部分先跳过，把那句核心规则记住就行——它比整张表管用。</div>';
+  h+='<div class="note" style="padding-bottom:30px">每条先讲规则、再练题。'
+   +'<strong>答错时会自动把这条的核心规则弹出来</strong>，不用翻回去找。</div>';
   app.innerHTML=h;
   bindBack(()=>go('home'));
-  app.querySelectorAll('.item[data-lc]').forEach(b=>{b.onclick=()=>go('lecture',{i:+b.dataset.lc});});
+  app.querySelectorAll('.item[data-tp]').forEach(b=>{b.onclick=()=>go('topic',{i:+b.dataset.tp});});
 }
-function renderLecture(i){
-  const l=LECTURES[i];
-  if(!l)return go('lectures');
-  let h=topbar(l.t,l.s||'',true)+'<div class="core">'+l.core+'</div>';
-  if(l.rows&&l.rows.length){
+
+function renderTopic(i){
+  const t=TOPICS[i];
+  if(!t)return go('topics');
+  let h=topbar(t.t,t.s||'',true)+'<div class="core">'+t.core+'</div>';
+  if(t.rows&&t.rows.length){
     h+='<div class="rtable">';
-    l.rows.forEach(r=>{
+    t.rows.forEach(r=>{
       const g=/^(der|die|das)$/.test(String(r[1]||'').trim())?' g-'+String(r[1]).trim():'';
       h+='<div class="r"><div class="c1">'+r[0]+'</div><div class="c2">'
        +(r[1]?'<b class="'+g.trim()+'">'+r[1]+'</b>':'')
@@ -836,59 +834,40 @@ function renderLecture(i){
     });
     h+='</div>';
   }
-  if(l.egs&&l.egs.length){
+  if(t.egs&&t.egs.length){
     h+='<div class="regs">';
-    l.egs.forEach(e=>{h+='<div class="e"><div class="de">'+e[0]+'</div><div class="zh">'+e[1]+'</div></div>';});
+    t.egs.forEach(e=>{h+='<div class="e"><div class="de">'+e[0]+'</div><div class="zh">'+e[1]+'</div></div>';});
     h+='</div>';
   }
-  if(l.note)h+='<div class="rnote">'+l.note+'</div>';
-  h+='<div class="navrow">'
+  if(t.note)h+='<div class="rnote">'+t.note+'</div>';
+  h+='<div class="navrow"><button class="btn primary" id="quiz">练这 '+t.items.length+' 题</button></div>'
+   +'<div class="navrow" style="padding-top:0">'
    +(i>0?'<button class="btn" id="pv">上一条</button>':'')
-   +(i<LECTURES.length-1?'<button class="btn primary" id="nx">下一条</button>':'')
+   +(i<TOPICS.length-1?'<button class="btn" id="nx">下一条</button>':'')
    +'</div>'
-   +'<div class="foot" style="padding-top:6px"><div><button id="allc">回到讲义目录</button></div></div>';
+   +'<div class="foot" style="padding-top:6px"><div><button id="allc">回到目录</button></div></div>';
   app.innerHTML=h;
-  bindBack(()=>go('lectures'));
-  const pv=document.getElementById('pv'); if(pv)pv.onclick=()=>go('lecture',{i:i-1});
-  const nx=document.getElementById('nx'); if(nx)nx.onclick=()=>go('lecture',{i:i+1});
-  document.getElementById('allc').onclick=()=>go('lectures');
+  bindBack(()=>go('topics'));
+  document.getElementById('quiz').onclick=()=>startTopicQuiz(i);
+  const pv=document.getElementById('pv'); if(pv)pv.onclick=()=>go('topic',{i:i-1});
+  const nx=document.getElementById('nx'); if(nx)nx.onclick=()=>go('topic',{i:i+1});
+  document.getElementById('allc').onclick=()=>go('topics');
 }
 
-/* ============================================================
-   语法专项训练
-   ============================================================ */
-function renderGrammarList(){
-  const levels=[...new Set(GRAMMAR.map(g=>g.lv||'A1'))];
-  let h=topbar('语法专项训练','Grammatik',true);
-  levels.forEach(lv=>{
-    h+='<div class="lvhead"><span>'+esc(lv)+'</span><span class="lvline"></span></div><div class="list">';
-    GRAMMAR.forEach((g,i)=>{
-      if((g.lv||'A1')!==lv)return;
-      const ok=gs(1000+i).done;
-      h+='<button class="item'+(ok?' done':'')+'" data-gr="'+i+'">'
-       +'<span class="idx">'+(ok?'✓':'§')+'</span>'
-       +'<span class="body"><span class="nm">'+esc(g.t)+'<small>'+esc(g.s||'')+'</small></span></span>'
-       +'<span class="cnt">'+g.items.length+' 题</span></button>';
-    });
-    h+='</div>';
-  });
-  h+='<div class="note" style="padding-bottom:30px">每题答完都会给出讲解。答错不扣分，但建议把讲解读完再往下走。</div>';
-  app.innerHTML=h;
-  bindBack(()=>go('home'));
-  app.querySelectorAll('.item[data-gr]').forEach(b=>{b.onclick=()=>startGrammar(+b.dataset.gr);});
-}
-function startGrammar(gi){
-  const g=GRAMMAR[gi];
-  ses={mode:'gram',gi:gi,g:g,items:shuffle(g.items),i:0,wrong:0,picked:undefined};
+/* ---------- 这条知识点专属的练习 ---------- */
+function startTopicQuiz(ti){
+  const t=TOPICS[ti];
+  ses={mode:'tq',ti:ti,t:t,items:shuffle(t.items),i:0,wrong:0,picked:undefined};
   render();
 }
-function renderGram(){
-  const g=ses.g,it=ses.items[ses.i];
-  if(!it)return endGrammar();
+function renderTopicQuiz(){
+  const t=ses.t, it=ses.items[ses.i];
+  if(!it)return endTopicQuiz();
   const n=ses.items.length;
-  let h=topbar(g.t,g.s||'',true)
+  let h=topbar(t.t,t.s||'',true)
    +'<div class="bar"><i style="width:'+(ses.i/n*100)+'%"></i></div>'
-   +'<div style="padding:24px var(--pad) 0">'
+   +'<div style="padding:22px var(--pad) 0">'
+   +'<div class="hint" style="margin:0 0 8px">第 '+(ses.i+1)+' / '+n+' 题</div>'
    +'<div class="de" style="font-size:clamp(19px,5.4vw,23px);line-height:1.65">'+esc(it.q)+'</div>'
    +'</div><div class="opts">';
   it.opts.forEach((o,k)=>{
@@ -903,12 +882,17 @@ function renderGram(){
   });
   h+='</div>';
   if(ses.picked!==undefined){
-    h+='<div class="judge '+(ses.picked===it.a?'ok':'no')+'" style="margin:0 var(--pad)">'+esc(it.why)+'</div>'
-     +'<div class="actions" style="padding:16px var(--pad) 30px"><button class="btn primary" id="nx">'
-     +(ses.i+1<n?'下一题':'看结果')+'</button></div>';
+    const right=(ses.picked===it.a);
+    if(!right){
+      h+='<div class="rnote" style="margin:0 var(--pad)"><strong>回顾这条的规则</strong><br>'+t.core+'</div>';
+    }
+    h+='<div class="judge '+(right?'ok':'no')+'" style="margin:16px var(--pad) 0">'+esc(it.why)+'</div>'
+     +'<div class="actions" style="padding:18px var(--pad) 30px">'
+     +'<button class="btn primary" id="nx">'+(ses.i+1>=n?'看结果':'下一题')+'</button></div>';
   }else h+='<div style="height:30px"></div>';
   app.innerHTML=h;
-  bindBack(()=>{ses=null;go('grammar');});
+  const ti=ses.ti;
+  bindBack(()=>{ses=null;go('topic',{i:ti});});
   app.querySelectorAll('.opt').forEach(b=>{
     b.onclick=()=>{
       if(ses.picked!==undefined)return;
@@ -920,23 +904,23 @@ function renderGram(){
   const nx=document.getElementById('nx');
   if(nx)nx.onclick=()=>{ses.picked=undefined;ses.i++;render();};
 }
-function endGrammar(){
-  const gi=ses.gi,wrong=ses.wrong,n=ses.items.length;
-  if(wrong===0)gs(1000+gi).done=true;
-  save();
-  app.innerHTML=topbar('结果',ses.g.t,true)
+function endTopicQuiz(){
+  const ti=ses.ti, t=ses.t, wrong=ses.wrong, n=ses.items.length;
+  if(wrong===0){ gs(2000+ti).done=true; save(); }
+  app.innerHTML=topbar('结果',t.t,true)
    +'<div class="stage"><div class="center" style="text-align:center">'
-   +'<div class="de" style="font-size:32px">'+(n-wrong)+' / '+n+'</div>'
+   +'<div class="de" style="font-size:34px">'+(n-wrong)+' / '+n+'</div>'
    +'<div class="zh" style="margin-top:12px">'
-   +(wrong===0?'全部正确，这个专题通过了':('错了 '+wrong+' 题，建议重做一遍'))+'</div>'
+   +(wrong===0?'全对，这条过了':'错了 '+wrong+' 题，回去把讲义再看一遍')+'</div>'
    +'</div></div><div class="actions">'
-   +'<button class="btn primary" id="rt">重做这个专题</button>'
-   +'<button class="btn ghost" id="bk2">回到语法列表</button></div>';
-  bindBack(()=>{ses=null;go('grammar');});
-  document.getElementById('rt').onclick=()=>{ses=null;startGrammar(gi);};
-  document.getElementById('bk2').onclick=()=>{ses=null;go('grammar');};
+   +'<button class="btn primary" id="re">重做这 '+n+' 题</button>'
+   +'<button class="btn" id="rd">再看这条讲义</button>'
+   +'<button class="btn ghost" id="bk2">回到目录</button></div>';
+  bindBack(()=>{ses=null;go('topics');});
+  document.getElementById('re').onclick=()=>{ses=null;startTopicQuiz(ti);};
+  document.getElementById('rd').onclick=()=>{ses=null;go('topic',{i:ti});};
+  document.getElementById('bk2').onclick=()=>{ses=null;go('topics');};
 }
-
 /* ============================================================
    阅读理解
    ============================================================ */
