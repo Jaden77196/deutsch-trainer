@@ -269,14 +269,1764 @@ body{
 </head>
 <body>
 <div id="app"></div>
-<script src="content-a1.js"></script>
-<script src="content-a2.js"></script>
-<script src="content-b1.js"></script>
-<script src="content-phrases.js"></script>
-<script src="content-b2.js"></script>
-<script src="content-readings.js"></script>
-<script src="content-grammar.js"></script>
-<script src="content-lectures.js"></script>
+<script>
+/* ==== content-a1.js ==== */
+/* ============================================================
+   A1 课程内容（完整）
+   单词格式：[德语, 中文, 读音提示, 例句, 例句译文, 词性]
+     - 名词带上冠词，如 'die Familie'
+     - 例句用 { } 标出可挖空部分
+     - 词性：n 名词 / v 动词 / a 形容词 / x 其他
+   lv 表示 CEFR 等级
+   ============================================================ */
+window.CONTENT_A1 = [
+{t:'问候与道别', lv:'A1', s:'Begrüßung', w:[
+ ['Hallo','你好（随意）','哈洛','{Hallo}, ich bin Li.','你好，我是李。','x'],
+ ['Guten Morgen','早上好','古腾 摩根','{Guten Morgen}, Frau Müller!','早上好，穆勒女士！','x'],
+ ['Guten Tag','你好（白天正式）','古腾 塔克','{Guten Tag}, wie geht es Ihnen?','您好，您过得好吗？','x'],
+ ['Guten Abend','晚上好','古腾 阿本特','{Guten Abend}, Herr Schmidt.','晚上好，施密特先生。','x'],
+ ['Gute Nacht','晚安','古特 纳赫特','{Gute Nacht}, schlaf gut!','晚安，睡个好觉！','x'],
+ ['Tschüss','再见（随意）','去斯','{Tschüss}, bis morgen!','再见，明天见！','x'],
+ ['Auf Wiedersehen','再见（正式）','奥夫 维德泽恩','{Auf Wiedersehen}, Frau Doktor.','再见，博士女士。','x'],
+ ['Danke','谢谢','当克','{Danke} für die Hilfe!','谢谢帮忙！','x'],
+ ['Bitte','请／不客气','比特','{Bitte}, kommen Sie herein.','请进。','x'],
+ ['Entschuldigung','对不起／劳驾','恩特舒尔迪贡','{Entschuldigung}, wo ist der Bahnhof?','劳驾，火车站在哪里？','x']
+]},
+{t:'认识与自我介绍', lv:'A1', s:'Sich vorstellen', w:[
+ ['ich','我','伊希','{Ich} heiße Anna.','我叫安娜。','x'],
+ ['du','你（对熟人）','杜','Wie heißt {du}?','你叫什么名字？','x'],
+ ['Sie','您（尊称）','兹','Wie heißen {Sie}?','您怎么称呼？','x'],
+ ['sein','是','再恩','Ich {bin} aus China.','我来自中国。','v'],
+ ['heißen','名叫','海森','Wie {heißen} Sie?','您叫什么名字？','v'],
+ ['kommen','来，来自','科门','Ich {komme} aus Deutschland.','我来自德国。','v'],
+ ['wohnen','居住','沃嫩','Ich {wohne} in Berlin.','我住在柏林。','v'],
+ ['der Name','名字','纳默','Mein {Name} ist Li Wei.','我的名字是李伟。','n'],
+ ['das Land','国家','兰特','Aus welchem {Land} kommen Sie?','您来自哪个国家？','n'],
+ ['die Sprache','语言','施普拉赫','Deutsch ist eine schöne {Sprache}.','德语是一门美丽的语言。','n']
+]},
+{t:'数字 0–12', lv:'A1', s:'Zahlen', w:[
+ ['null','零','努尔','Die Temperatur ist {null} Grad.','温度是零度。','x'],
+ ['eins','一','艾恩斯','Ich möchte {eins} von diesen.','我想要其中一个。','x'],
+ ['zwei','二','次外','Ich habe {zwei} Schwestern.','我有两个姐妹。','x'],
+ ['drei','三','德赖','Das kostet {drei} Euro.','这个三欧元。','x'],
+ ['vier','四','菲尔','Wir sind {vier} Personen.','我们四个人。','x'],
+ ['fünf','五','弗恩夫','Ich arbeite {fünf} Tage pro Woche.','我每周工作五天。','x'],
+ ['sechs','六','泽克斯','Es ist {sechs} Uhr.','现在六点。','x'],
+ ['sieben','七','济本','Die Woche hat {sieben} Tage.','一周有七天。','x'],
+ ['acht','八','阿赫特','Ich stehe um {acht} Uhr auf.','我八点起床。','x'],
+ ['neun','九','诺伊恩','Der Kurs beginnt um {neun}.','课程九点开始。','x'],
+ ['zehn','十','岑','Ich zähle bis {zehn}.','我数到十。','x'],
+ ['elf','十一','艾尔夫','Es ist {elf} Uhr.','现在十一点。','x'],
+ ['zwölf','十二','次沃尔夫','Das Jahr hat {zwölf} Monate.','一年有十二个月。','x']
+]},
+{t:'数字 13–100', lv:'A1', s:'Zahlen II', w:[
+ ['dreizehn','十三','德赖岑','Mein Bruder ist {dreizehn} Jahre alt.','我弟弟十三岁。','x'],
+ ['vierzehn','十四','菲尔岑','Sie ist {vierzehn}.','她十四岁。','x'],
+ ['fünfzehn','十五','弗恩夫岑','Das kostet {fünfzehn} Euro.','这个十五欧元。','x'],
+ ['sechzehn','十六','泽希岑','Mit {sechzehn} darf man Auto fahren.','十六岁可以开车。','x'],
+ ['siebzehn','十七','济普岑','Er ist {siebzehn} Jahre alt.','他十七岁。','x'],
+ ['achtzehn','十八','阿赫特岑','Mit {achtzehn} ist man volljährig.','十八岁成年。','x'],
+ ['neunzehn','十九','诺伊恩岑','Sie wohnt in Zimmer {neunzehn}.','她住在十九号房间。','x'],
+ ['zwanzig','二十','次万齐希','Ich habe {zwanzig} Euro.','我有二十欧元。','x'],
+ ['dreißig','三十','德赖西希','Der Monat hat {dreißig} Tage.','这个月有三十天。','x'],
+ ['hundert','一百','洪德特','Das kostet {hundert} Euro.','这个一百欧元。','x']
+]},
+{t:'基础动词', lv:'A1', s:'Grundverben', w:[
+ ['gehen','走，去','给恩','Ich {gehe} nach Hause.','我回家。','v'],
+ ['sprechen','说，讲','施普雷贤','{Sprechen} Sie Deutsch?','您说德语吗？','v'],
+ ['verstehen','理解','费施泰恩','Ich {verstehe} nicht.','我不明白。','v'],
+ ['lernen','学习','雷恩恩','Ich {lerne} Deutsch.','我在学德语。','v'],
+ ['arbeiten','工作','阿拜滕','Wo {arbeiten} Sie?','您在哪里工作？','v'],
+ ['kaufen','买','考芬','Ich möchte Brot {kaufen}.','我想买面包。','v'],
+ ['essen','吃','艾森','Wir {essen} um sieben.','我们七点吃饭。','v'],
+ ['trinken','喝','特林肯','Ich {trinke} gern Kaffee.','我喜欢喝咖啡。','v'],
+ ['schlafen','睡觉','施拉芬','Ich {schlafe} acht Stunden.','我睡八小时。','v'],
+ ['lesen','读','雷曾','Ich {lese} ein Buch.','我在读一本书。','v']
+]},
+{t:'家庭', lv:'A1', s:'Die Familie', w:[
+ ['die Familie','家庭','法米利厄','Meine {Familie} ist groß.','我的家庭很大。','n'],
+ ['die Mutter','母亲','穆特','Meine {Mutter} kocht gut.','我妈妈做饭很好吃。','n'],
+ ['der Vater','父亲','法特','Mein {Vater} arbeitet viel.','我爸爸工作很多。','n'],
+ ['der Bruder','兄弟','布鲁德','Mein {Bruder} ist zehn.','我弟弟十岁。','n'],
+ ['die Schwester','姐妹','施韦斯特','Meine {Schwester} wohnt in Köln.','我姐姐住在科隆。','n'],
+ ['das Kind','孩子','金特','Das {Kind} spielt im Garten.','孩子在花园里玩。','n'],
+ ['der Sohn','儿子','佐恩','Ihr {Sohn} ist Student.','她儿子是大学生。','n'],
+ ['die Tochter','女儿','托赫特','Meine {Tochter} geht zur Schule.','我女儿上学。','n'],
+ ['die Eltern','父母','艾尔滕','Meine {Eltern} wohnen in Beijing.','我父母住在北京。','n'],
+ ['der Mann','男人／丈夫','曼','Ihr {Mann} ist Arzt.','她丈夫是医生。','n']
+]},
+{t:'饮食', lv:'A1', s:'Essen und Trinken', w:[
+ ['das Brot','面包','布洛特','Ich kaufe frisches {Brot}.','我买新鲜面包。','n'],
+ ['das Wasser','水','瓦瑟','Ein Glas {Wasser}, bitte.','请来一杯水。','n'],
+ ['der Kaffee','咖啡','卡费','Ich trinke {Kaffee} ohne Zucker.','我喝咖啡不加糖。','n'],
+ ['der Tee','茶','泰','Möchten Sie {Tee} oder Kaffee?','您想要茶还是咖啡？','n'],
+ ['das Bier','啤酒','比尔','Ein {Bier}, bitte!','请来一杯啤酒！','n'],
+ ['die Milch','牛奶','米尔希','Ich trinke {Milch} zum Frühstück.','我早餐喝牛奶。','n'],
+ ['der Käse','奶酪','凯泽','Der {Käse} kommt aus der Schweiz.','这奶酪来自瑞士。','n'],
+ ['der Apfel','苹果','阿普费尔','Ein {Apfel} am Tag ist gesund.','一天一苹果，身体好。','n'],
+ ['das Fleisch','肉','弗莱施','Ich esse kein {Fleisch}.','我不吃肉。','n'],
+ ['die Suppe','汤','祖佩','Die {Suppe} ist heiß.','汤很烫。','n']
+]},
+{t:'餐厅', lv:'A1', s:'Im Restaurant', w:[
+ ['die Speisekarte','菜单','施派泽卡特','Die {Speisekarte}, bitte.','请给我菜单。','n'],
+ ['bestellen','点（菜）','贝施泰伦','Ich möchte {bestellen}.','我想点菜。','v'],
+ ['die Rechnung','账单','雷希农','Die {Rechnung}, bitte!','请结账！','n'],
+ ['bezahlen','付款','贝曹伦','Wir möchten {bezahlen}.','我们想结账。','v'],
+ ['der Kellner','服务员','凯尔纳','Der {Kellner} bringt das Wasser.','服务员端来水。','n'],
+ ['das Frühstück','早餐','弗吕施图克','Das {Frühstück} ist inklusive.','含早餐。','n'],
+ ['das Mittagessen','午餐','米塔克艾森','Zum {Mittagessen} esse ich Reis.','午饭我吃米饭。','n'],
+ ['das Abendessen','晚餐','阿本特艾森','Das {Abendessen} war lecker.','晚餐很好吃。','n'],
+ ['lecker','好吃的','莱克','Der Kuchen ist sehr {lecker}.','这个蛋糕很好吃。','a'],
+ ['satt','饱的','扎特','Ich bin {satt}.','我吃饱了。','a']
+]},
+{t:'时间与日期', lv:'A1', s:'Zeit und Datum', w:[
+ ['die Uhr','钟／点钟','乌尔','Es ist drei {Uhr}.','现在三点。','n'],
+ ['die Stunde','小时','施图恩德','Ich warte eine {Stunde}.','我等一小时。','n'],
+ ['die Minute','分钟','米努特','Warten Sie eine {Minute}.','请等一分钟。','n'],
+ ['der Tag','天','塔克','Jeden {Tag} lerne ich Deutsch.','我每天学德语。','n'],
+ ['die Woche','星期','沃赫','Diese {Woche} habe ich Zeit.','这周我有时间。','n'],
+ ['der Monat','月','莫纳特','Der Kurs dauert einen {Monat}.','课程持续一个月。','n'],
+ ['das Jahr','年','亚尔','Ich lerne ein {Jahr} Deutsch.','我学德语一年了。','n'],
+ ['heute','今天','霍伊特','{Heute} ist Montag.','今天是星期一。','x'],
+ ['morgen','明天','摩根','{Morgen} fahre ich nach Berlin.','明天我去柏林。','x'],
+ ['gestern','昨天','格斯特恩','{Gestern} war ich müde.','昨天我很累。','x']
+]},
+{t:'城市与交通', lv:'A1', s:'Stadt und Verkehr', w:[
+ ['die Stadt','城市','施塔特','München ist eine schöne {Stadt}.','慕尼黑是座美丽的城市。','n'],
+ ['der Bahnhof','火车站','班霍夫','Wo ist der {Bahnhof}?','火车站在哪里？','n'],
+ ['der Zug','火车','楚克','Der {Zug} fährt um acht.','火车八点开。','n'],
+ ['der Bus','公交车','布斯','Ich nehme den {Bus}.','我坐公交车。','n'],
+ ['die Straße','街道','施特拉瑟','Ich wohne in dieser {Straße}.','我住在这条街。','n'],
+ ['das Auto','汽车','奥托','Mein {Auto} ist alt.','我的车很旧。','n'],
+ ['die Fahrkarte','车票','法尔卡特','Eine {Fahrkarte} nach Berlin, bitte.','请给我一张去柏林的车票。','n'],
+ ['fahren','行驶，乘车','法伦','Ich {fahre} nach Hamburg.','我去汉堡。','v'],
+ ['der Flughafen','机场','弗卢克哈芬','Der {Flughafen} ist weit.','机场很远。','n'],
+ ['das Flugzeug','飞机','弗卢克措伊克','Das {Flugzeug} landet um zehn.','飞机十点降落。','n']
+]},
+{t:'购物', lv:'A1', s:'Einkaufen', w:[
+ ['das Geschäft','商店','格舍夫特','Das {Geschäft} ist geschlossen.','商店关门了。','n'],
+ ['der Markt','市场','马尔克特','Ich gehe auf den {Markt}.','我去市场。','n'],
+ ['der Preis','价格','普赖斯','Der {Preis} ist zu hoch.','价格太高了。','n'],
+ ['das Geld','钱','盖尔特','Ich habe kein {Geld}.','我没钱。','n'],
+ ['der Euro','欧元','奥伊罗','Das kostet zehn {Euro}.','这个十欧元。','n'],
+ ['teuer','贵的','托伊尔','Das ist zu {teuer}.','这太贵了。','a'],
+ ['billig','便宜的','比利希','Das ist sehr {billig}.','这很便宜。','a'],
+ ['die Kasse','收银台','卡瑟','Bitte zahlen Sie an der {Kasse}.','请在收银台付款。','n'],
+ ['die Größe','尺码／大小','格勒瑟','Welche {Größe} brauchen Sie?','您要哪个尺码？','n'],
+ ['anprobieren','试穿','安普罗比伦','Kann ich das {anprobieren}?','我可以试穿吗？','v']
+]},
+{t:'住宿', lv:'A1', s:'Im Hotel', w:[
+ ['das Hotel','酒店','霍特尔','Das {Hotel} ist im Zentrum.','酒店在市中心。','n'],
+ ['das Zimmer','房间','齐默','Ich brauche ein {Zimmer}.','我需要一个房间。','n'],
+ ['der Schlüssel','钥匙','施吕瑟尔','Hier ist Ihr {Schlüssel}.','这是您的钥匙。','n'],
+ ['die Rezeption','前台','雷采普齐翁','Fragen Sie an der {Rezeption}.','请到前台询问。','n'],
+ ['die Dusche','淋浴','杜舍','Das Zimmer hat eine {Dusche}.','房间有淋浴。','n'],
+ ['das Bett','床','贝特','Das {Bett} ist bequem.','床很舒服。','n'],
+ ['die Nacht','夜','纳赫特','Eine {Nacht} kostet 80 Euro.','一晚80欧。','n'],
+ ['frei','空着的','弗赖','Ist noch ein Zimmer {frei}?','还有空房吗？','a'],
+ ['reservieren','预订','雷泽维伦','Ich möchte ein Zimmer {reservieren}.','我想预订一个房间。','v'],
+ ['der Gast','客人','加斯特','Der {Gast} kommt um sechs.','客人六点到。','n']
+]},
+{t:'身体与健康', lv:'A1', s:'Körper und Gesundheit', w:[
+ ['der Kopf','头','科普夫','Mein {Kopf} tut weh.','我头疼。','n'],
+ ['das Auge','眼睛','奥格','Ihr {Auge} ist blau.','她眼睛是蓝色的。','n'],
+ ['die Hand','手','汉特','Gib mir deine {Hand}.','把手给我。','n'],
+ ['der Fuß','脚','弗斯','Mein {Fuß} ist kalt.','我的脚很冷。','n'],
+ ['der Arm','胳膊','阿尔姆','Sein {Arm} ist gebrochen.','他胳膊骨折了。','n'],
+ ['das Bein','腿','拜恩','Mein {Bein} tut weh.','我腿疼。','n'],
+ ['der Bauch','肚子','包赫','Mein {Bauch} ist voll.','我肚子饱了。','n'],
+ ['krank','生病的','克兰克','Ich bin {krank}.','我生病了。','a'],
+ ['gesund','健康的','格尊特','Obst ist {gesund}.','水果很健康。','a'],
+ ['der Arzt','医生','阿尔茨特','Ich gehe zum {Arzt}.','我去看医生。','n']
+]},
+{t:'天气与季节', lv:'A1', s:'Wetter und Jahreszeiten', w:[
+ ['das Wetter','天气','韦特','Das {Wetter} ist schön.','天气很好。','n'],
+ ['die Sonne','太阳','佐内','Die {Sonne} scheint.','太阳在照耀。','n'],
+ ['der Regen','雨','雷根','Heute gibt es {Regen}.','今天有雨。','n'],
+ ['der Schnee','雪','施内','Im Winter liegt {Schnee}.','冬天有雪。','n'],
+ ['der Wind','风','温特','Der {Wind} ist stark.','风很大。','n'],
+ ['warm','暖的','瓦尔姆','Es ist heute {warm}.','今天很暖和。','a'],
+ ['kalt','冷的','卡尔特','Im Winter ist es {kalt}.','冬天很冷。','a'],
+ ['der Sommer','夏天','佐默','Im {Sommer} fahren wir ans Meer.','夏天我们去海边。','n'],
+ ['der Winter','冬天','温特','Der {Winter} ist lang.','冬天很长。','n'],
+ ['der Frühling','春天','弗吕林','Im {Frühling} blühen die Blumen.','春天花开了。','n']
+]},
+{t:'常用形容词', lv:'A1', s:'Adjektive', w:[
+ ['gut','好的','古特','Das Essen ist {gut}.','饭菜很好。','a'],
+ ['schlecht','坏的','施莱希特','Das Wetter ist {schlecht}.','天气很糟。','a'],
+ ['groß','大的','格罗斯','Berlin ist eine {große} Stadt.','柏林是座大城市。','a'],
+ ['klein','小的','克莱恩','Das Zimmer ist {klein}.','房间很小。','a'],
+ ['alt','老的','阿尔特','Mein Auto ist {alt}.','我的车很旧。','a'],
+ ['neu','新的','诺伊','Das ist ein {neues} Handy.','这是新手机。','a'],
+ ['schön','美的','舍恩','Der Garten ist {schön}.','花园很美。','a'],
+ ['schnell','快的','施内尔','Der Zug ist {schnell}.','火车很快。','a'],
+ ['langsam','慢的','朗扎姆','Bitte sprechen Sie {langsam}.','请说慢一点。','a'],
+ ['müde','累的','米德','Ich bin sehr {müde}.','我很累。','a']
+]},
+{t:'情态动词与常用表达', lv:'A1', s:'Modalverben', w:[
+ ['können','能，会','克嫩','Ich {kann} Deutsch sprechen.','我会说德语。','v'],
+ ['müssen','必须','米森','Ich {muss} jetzt gehen.','我现在必须走了。','v'],
+ ['wollen','想要','沃伦','Wir {wollen} nach Berlin fahren.','我们想去柏林。','v'],
+ ['möchten','想要（礼貌）','默希滕','Ich {möchte} einen Kaffee.','我想要一杯咖啡。','v'],
+ ['dürfen','被允许','迪尔芬','Hier {darf} man nicht rauchen.','这里不许吸烟。','v'],
+ ['sollen','应该','佐伦','Was {soll} ich tun?','我该怎么办？','v'],
+ ['gern','乐意地','盖恩','Ich trinke {gern} Tee.','我喜欢喝茶。','x'],
+ ['vielleicht','也许','菲尔莱希特','{Vielleicht} komme ich später.','也许我晚点来。','x'],
+ ['natürlich','当然','纳蒂尔利希','{Natürlich} helfe ich dir.','我当然帮你。','x'],
+ ['leider','可惜，遗憾','莱德','{Leider} habe ich keine Zeit.','很遗憾我没时间。','x']
+]},
+{t:'服装', lv:'A1', s:'Kleidung', w:[
+ ['die Kleidung','衣服（总称）','克莱东','Diese {Kleidung} ist teuer.','这件衣服很贵。','n'],
+ ['das Hemd','衬衫','赫姆特','Das {Hemd} ist zu klein.','这件衬衫太小。','n'],
+ ['die Hose','裤子','霍泽','Die {Hose} passt gut.','这条裤子很合身。','n'],
+ ['das Kleid','连衣裙','克莱特','Das {Kleid} ist schön.','这条裙子很漂亮。','n'],
+ ['die Jacke','外套','雅克','Nimm die {Jacke} mit!','带上外套！','n'],
+ ['der Schuh','鞋','舒','Der {Schuh} ist neu.','这鞋是新的。','n'],
+ ['die Socke','袜子','佐克','Ich brauche warme {Socken}.','我需要保暖的袜子。','n'],
+ ['der Mantel','大衣','曼特尔','Der {Mantel} ist warm.','这件大衣很暖和。','n'],
+ ['der Rock','半身裙','罗克','Der {Rock} ist kurz.','这条裙子很短。','n'],
+ ['die Tasche','包','塔舍','Meine {Tasche} ist schwer.','我的包很重。','n']
+]},
+{t:'颜色', lv:'A1', s:'Farben', w:[
+ ['die Farbe','颜色','法尔贝','Welche {Farbe} magst du?','你喜欢哪个颜色？','n'],
+ ['rot','红色的','罗特','Das Auto ist {rot}.','这辆车是红色的。','a'],
+ ['blau','蓝色的','布劳','Der Himmel ist {blau}.','天空是蓝色的。','a'],
+ ['grün','绿色的','格吕恩','Das Gras ist {grün}.','草是绿色的。','a'],
+ ['gelb','黄色的','格尔普','Die Sonne ist {gelb}.','太阳是黄色的。','a'],
+ ['schwarz','黑色的','施瓦茨','Ich trage {schwarz}.','我穿黑色。','a'],
+ ['weiß','白色的','外斯','Der Schnee ist {weiß}.','雪是白色的。','a'],
+ ['grau','灰色的','格劳','Der Himmel ist {grau}.','天空是灰色的。','a'],
+ ['braun','棕色的','布劳恩','Ihre Augen sind {braun}.','她的眼睛是棕色的。','a'],
+ ['bunt','彩色的','布恩特','Die Blumen sind {bunt}.','花是彩色的。','a']
+]},
+{t:'住房', lv:'A1', s:'Wohnen', w:[
+ ['die Wohnung','公寓','沃农','Meine {Wohnung} ist klein.','我的公寓很小。','n'],
+ ['das Haus','房子','豪斯','Das {Haus} ist alt.','这房子很老。','n'],
+ ['das Wohnzimmer','客厅','沃恩齐默','Wir sitzen im {Wohnzimmer}.','我们坐在客厅。','n'],
+ ['die Küche','厨房','屈赫','Die {Küche} ist modern.','厨房很现代。','n'],
+ ['das Bad','浴室','巴特','Das {Bad} ist sauber.','浴室很干净。','n'],
+ ['das Schlafzimmer','卧室','施拉夫齐默','Das {Schlafzimmer} ist groß.','卧室很大。','n'],
+ ['der Tisch','桌子','蒂施','Das Buch liegt auf dem {Tisch}.','书在桌上。','n'],
+ ['der Stuhl','椅子','施图尔','Der {Stuhl} ist bequem.','椅子很舒服。','n'],
+ ['das Fenster','窗户','芬斯特','Bitte öffne das {Fenster}.','请打开窗户。','n'],
+ ['die Tür','门','蒂尔','Mach die {Tür} zu!','把门关上！','n']
+]},
+{t:'学校与学习', lv:'A1', s:'Schule und Lernen', w:[
+ ['die Schule','学校','舒勒','Mein Sohn geht zur {Schule}.','我儿子上学。','n'],
+ ['die Universität','大学','乌尼维西泰特','Sie studiert an der {Universität}.','她在上大学。','n'],
+ ['der Kurs','课程','库尔斯','Der {Kurs} beginnt morgen.','课程明天开始。','n'],
+ ['der Lehrer','老师','雷雷尔','Unser {Lehrer} ist nett.','我们老师很友好。','n'],
+ ['der Student','大学生','施图登特','Er ist {Student}.','他是大学生。','n'],
+ ['das Buch','书','布赫','Das {Buch} ist interessant.','这本书很有趣。','n'],
+ ['der Stift','笔','施蒂夫特','Ich brauche einen {Stift}.','我需要一支笔。','n'],
+ ['die Aufgabe','作业／任务','奥夫加贝','Die {Aufgabe} ist schwer.','这道题很难。','n'],
+ ['die Prüfung','考试','普吕丰','Die {Prüfung} ist am Montag.','考试在星期一。','n'],
+ ['die Frage','问题','弗拉格','Ich habe eine {Frage}.','我有一个问题。','n']
+]},
+{t:'职业', lv:'A1', s:'Berufe', w:[
+ ['der Beruf','职业','贝鲁夫','Was ist Ihr {Beruf}?','您的职业是什么？','n'],
+ ['die Arbeit','工作','阿尔拜特','Die {Arbeit} macht Spaß.','这工作很有意思。','n'],
+ ['der Ingenieur','工程师','因热尼厄尔','Er ist {Ingenieur}.','他是工程师。','n'],
+ ['der Verkäufer','售货员','费尔科伊费尔','Der {Verkäufer} ist freundlich.','售货员很友好。','n'],
+ ['der Koch','厨师','科赫','Der {Koch} arbeitet viel.','厨师工作很多。','n'],
+ ['der Fahrer','司机','法雷尔','Der {Fahrer} wartet.','司机在等。','n'],
+ ['die Krankenschwester','护士','克兰肯施韦斯特','Sie ist {Krankenschwester}.','她是护士。','n'],
+ ['der Polizist','警察','波利齐斯特','Der {Polizist} hilft uns.','警察帮助我们。','n'],
+ ['der Bauer','农民','包尔','Der {Bauer} hat einen Hof.','农民有一个农场。','n'],
+ ['der Journalist','记者','茹尔纳利斯特','Er ist {Journalist}.','他是记者。','n']
+]},
+{t:'爱好与休闲', lv:'A1', s:'Hobbys', w:[
+ ['das Hobby','爱好','霍比','Mein {Hobby} ist Musik.','我的爱好是音乐。','n'],
+ ['die Musik','音乐','穆济克','Ich höre gern {Musik}.','我喜欢听音乐。','n'],
+ ['das Lied','歌','利特','Das {Lied} ist schön.','这首歌很好听。','n'],
+ ['der Film','电影','菲尔姆','Der {Film} war lang.','这部电影很长。','n'],
+ ['das Spiel','游戏／比赛','施皮尔','Das {Spiel} macht Spaß.','这个游戏很好玩。','n'],
+ ['die Kunst','艺术','库恩斯特','Sie liebt {Kunst}.','她热爱艺术。','n'],
+ ['tanzen','跳舞','坦岑','Wir {tanzen} gern.','我们喜欢跳舞。','v'],
+ ['singen','唱歌','静恩','Er kann gut {singen}.','他唱歌很好听。','v'],
+ ['malen','画画','马伦','Die Kinder {malen} gern.','孩子们喜欢画画。','v'],
+ ['fotografieren','拍照','福托格拉菲伦','Ich {fotografiere} gern.','我喜欢拍照。','v']
+]},
+{t:'运动', lv:'A1', s:'Sport', w:[
+ ['der Sport','运动','施波尔特','{Sport} ist gesund.','运动有益健康。','n'],
+ ['der Fußball','足球','弗斯巴尔','Er spielt {Fußball}.','他踢足球。','n'],
+ ['schwimmen','游泳','施维门','Ich kann gut {schwimmen}.','我游泳游得好。','v'],
+ ['laufen','跑','劳芬','Ich {laufe} jeden Morgen.','我每天早上跑步。','v'],
+ ['das Fahrrad','自行车','法尔拉特','Ich fahre {Fahrrad}.','我骑自行车。','n'],
+ ['spielen','玩，打球','施皮伦','Wir {spielen} Tennis.','我们打网球。','v'],
+ ['das Team','团队','蒂姆','Unser {Team} ist stark.','我们队很强。','n'],
+ ['gewinnen','赢','格维嫩','Wir wollen {gewinnen}.','我们想赢。','v'],
+ ['verlieren','输','费尔利伦','Sie wollen nicht {verlieren}.','他们不想输。','v'],
+ ['der Trainer','教练','特雷纳','Der {Trainer} ist streng.','教练很严格。','n']
+]},
+{t:'日常作息', lv:'A1', s:'Tagesablauf', w:[
+ ['aufstehen','起床','奥夫施泰恩','Ich {stehe} um sieben {auf}.','我七点起床。','v'],
+ ['frühstücken','吃早餐','弗吕施蒂肯','Wir {frühstücken} um acht.','我们八点吃早餐。','v'],
+ ['duschen','淋浴','杜申','Ich {dusche} morgens.','我早上淋浴。','v'],
+ ['anziehen','穿衣','安齐恩','Ich muss mich {anziehen}.','我得穿衣服了。','v'],
+ ['kochen','做饭','科亨','Meine Mutter {kocht} gut.','我妈妈做饭好吃。','v'],
+ ['fernsehen','看电视','费恩泽恩','Abends {sehe} ich {fern}.','晚上我看电视。','v'],
+ ['aufräumen','整理','奥夫罗伊门','Bitte {räum} dein Zimmer {auf}.','请整理你的房间。','v'],
+ ['einkaufen','购物','安考芬','Ich gehe {einkaufen}.','我去买东西。','v'],
+ ['spazieren','散步','施帕齐伦','Wir gehen {spazieren}.','我们去散步。','v'],
+ ['schlafen gehen','去睡觉','施拉芬 给恩','Ich will jetzt {schlafen gehen}.','我现在想去睡觉。','v']
+]},
+{t:'情感与心情', lv:'A1', s:'Gefühle', w:[
+ ['glücklich','幸福的','格吕克利希','Ich bin sehr {glücklich}.','我很幸福。','a'],
+ ['traurig','悲伤的','特劳里希','Sie ist {traurig}.','她很伤心。','a'],
+ ['wütend','生气的','维滕特','Er ist {wütend}.','他很生气。','a'],
+ ['nervös','紧张的','内尔沃斯','Ich bin {nervös}.','我很紧张。','a'],
+ ['zufrieden','满意的','楚弗里登','Ich bin {zufrieden}.','我很满意。','a'],
+ ['überrascht','惊讶的','于贝尔拉施特','Wir sind {überrascht}.','我们很惊讶。','a'],
+ ['die Angst','害怕','安格斯特','Ich habe {Angst}.','我害怕。','n'],
+ ['die Freude','快乐','弗罗伊德','Die {Freude} ist groß.','非常快乐。','n'],
+ ['die Liebe','爱','利贝','{Liebe} ist wichtig.','爱很重要。','n'],
+ ['hoffen','希望','霍芬','Ich {hoffe} auf gutes Wetter.','我希望天气好。','v']
+]},
+{t:'方位与方向', lv:'A1', s:'Richtungen', w:[
+ ['links','左边','林克斯','Gehen Sie nach {links}.','请往左走。','x'],
+ ['rechts','右边','雷希茨','Gehen Sie nach {rechts}.','请往右走。','x'],
+ ['geradeaus','直走','格拉德奥斯','Gehen Sie {geradeaus}.','请直走。','x'],
+ ['oben','上面','奥本','Das Buch ist {oben}.','书在上面。','x'],
+ ['unten','下面','温滕','Das Bad ist {unten}.','浴室在下面。','x'],
+ ['vorne','前面','福尔内','Der Eingang ist {vorne}.','入口在前面。','x'],
+ ['hinten','后面','辛滕','Der Garten ist {hinten}.','花园在后面。','x'],
+ ['neben','旁边','内本','Die Bank ist {neben} dem Hotel.','银行在酒店旁边。','x'],
+ ['zwischen','之间','茨维申','Der Laden ist {zwischen} zwei Häusern.','商店在两栋房子之间。','x'],
+ ['gegenüber','对面','格根于贝尔','Die Apotheke ist {gegenüber}.','药店在对面。','x']
+]},
+{t:'常用副词', lv:'A1', s:'Adverbien', w:[
+ ['sehr','很','泽尔','Das ist {sehr} gut.','这非常好。','x'],
+ ['auch','也','奥赫','Ich komme {auch}.','我也来。','x'],
+ ['nur','只','努尔','Ich habe {nur} fünf Euro.','我只有五欧元。','x'],
+ ['schon','已经','舍恩','Er ist {schon} da.','他已经到了。','x'],
+ ['noch','还','诺赫','Ich habe {noch} Zeit.','我还有时间。','x'],
+ ['immer','总是','伊默','Sie kommt {immer} zu spät.','她总是迟到。','x'],
+ ['oft','经常','奥夫特','Wir treffen uns {oft}.','我们经常见面。','x'],
+ ['manchmal','有时','曼赫马尔','{Manchmal} koche ich.','有时我做饭。','x'],
+ ['nie','从不','尼','Ich trinke {nie} Alkohol.','我从不喝酒。','x'],
+ ['wieder','又，再','维德尔','Bis bald {wieder}!','回头见！','x']
+]},
+{t:'紧急情况', lv:'A1', s:'Notfälle', w:[
+ ['die Hilfe','帮助','希尔费','Ich brauche {Hilfe}!','我需要帮助！','n'],
+ ['der Notarzt','急救医生','诺特阿尔茨特','Rufen Sie den {Notarzt}!','快叫急救医生！','n'],
+ ['die Polizei','警察（机构）','波利查伊','Rufen Sie die {Polizei}!','快报警！','n'],
+ ['der Unfall','事故','温法尔','Es gab einen {Unfall}.','发生了一起事故。','n'],
+ ['verloren','丢失的','费尔洛伦','Ich habe meinen Pass {verloren}.','我的护照丢了。','a'],
+ ['gestohlen','被盗的','格施托伦','Mein Handy wurde {gestohlen}.','我的手机被偷了。','a'],
+ ['die Apotheke','药店','阿波泰克','Die {Apotheke} ist geschlossen.','药店关门了。','n'],
+ ['das Krankenhaus','医院','克兰肯豪斯','Er ist im {Krankenhaus}.','他在医院。','n'],
+ ['der Ausweis','证件','奥斯外斯','Zeigen Sie bitte Ihren {Ausweis}.','请出示您的证件。','n'],
+ ['anrufen','打电话','安鲁芬','Ich muss die Polizei {anrufen}.','我得报警。','v']
+]},
+{t:'银行与邮局', lv:'A1', s:'Bank und Post', w:[
+ ['die Bank','银行','班克','Die {Bank} öffnet um neun.','银行九点开门。','n'],
+ ['das Konto','账户','孔托','Ich habe ein {Konto}.','我有一个账户。','n'],
+ ['die Karte','卡','卡特','Meine {Karte} funktioniert nicht.','我的卡不能用。','n'],
+ ['der Automat','自动取款机','奥托马特','Der {Automat} ist kaputt.','取款机坏了。','n'],
+ ['die Post','邮局','波斯特','Wo ist die {Post}?','邮局在哪？','n'],
+ ['der Brief','信','布里夫','Ich schreibe einen {Brief}.','我在写一封信。','n'],
+ ['das Paket','包裹','帕凯特','Das {Paket} ist angekommen.','包裹到了。','n'],
+ ['die Briefmarke','邮票','布里夫马克','Ich brauche eine {Briefmarke}.','我需要一张邮票。','n'],
+ ['schicken','寄送','施肯','Ich {schicke} dir ein Foto.','我给你发张照片。','v'],
+ ['abheben','取（钱）','阿普赫本','Ich möchte Geld {abheben}.','我想取钱。','v']
+]},
+{t:'电话与网络', lv:'A1', s:'Telefon und Internet', w:[
+ ['das Telefon','电话','特雷丰','Das {Telefon} klingelt.','电话响了。','n'],
+ ['das Handy','手机','亨迪','Mein {Handy} ist leer.','我手机没电了。','n'],
+ ['die Nummer','号码','努默','Wie ist deine {Nummer}?','你的号码是多少？','n'],
+ ['die Nachricht','消息','纳赫里希特','Ich habe eine {Nachricht}.','我收到一条消息。','n'],
+ ['die E-Mail','电子邮件','伊梅尔','Ich schreibe eine {E-Mail}.','我在写邮件。','n'],
+ ['das Internet','互联网','因特内特','Das {Internet} ist langsam.','网速很慢。','n'],
+ ['das Passwort','密码','帕斯沃特','Ich habe das {Passwort} vergessen.','我忘了密码。','n'],
+ ['senden','发送','曾登','Bitte {senden} Sie mir die Datei.','请把文件发给我。','v'],
+ ['klingeln','响铃','克林格恩','Es {klingelt} an der Tür.','门铃响了。','v'],
+ ['besetzt','占线的','贝泽茨特','Die Leitung ist {besetzt}.','电话占线。','a']
+]}
+];
+
+</script>
+<script>
+/* ==== content-a2.js ==== */
+/* ============================================================
+   A2 课程内容
+   格式同 A1：[德语, 中文, 读音提示, 例句, 例句译文, 词性]
+   ============================================================ */
+window.CONTENT_A2 = [
+{t:'意见与看法', lv:'A2', s:'Meinung äußern', w:[
+ ['die Meinung','意见，看法','迈农','Meiner {Meinung} nach ist das falsch.','在我看来这是错的。','n'],
+ ['glauben','相信，认为','格劳本','Ich {glaube}, er kommt später.','我觉得他会晚点到。','v'],
+ ['denken','想，认为','登肯','Was {denkst} du darüber?','你觉得怎么样？','v'],
+ ['finden','觉得，认为','芬登','Ich {finde} den Film langweilig.','我觉得这电影无聊。','v'],
+ ['meinen','认为','迈嫩','Was {meinen} Sie dazu?','您对此怎么看？','v'],
+ ['zustimmen','同意','楚施蒂门','Ich kann dir nicht {zustimmen}.','我不能同意你。','v'],
+ ['ablehnen','拒绝','阿普莱嫩','Er hat den Plan {abgelehnt}.','他拒绝了这个计划。','v'],
+ ['der Grund','原因','格伦特','Was ist der {Grund}?','原因是什么？','n'],
+ ['eigentlich','其实，本来','艾根特利希','{Eigentlich} wollte ich nicht kommen.','其实我本来不想来。','x'],
+ ['wahrscheinlich','很可能','瓦尔斯海恩利希','Er kommt {wahrscheinlich} zu spät.','他很可能会迟到。','x']
+]},
+{t:'计划与约定', lv:'A2', s:'Pläne und Verabredungen', w:[
+ ['planen','计划','普拉嫩','Wir {planen} eine Reise.','我们在计划一次旅行。','v'],
+ ['die Verabredung','约定','费尔阿普雷东','Ich habe eine {Verabredung}.','我有个约。','n'],
+ ['sich treffen','见面','希 特雷芬','Wir {treffen} uns morgen.','我们明天见面。','v'],
+ ['verschieben','推迟','费尔希本','Wir müssen den Termin {verschieben}.','我们得推迟这个约。','v'],
+ ['absagen','取消','阿普扎根','Sie hat die Party {abgesagt}.','她取消了聚会。','v'],
+ ['stattfinden','举行','施塔特芬登','Das Konzert {findet} morgen {statt}.','音乐会明天举行。','v'],
+ ['rechtzeitig','及时','雷希特蔡蒂希','Komm bitte {rechtzeitig}!','请准时来！','x'],
+ ['der Termin','约期，预约','泰尔明','Ich habe einen {Termin} beim Arzt.','我约了医生。','n'],
+ ['vereinbaren','商定','费尔艾因巴伦','Wir {vereinbaren} einen Termin.','我们商定一个时间。','v'],
+ ['klappen','成功，行得通','克拉彭','Hoffentlich {klappt} es.','希望这事能成。','v']
+]},
+{t:'职场', lv:'A2', s:'Arbeitswelt', w:[
+ ['der Kollege','同事','科莱格','Mein {Kollege} hilft mir oft.','我同事常帮我。','n'],
+ ['der Chef','上司','舍夫','Der {Chef} ist heute nicht da.','上司今天不在。','n'],
+ ['das Gehalt','工资','格哈尔特','Das {Gehalt} ist gut.','工资不错。','n'],
+ ['die Bewerbung','求职申请','贝韦尔本','Ich schreibe eine {Bewerbung}.','我在写求职申请。','n'],
+ ['das Vorstellungsgespräch','面试','福尔施泰隆斯格施普雷希','Das {Vorstellungsgespräch} war schwer.','面试很难。','n'],
+ ['die Erfahrung','经验','艾尔法龙','Er hat viel {Erfahrung}.','他很有经验。','n'],
+ ['die Verantwortung','责任','费尔安特沃通','Das ist meine {Verantwortung}.','这是我的责任。','n'],
+ ['die Sitzung','会议','济聪','Die {Sitzung} dauert zwei Stunden.','会议持续两小时。','n'],
+ ['der Vertrag','合同','费尔特拉克','Ich habe den {Vertrag} unterschrieben.','我签了合同。','n'],
+ ['kündigen','辞职，解约','屈恩迪根','Sie will {kündigen}.','她想辞职。','v']
+]},
+{t:'健康与就医', lv:'A2', s:'Gesundheit', w:[
+ ['die Gesundheit','健康','格尊特海特','{Gesundheit} ist das Wichtigste.','健康最重要。','n'],
+ ['die Schmerzen','疼痛','施梅尔岑','Ich habe starke {Schmerzen}.','我疼得厉害。','n'],
+ ['das Medikament','药','梅迪卡门特','Nimm das {Medikament} nach dem Essen.','饭后服药。','n'],
+ ['die Tablette','药片','塔布莱特','Nimm zwei {Tabletten} am Tag.','每天吃两片。','n'],
+ ['untersuchen','检查','温特祖亨','Der Arzt {untersucht} mich.','医生给我检查。','v'],
+ ['die Behandlung','治疗','贝汉德隆','Die {Behandlung} dauert lange.','治疗需要很久。','n'],
+ ['sich erholen','恢复','希 艾尔霍伦','Ich muss mich {erholen}.','我需要休养。','v'],
+ ['die Erkältung','感冒','艾尔克尔通','Ich habe eine {Erkältung}.','我感冒了。','n'],
+ ['das Fieber','发烧','菲贝尔','Er hat {Fieber}.','他发烧了。','n'],
+ ['impfen','接种疫苗','因普芬','Ich lasse mich gegen Grippe {impfen}.','我去打流感疫苗。','v']
+]},
+{t:'环境', lv:'A2', s:'Umwelt', w:[
+ ['die Umwelt','环境','乌姆韦尔特','Wir müssen die {Umwelt} schützen.','我们必须保护环境。','n'],
+ ['der Müll','垃圾','米尔','Bitte trennen Sie den {Müll}.','请分类垃圾。','n'],
+ ['recyceln','回收','雷蔡克恩','Wir {recyceln} Plastik.','我们回收塑料。','v'],
+ ['die Energie','能源','艾内尔吉','{Energie} wird teurer.','能源变贵了。','n'],
+ ['der Klimawandel','气候变化','克利马万德尔','Der {Klimawandel} ist real.','气候变化是真实的。','n'],
+ ['schützen','保护','许岑','Wir müssen die Natur {schützen}.','我们必须保护自然。','v'],
+ ['verschmutzen','污染','费尔施穆岑','Die Fabrik {verschmutzt} den Fluss.','工厂污染河流。','v'],
+ ['der Wald','森林','瓦尔特','Der {Wald} ist groß.','森林很大。','n'],
+ ['sparen','节省','施帕伦','Wir müssen Wasser {sparen}.','我们得省水。','v'],
+ ['nachhaltig','可持续的','纳赫哈尔蒂希','Das ist {nachhaltig}.','这是可持续的。','a']
+]},
+{t:'媒体', lv:'A2', s:'Medien', w:[
+ ['die Nachrichten','新闻','纳赫里希滕','Ich sehe abends die {Nachrichten}.','我晚上看新闻。','n'],
+ ['die Zeitung','报纸','蔡通','Er liest die {Zeitung}.','他在看报纸。','n'],
+ ['der Bericht','报道','贝里希特','Der {Bericht} war interessant.','这篇报道很有意思。','n'],
+ ['die Sendung','节目','曾东','Die {Sendung} läuft um acht.','节目八点播。','n'],
+ ['berichten','报道','贝里希滕','Die Zeitung {berichtet} darüber.','报纸报道了这件事。','v'],
+ ['die Werbung','广告','韦尔本','Die {Werbung} nervt.','广告很烦人。','n'],
+ ['die Website','网站','韦普赛特','Die {Website} ist langsam.','网站很慢。','n'],
+ ['informieren','告知，了解','因福尔米伦','Ich {informiere} mich im Internet.','我在网上了解情况。','v'],
+ ['die Quelle','来源','克韦勒','Die {Quelle} ist unbekannt.','来源不明。','n'],
+ ['veröffentlichen','发布','费尔厄芬特利亨','Sie {veröffentlichen} den Artikel.','他们发布这篇文章。','v']
+]},
+{t:'旅行规划', lv:'A2', s:'Reiseplanung', w:[
+ ['die Reise','旅行','赖泽','Die {Reise} war schön.','这次旅行很美好。','n'],
+ ['der Urlaub','假期','乌尔劳普','Ich brauche {Urlaub}.','我需要休假。','n'],
+ ['buchen','预订','布亨','Ich möchte einen Flug {buchen}.','我想订机票。','v'],
+ ['der Koffer','行李箱','科费尔','Mein {Koffer} ist zu schwer.','我的箱子太重了。','n'],
+ ['die Grenze','边境','格伦策','Wir überqueren die {Grenze}.','我们过境。','n'],
+ ['der Pass','护照','帕斯','Zeigen Sie bitte Ihren {Pass}.','请出示护照。','n'],
+ ['packen','打包','帕肯','Ich muss noch {packen}.','我还得收拾行李。','v'],
+ ['die Sehenswürdigkeit','景点','泽恩斯维尔迪希凯特','Diese {Sehenswürdigkeit} ist berühmt.','这个景点很有名。','n'],
+ ['besichtigen','参观','贝济希蒂根','Wir {besichtigen} das Museum.','我们参观博物馆。','v'],
+ ['die Unterkunft','住宿','温特库恩夫特','Die {Unterkunft} war günstig.','住宿很便宜。','n']
+]},
+{t:'节日与传统', lv:'A2', s:'Feste und Traditionen', w:[
+ ['das Fest','节日，庆祝','费斯特','Das {Fest} dauert drei Tage.','节日持续三天。','n'],
+ ['feiern','庆祝','法伊伦','Wir {feiern} heute.','我们今天庆祝。','v'],
+ ['Weihnachten','圣诞节','外纳赫滕','Zu {Weihnachten} bin ich zu Hause.','圣诞节我在家。','x'],
+ ['Ostern','复活节','奥斯特恩','{Ostern} ist im Frühling.','复活节在春天。','x'],
+ ['das Geschenk','礼物','格申克','Das {Geschenk} gefällt mir.','我喜欢这个礼物。','n'],
+ ['der Geburtstag','生日','格布尔特斯塔克','Mein {Geburtstag} ist im Mai.','我生日在五月。','n'],
+ ['einladen','邀请','艾因拉登','Ich möchte dich {einladen}.','我想邀请你。','v'],
+ ['die Tradition','传统','特拉迪齐翁','Das ist eine alte {Tradition}.','这是个古老的传统。','n'],
+ ['der Feiertag','公共假日','法伊尔塔克','Morgen ist ein {Feiertag}.','明天是假日。','n'],
+ ['gratulieren','祝贺','格拉图利伦','Ich {gratuliere} dir!','恭喜你！','v']
+]},
+{t:'人际关系', lv:'A2', s:'Beziehungen', w:[
+ ['die Beziehung','关系','贝齐翁','Unsere {Beziehung} ist gut.','我们关系很好。','n'],
+ ['der Freund','朋友','弗罗因特','Er ist mein bester {Freund}.','他是我最好的朋友。','n'],
+ ['vertrauen','信任','费尔特劳恩','Ich {vertraue} dir.','我相信你。','v'],
+ ['sich streiten','争吵','希 施特赖滕','Wir {streiten} uns oft.','我们经常吵架。','v'],
+ ['sich verlieben','爱上','希 费尔利本','Er hat sich {verliebt}.','他恋爱了。','v'],
+ ['verheiratet','已婚的','费尔海拉特特','Sie ist {verheiratet}.','她已婚。','a'],
+ ['ledig','未婚的','莱迪希','Ich bin {ledig}.','我未婚。','a'],
+ ['die Hochzeit','婚礼','霍赫蔡特','Die {Hochzeit} ist im Juni.','婚礼在六月。','n'],
+ ['sich trennen','分开','希 特伦嫩','Sie haben sich {getrennt}.','他们分手了。','v'],
+ ['zusammenleben','同居','楚扎门莱本','Wir wollen {zusammenleben}.','我们想住在一起。','v']
+]},
+{t:'消费与金钱', lv:'A2', s:'Geld und Konsum', w:[
+ ['ausgeben','花费','奥斯给本','Ich gebe zu viel Geld {aus}.','我花钱太多。','v'],
+ ['die Ausgabe','支出','奥斯加贝','Die {Ausgaben} sind hoch.','支出很高。','n'],
+ ['das Einkommen','收入','艾因科门','Sein {Einkommen} ist niedrig.','他收入低。','n'],
+ ['leihen','借','莱恩','Kannst du mir Geld {leihen}?','你能借钱给我吗？','v'],
+ ['der Kredit','贷款','克雷迪特','Wir brauchen einen {Kredit}.','我们需要一笔贷款。','n'],
+ ['günstig','划算的','屈恩斯蒂希','Das ist sehr {günstig}.','这很划算。','a'],
+ ['die Versicherung','保险','费尔济舍龙','Die {Versicherung} ist teuer.','保险很贵。','n'],
+ ['die Steuer','税','施托伊尔','Die {Steuern} steigen.','税在涨。','n'],
+ ['bar','现金','巴尔','Ich zahle {bar}.','我付现金。','a'],
+ ['das Sparbuch','存折','施帕尔布赫','Ich habe ein {Sparbuch}.','我有本存折。','n']
+]},
+{t:'教育', lv:'A2', s:'Bildung', w:[
+ ['die Ausbildung','培训，职业教育','奥斯比东','Er macht eine {Ausbildung}.','他在接受职业培训。','n'],
+ ['studieren','上大学','施图迪伦','Sie {studiert} Medizin.','她学医。','v'],
+ ['das Studium','大学学业','施图迪乌姆','Das {Studium} dauert vier Jahre.','大学学业四年。','n'],
+ ['der Abschluss','学位，毕业','阿普施卢斯','Er hat einen {Abschluss}.','他有学位。','n'],
+ ['die Note','分数','诺特','Ich habe eine gute {Note}.','我得了好分数。','n'],
+ ['bestehen','通过','贝施泰恩','Ich habe die Prüfung {bestanden}.','我通过考试了。','v'],
+ ['durchfallen','不及格','杜尔希法伦','Er ist {durchgefallen}.','他没及格。','v'],
+ ['das Fach','科目','法赫','Mathe ist mein bestes {Fach}.','数学是我最好的科目。','n'],
+ ['die Kenntnisse','知识','肯特尼瑟','Er hat gute {Kenntnisse}.','他知识扎实。','n'],
+ ['unterrichten','授课','温特里希滕','Sie {unterrichtet} Deutsch.','她教德语。','v']
+]},
+{t:'科技', lv:'A2', s:'Technik', w:[
+ ['der Computer','电脑','科姆普尤特','Mein {Computer} ist kaputt.','我电脑坏了。','n'],
+ ['das Programm','程序','普罗格拉姆','Das {Programm} läuft nicht.','程序跑不起来。','n'],
+ ['die Datei','文件','达泰','Die {Datei} ist zu groß.','文件太大。','n'],
+ ['speichern','保存','施派赫恩','Bitte {speichere} die Datei.','请保存文件。','v'],
+ ['herunterladen','下载','赫伦特拉登','Ich muss das {herunterladen}.','我得下载这个。','v'],
+ ['die App','应用','艾普','Diese {App} ist praktisch.','这个应用很实用。','n'],
+ ['das Gerät','设备','格莱特','Das {Gerät} funktioniert nicht.','设备不工作。','n'],
+ ['funktionieren','运行，起作用','丰克齐奥尼伦','Es {funktioniert} nicht.','它不好使。','v'],
+ ['reparieren','修理','雷帕里伦','Kannst du das {reparieren}?','你能修这个吗？','v'],
+ ['die Technik','技术','泰希尼克','Die {Technik} entwickelt sich schnell.','技术发展很快。','n']
+]},
+{t:'城市生活', lv:'A2', s:'Stadtleben', w:[
+ ['das Zentrum','市中心','岑特鲁姆','Wir wohnen im {Zentrum}.','我们住在市中心。','n'],
+ ['der Stadtteil','城区','施塔特泰尔','Dieser {Stadtteil} ist ruhig.','这个城区很安静。','n'],
+ ['die Miete','租金','米特','Die {Miete} ist hoch.','租金很高。','n'],
+ ['umziehen','搬家','乌姆齐恩','Wir {ziehen} nächsten Monat {um}.','我们下个月搬家。','v'],
+ ['der Nachbar','邻居','纳赫巴尔','Mein {Nachbar} ist freundlich.','我邻居很友好。','n'],
+ ['das Verkehrsmittel','交通工具','费尔凯尔斯米特尔','Welches {Verkehrsmittel} nimmst du?','你坐什么交通工具？','n'],
+ ['die Haltestelle','车站','哈尔特施泰勒','Die {Haltestelle} ist dort.','车站在那边。','n'],
+ ['das Amt','政府机构','阿姆特','Ich muss zum {Amt}.','我得去政府办事。','n'],
+ ['anmelden','登记，注册','安梅尔登','Ich muss mich {anmelden}.','我得去登记。','v'],
+ ['die Umgebung','周边环境','乌姆格本','Die {Umgebung} ist schön.','周边很美。','n']
+]},
+{t:'自然环境', lv:'A2', s:'Natur', w:[
+ ['die Natur','自然','纳图尔','Ich liebe die {Natur}.','我热爱大自然。','n'],
+ ['der Berg','山','贝尔克','Der {Berg} ist hoch.','这座山很高。','n'],
+ ['der See','湖','泽','Wir schwimmen im {See}.','我们在湖里游泳。','n'],
+ ['das Meer','海','梅尔','Das {Meer} ist ruhig.','海很平静。','n'],
+ ['der Fluss','河','弗卢斯','Der {Fluss} ist breit.','这条河很宽。','n'],
+ ['die Landschaft','风景','兰特沙夫特','Die {Landschaft} ist wunderschön.','风景美极了。','n'],
+ ['das Feld','田野','费尔特','Die {Felder} sind grün.','田野是绿的。','n'],
+ ['der Himmel','天空','希梅尔','Der {Himmel} ist klar.','天空晴朗。','n'],
+ ['die Insel','岛','因泽尔','Die {Insel} ist klein.','这个岛很小。','n'],
+ ['das Tal','山谷','塔尔','Das {Tal} liegt im Süden.','山谷在南方。','n']
+]},
+{t:'描述人物', lv:'A2', s:'Personen beschreiben', w:[
+ ['freundlich','友好的','弗罗因特利希','Sie ist sehr {freundlich}.','她很友好。','a'],
+ ['hilfsbereit','乐于助人的','希尔夫斯贝赖特','Er ist immer {hilfsbereit}.','他总是乐于助人。','a'],
+ ['ehrlich','诚实的','艾尔利希','Sei einfach {ehrlich}!','你就诚实点！','a'],
+ ['geduldig','耐心的','格杜尔迪希','Der Lehrer ist {geduldig}.','老师很有耐心。','a'],
+ ['fleißig','勤奋的','弗莱西希','Sie ist eine {fleißige} Studentin.','她是个勤奋的学生。','a'],
+ ['klug','聪明的','克卢克','Das ist ein {kluger} Mann.','这是个聪明人。','a'],
+ ['humorvoll','幽默的','胡莫尔福尔','Er ist sehr {humorvoll}.','他很幽默。','a'],
+ ['schüchtern','害羞的','许希特恩','Das Kind ist {schüchtern}.','这孩子害羞。','a'],
+ ['zuverlässig','可靠的','楚费尔莱西希','Er ist sehr {zuverlässig}.','他很可靠。','a'],
+ ['selbstbewusst','自信的','泽尔普斯特贝武斯特','Sie ist {selbstbewusst}.','她很自信。','a']
+]},
+{t:'交通出行 II', lv:'A2', s:'Unterwegs', w:[
+ ['die Autobahn','高速公路','奥托班','Die {Autobahn} ist frei.','高速畅通。','n'],
+ ['die Ampel','红绿灯','安佩尔','Die {Ampel} ist rot.','红灯。','n'],
+ ['der Führerschein','驾照','菲尔沙因','Ich habe den {Führerschein}.','我有驾照。','n'],
+ ['tanken','加油','坦肯','Ich muss noch {tanken}.','我还得加油。','v'],
+ ['parken','停车','帕尔肯','Hier darf man nicht {parken}.','这里不许停车。','v'],
+ ['der Stau','堵车','施陶','Wir stehen im {Stau}.','我们堵在路上了。','n'],
+ ['die Verspätung','晚点','费尔施佩通','Der Zug hat {Verspätung}.','火车晚点。','n'],
+ ['umsteigen','换乘','乌姆施泰根','Du musst in Köln {umsteigen}.','你得在科隆换乘。','v'],
+ ['das Gleis','站台，轨道','格莱斯','Der Zug fährt von {Gleis} 3.','火车从3站台发车。','n'],
+ ['die Ankunft','到达','安库恩夫特','Die {Ankunft} ist um zehn.','到达时间是十点。','n']
+]},
+{t:'住房与搬家', lv:'A2', s:'Wohnen und Umzug', w:[
+ ['der Vermieter','房东','费尔米特尔','Der {Vermieter} ist nett.','房东人不错。','n'],
+ ['der Mietvertrag','租约','米特费尔特拉克','Ich habe den {Mietvertrag} gelesen.','我读了租约。','n'],
+ ['die Kaution','押金','考齐翁','Die {Kaution} ist hoch.','押金很高。','n'],
+ ['die Nebenkosten','附加费用','内本科斯滕','Die {Nebenkosten} sind inklusive.','附加费已含。','n'],
+ ['der Balkon','阳台','巴尔孔','Die Wohnung hat einen {Balkon}.','公寓有阳台。','n'],
+ ['der Keller','地下室','凯勒','Die Fahrräder stehen im {Keller}.','自行车在地下室。','n'],
+ ['renovieren','翻新','雷诺维伦','Wir müssen die Wohnung {renovieren}.','我们得翻新公寓。','v'],
+ ['einrichten','布置','艾因里希滕','Wir {richten} die Wohnung neu {ein}.','我们重新布置公寓。','v'],
+ ['die Möbel','家具','默贝尔','Die {Möbel} sind neu.','家具是新的。','n'],
+ ['der Aufzug','电梯','奥夫楚克','Der {Aufzug} ist kaputt.','电梯坏了。','n']
+]},
+{t:'饮食文化', lv:'A2', s:'Esskultur', w:[
+ ['das Gericht','菜肴','格里希特','Dieses {Gericht} ist typisch deutsch.','这道菜很德国。','n'],
+ ['die Zutat','食材','楚塔特','Welche {Zutaten} brauchst du?','你需要哪些食材？','n'],
+ ['das Rezept','食谱','雷采普特','Ich habe ein gutes {Rezept}.','我有个好食谱。','n'],
+ ['schmecken','尝起来','施梅肯','Es {schmeckt} mir gut.','我觉得很好吃。','v'],
+ ['probieren','品尝','普罗比伦','{Probier} mal!','你尝尝！','v'],
+ ['vegetarisch','素食的','韦格塔里希','Ich esse {vegetarisch}.','我吃素。','a'],
+ ['frisch','新鲜的','弗里施','Das Brot ist {frisch}.','面包是新鲜的。','a'],
+ ['die Portion','一份','波尔齐翁','Eine {Portion} Pommes, bitte.','请来一份薯条。','n'],
+ ['servieren','上菜','泽尔维伦','Man {serviert} um acht.','八点上菜。','v'],
+ ['der Geschmack','味道','格施马克','Der {Geschmack} ist gut.','味道不错。','n']
+]},
+{t:'目标与进步', lv:'A2', s:'Ziele und Fortschritt', w:[
+ ['sich konzentrieren','集中注意力','希 孔岑特里伦','Ich muss mich {konzentrieren}.','我得集中注意力。','v'],
+ ['wiederholen','重复','维德霍尔恩','Kannst du das {wiederholen}?','你能重复一遍吗？','v'],
+ ['üben','练习','于本','Ich {übe} jeden Tag.','我每天练习。','v'],
+ ['das Ziel','目标','齐尔','Mein {Ziel} ist B2.','我的目标是B2。','n'],
+ ['erreichen','达到','艾尔赖亨','Ich habe mein Ziel {erreicht}.','我达到了目标。','v'],
+ ['der Fortschritt','进步','福特施里特','Du machst gute {Fortschritte}.','你进步很大。','n'],
+ ['aufgeben','放弃','奥夫给本','Gib nicht {auf}!','别放弃！','v'],
+ ['motiviert','有动力的','莫蒂维尔特','Ich bin {motiviert}.','我很有动力。','a'],
+ ['die Geduld','耐心','格杜尔特','Man braucht {Geduld}.','需要耐心。','n'],
+ ['schaffen','完成，做到','沙芬','Ich habe es {geschafft}!','我做到了！','v']
+]}
+];
+
+</script>
+<script>
+/* ==== content-b1.js ==== */
+/* ============================================================
+   B1 课程内容
+   格式同 A1：[德语, 中文, 读音提示, 例句, 例句译文, 词性]
+   ============================================================ */
+window.CONTENT_B1 = [
+{t:'抽象概念', lv:'B1', s:'Abstrakte Begriffe', w:[
+ ['die Bedeutung','意义','贝多伊通','Das hat eine große {Bedeutung}.','这有很大意义。','n'],
+ ['der Zusammenhang','关联','楚扎门汉','Es gibt einen {Zusammenhang}.','这之间有联系。','n'],
+ ['der Unterschied','区别','温特尔希特','Der {Unterschied} ist klein.','区别很小。','n'],
+ ['die Möglichkeit','可能性','默格利希凯特','Es gibt eine {Möglichkeit}.','有一种可能。','n'],
+ ['die Entwicklung','发展','恩特维克隆','Die {Entwicklung} ist positiv.','发展是积极的。','n'],
+ ['der Einfluss','影响','艾因弗卢斯','Er hat großen {Einfluss}.','他影响很大。','n'],
+ ['die Gesellschaft','社会','格泽尔沙夫特','Die {Gesellschaft} verändert sich.','社会在变化。','n'],
+ ['das Verhalten','行为','费尔哈尔滕','Sein {Verhalten} war seltsam.','他的行为很奇怪。','n'],
+ ['die Wahrheit','真相','瓦尔海特','Sag mir die {Wahrheit}!','告诉我真相！','n'],
+ ['der Wert','价值','韦尔特','Der {Wert} ist gestiegen.','价值上升了。','n']
+]},
+{t:'社会议题', lv:'B1', s:'Gesellschaftliche Themen', w:[
+ ['die Politik','政治','波利蒂克','Er interessiert sich für {Politik}.','他对政治感兴趣。','n'],
+ ['die Wirtschaft','经济','维尔沙夫特','Die {Wirtschaft} wächst.','经济在增长。','n'],
+ ['das Bildungssystem','教育体系','比东斯于斯泰姆','Das {Bildungssystem} ist unterschiedlich.','教育体系各不相同。','n'],
+ ['die Armut','贫困','阿尔穆特','{Armut} ist ein Problem.','贫困是个问题。','n'],
+ ['die Gleichheit','平等','格莱希海特','Wir kämpfen für {Gleichheit}.','我们为平等而奋斗。','n'],
+ ['die Freiheit','自由','弗赖海特','{Freiheit} ist wichtig.','自由很重要。','n'],
+ ['die Bevölkerung','人口','贝弗尔克龙','Die {Bevölkerung} wächst.','人口在增长。','n'],
+ ['die Migration','移民','米格拉齐翁','Die {Migration} nimmt zu.','移民在增加。','n'],
+ ['die Integration','融合','因特格拉齐翁','{Integration} braucht Zeit.','融合需要时间。','n'],
+ ['der Konflikt','冲突','康弗利克特','Der {Konflikt} ist gelöst.','冲突解决了。','n']
+]},
+{t:'表达观点与论证', lv:'B1', s:'Argumentieren', w:[
+ ['behaupten','主张','贝豪普滕','Er {behauptet}, das sei falsch.','他主张这是错的。','v'],
+ ['bezweifeln','怀疑','贝茨外费尔恩','Ich {bezweifle} das.','我对此表示怀疑。','v'],
+ ['beweisen','证明','贝外曾','Kannst du das {beweisen}?','你能证明吗？','v'],
+ ['begründen','说明理由','贝格吕恩登','Bitte {begründe} deine Meinung.','请说明你的理由。','v'],
+ ['widersprechen','反驳','维德尔施普雷贤','Ich muss dir {widersprechen}.','我得反驳你。','v'],
+ ['betonen','强调','贝托嫩','Ich möchte {betonen}, dass...','我想强调……','v'],
+ ['zusammenfassen','总结','楚扎门法森','Fass das kurz {zusammen}!','简单总结一下！','v'],
+ ['überzeugen','说服','于贝尔措伊根','Er hat mich {überzeugt}.','他说服了我。','v'],
+ ['der Standpunkt','立场','施坦特普恩克特','Das ist mein {Standpunkt}.','这是我的立场。','n'],
+ ['das Argument','论点','阿尔古门特','Das {Argument} ist stark.','这个论点很有力。','n']
+]},
+{t:'职场进阶', lv:'B1', s:'Berufliche Entwicklung', w:[
+ ['die Karriere','职业生涯','卡里埃雷','Sie macht {Karriere}.','她事业有成。','n'],
+ ['die Beförderung','晋升','贝弗尔德龙','Er hat die {Beförderung} bekommen.','他升职了。','n'],
+ ['die Kündigung','解约，解雇','屈恩迪贡','Die {Kündigung} kam plötzlich.','解雇来得很突然。','n'],
+ ['die Fortbildung','进修','福特比东','Ich mache eine {Fortbildung}.','我在进修。','n'],
+ ['die Kompetenz','能力，专长','科姆佩滕茨','Seine {Kompetenz} ist groß.','他能力很强。','n'],
+ ['die Zusammenarbeit','合作','楚扎门阿尔拜特','Die {Zusammenarbeit} läuft gut.','合作很顺利。','n'],
+ ['die Verhandlung','谈判','费尔汉德隆','Die {Verhandlung} war hart.','谈判很艰难。','n'],
+ ['der Vorteil','优势','福特艾尔','Das ist ein großer {Vorteil}.','这是很大的优势。','n'],
+ ['der Nachteil','劣势','纳赫泰尔','Der {Nachteil} ist der Preis.','劣势是价格。','n'],
+ ['die Qualifikation','资历，资格','克瓦利菲卡齐翁','Er hat gute {Qualifikationen}.','他资历很好。','n']
+]},
+{t:'细腻情感', lv:'B1', s:'Gefühle II', w:[
+ ['die Sehnsucht','渴望，思念','泽恩祖赫特','Ich habe {Sehnsucht} nach Hause.','我思念家乡。','n'],
+ ['die Enttäuschung','失望','恩特托伊熊','Die {Enttäuschung} war groß.','失望很大。','n'],
+ ['die Erleichterung','宽慰','艾尔莱希特龙','Was für eine {Erleichterung}!','真是松了口气！','n'],
+ ['die Eifersucht','嫉妒','艾费尔祖赫特','{Eifersucht} zerstört Beziehungen.','嫉妒会毁掉关系。','n'],
+ ['die Dankbarkeit','感激','丹克巴尔凯特','Meine {Dankbarkeit} ist groß.','我十分感激。','n'],
+ ['das Mitleid','同情','米特莱特','Ich habe {Mitleid} mit ihm.','我同情他。','n'],
+ ['die Neugier','好奇','诺伊吉尔','{Neugier} ist gut.','好奇是好事。','n'],
+ ['die Unsicherheit','不确定，不安','温济歇尔海特','Es gibt noch {Unsicherheit}.','还有不确定的地方。','n'],
+ ['die Begeisterung','热情','贝盖斯特龙','Seine {Begeisterung} ist ansteckend.','他的热情很有感染力。','n'],
+ ['die Gelassenheit','从容','格拉森海特','Sie strahlt {Gelassenheit} aus.','她散发出从容。','n']
+]},
+{t:'时间与历史', lv:'B1', s:'Zeit und Geschichte', w:[
+ ['die Vergangenheit','过去','费尔冈根海特','Die {Vergangenheit} ist vorbei.','过去已经过去。','n'],
+ ['die Gegenwart','现在','格根瓦尔特','In der {Gegenwart} leben wir.','我们活在当下。','n'],
+ ['die Zukunft','未来','楚孔夫特','Die {Zukunft} ist offen.','未来是开放的。','n'],
+ ['das Jahrhundert','世纪','亚尔洪德特','Im 20. {Jahrhundert}...','在20世纪……','n'],
+ ['das Ereignis','事件','艾尔艾格尼斯','Das {Ereignis} war wichtig.','这个事件很重要。','n'],
+ ['der Zeitraum','时间段','蔡特拉姆','In diesem {Zeitraum}...','在这段时间里……','n'],
+ ['damals','当时','达马尔斯','{Damals} war alles anders.','当时一切都不一样。','x'],
+ ['inzwischen','在此期间','因茨维申','{Inzwischen} hat sich viel geändert.','这期间变了很多。','x'],
+ ['künftig','今后','屈恩夫蒂希','{Künftig} mache ich das anders.','今后我会换个做法。','x'],
+ ['gleichzeitig','同时','格莱希蔡蒂希','Er macht {gleichzeitig} zwei Dinge.','他同时做两件事。','x']
+]},
+{t:'科学与研究', lv:'B1', s:'Wissenschaft', w:[
+ ['die Forschung','研究','福尔匈','Die {Forschung} macht Fortschritte.','研究在进步。','n'],
+ ['die Wissenschaft','科学','维森沙夫特','Die {Wissenschaft} hilft uns.','科学帮助我们。','n'],
+ ['die Theorie','理论','泰奥里','Die {Theorie} ist umstritten.','这个理论有争议。','n'],
+ ['das Ergebnis','结果','艾尔格普尼斯','Das {Ergebnis} überrascht mich.','结果让我惊讶。','n'],
+ ['die Methode','方法','梅托德','Die {Methode} ist neu.','这个方法很新。','n'],
+ ['der Versuch','实验，尝试','费尔祖赫','Der {Versuch} ist gelungen.','实验成功了。','n'],
+ ['die Erkenntnis','认识，洞见','艾尔肯特尼斯','Eine wichtige {Erkenntnis}.','一个重要认识。','n'],
+ ['analysieren','分析','阿纳吕济伦','Wir müssen die Daten {analysieren}.','我们得分析数据。','v'],
+ ['die Hypothese','假设','希波泰泽','Die {Hypothese} muss geprüft werden.','假设需要验证。','n'],
+ ['nachweisen','证实','纳赫外曾','Das lässt sich {nachweisen}.','这是可以证实的。','v']
+]},
+{t:'法律与规则', lv:'B1', s:'Recht und Regeln', w:[
+ ['das Gesetz','法律','格泽茨','Das {Gesetz} gilt für alle.','法律对所有人有效。','n'],
+ ['das Recht','权利','雷希特','Du hast das {Recht} dazu.','你有这个权利。','n'],
+ ['die Pflicht','义务','普夫利希特','Das ist meine {Pflicht}.','这是我的义务。','n'],
+ ['die Regel','规则','雷格尔','Die {Regel} ist einfach.','规则很简单。','n'],
+ ['erlauben','允许','艾尔劳本','Das ist nicht {erlaubt}.','这是不允许的。','v'],
+ ['verbieten','禁止','费尔比滕','Rauchen ist {verboten}.','禁止吸烟。','v'],
+ ['die Strafe','处罚','施特拉费','Die {Strafe} ist hoch.','处罚很重。','n'],
+ ['die Vorschrift','规定','福尔施里夫特','Die {Vorschriften} sind streng.','规定很严格。','n'],
+ ['verantwortlich','负责的','费尔安特沃特利希','Wer ist dafür {verantwortlich}?','谁对此负责？','a'],
+ ['der Antrag','申请','安特拉克','Ich stelle einen {Antrag}.','我提交一份申请。','n']
+]},
+{t:'文化差异', lv:'B1', s:'Kultur und Unterschiede', w:[
+ ['die Kultur','文化','库尔图尔','Jede {Kultur} ist anders.','每种文化都不同。','n'],
+ ['der Brauch','习俗','布劳赫','Das ist ein alter {Brauch}.','这是个古老习俗。','n'],
+ ['die Mentalität','思维方式，心态','门塔利泰特','Die {Mentalität} ist verschieden.','思维方式不同。','n'],
+ ['sich anpassen','适应','希 安帕森','Man muss sich {anpassen}.','人得适应。','v'],
+ ['die Identität','身份认同','伊登蒂泰特','Die {Identität} ist wichtig.','身份认同很重要。','n'],
+ ['das Vorurteil','偏见','福尔乌尔泰尔','{Vorurteile} sind gefährlich.','偏见是危险的。','n'],
+ ['tolerant','宽容的','托莱兰特','Wir sollten {tolerant} sein.','我们应该宽容。','a'],
+ ['fremd','陌生的','弗雷姆特','Die Stadt war mir {fremd}.','这座城市对我很陌生。','a'],
+ ['vertraut','熟悉的','费尔特劳特','Die Stimme ist mir {vertraut}.','这声音我很熟悉。','a'],
+ ['die Gewohnheit','习惯','格沃恩海特','Das ist eine {Gewohnheit}.','这是个习惯。','n']
+]},
+{t:'数字与统计', lv:'B1', s:'Zahlen und Statistik', w:[
+ ['die Zahl','数字','察尔','Die {Zahl} steigt.','数字在上升。','n'],
+ ['der Anteil','比例','安泰尔','Der {Anteil} beträgt 30 Prozent.','比例是30%。','n'],
+ ['der Durchschnitt','平均','杜尔希施尼特','Im {Durchschnitt} sind es zehn.','平均是十个。','n'],
+ ['steigen','上升','施泰根','Die Preise {steigen}.','价格在涨。','v'],
+ ['sinken','下降','津肯','Die Zahlen {sinken}.','数字在降。','v'],
+ ['betragen','达到（数额）','贝特拉根','Das {beträgt} 100 Euro.','总计100欧。','v'],
+ ['verdoppeln','翻倍','费尔多佩尔恩','Die Kosten haben sich {verdoppelt}.','成本翻倍了。','v'],
+ ['die Mehrheit','多数','梅尔海特','Die {Mehrheit} stimmt zu.','多数人同意。','n'],
+ ['die Minderheit','少数','明德尔海特','Nur eine {Minderheit} lehnt ab.','只有少数人反对。','n'],
+ ['schätzen','估计','舍岑','Ich {schätze}, es sind 50.','我估计有50个。','v']
+]},
+{t:'沟通与协商', lv:'B1', s:'Kommunikation', w:[
+ ['sich unterhalten','交谈','希 温特哈尔滕','Wir haben uns lange {unterhalten}.','我们聊了很久。','v'],
+ ['diskutieren','讨论','迪斯库蒂伦','Wir {diskutieren} über das Thema.','我们在讨论这个话题。','v'],
+ ['vorschlagen','建议','福尔施拉根','Ich möchte etwas {vorschlagen}.','我想提个建议。','v'],
+ ['der Vorschlag','建议','福尔施拉克','Das ist ein guter {Vorschlag}.','这是个好建议。','n'],
+ ['sich einigen','达成一致','希 艾因尼根','Wir haben uns {geeinigt}.','我们达成了一致。','v'],
+ ['der Kompromiss','妥协','科姆普罗米斯','Wir brauchen einen {Kompromiss}.','我们需要妥协。','n'],
+ ['überreden','劝服','于贝尔雷登','Er hat mich {überredet}.','他说服了我。','v'],
+ ['zuhören','倾听','楚赫伦','Hör mir bitte {zu}!','请你听我说！','v'],
+ ['erwähnen','提到','艾尔韦嫩','Er hat es kurz {erwähnt}.','他简单提了一下。','v'],
+ ['sich ausdrücken','表达','希 奥斯德吕肯','Ich kann mich nicht gut {ausdrücken}.','我不太会表达。','v']
+]},
+{t:'个人发展', lv:'B1', s:'Persönliche Entwicklung', w:[
+ ['die Fähigkeit','能力','费希凯特','Er hat viele {Fähigkeiten}.','他有很多能力。','n'],
+ ['die Stärke','长处','施泰尔克','Das ist meine {Stärke}.','这是我的长处。','n'],
+ ['die Schwäche','弱点','施韦赫','Jeder hat {Schwächen}.','每个人都有弱点。','n'],
+ ['sich verbessern','改善','希 费尔贝森','Ich will mich {verbessern}.','我想提升自己。','v'],
+ ['sich entwickeln','发展','希 恩特维克隆','Sie hat sich gut {entwickelt}.','她发展得很好。','v'],
+ ['die Herausforderung','挑战','海劳斯福德龙','Das ist eine {Herausforderung}.','这是个挑战。','n'],
+ ['bewältigen','克服','贝韦尔蒂根','Wir {bewältigen} das Problem.','我们克服这个问题。','v'],
+ ['der Schritt','步骤','施里特','Das ist der erste {Schritt}.','这是第一步。','n'],
+ ['entschlossen','果断的','恩特施洛森','Er handelt {entschlossen}.','他行事果断。','a'],
+ ['bereit','准备好的','贝赖特','Ich bin {bereit}.','我准备好了。','a']
+]},
+{t:'社会交往', lv:'B1', s:'Sozialer Umgang', w:[
+ ['die Höflichkeit','礼貌','赫夫利希凯特','{Höflichkeit} kostet nichts.','礼貌不花钱。','n'],
+ ['die Rücksicht','体谅','吕克济希特','Nimm {Rücksicht} auf ihn!','体谅一下他！','n'],
+ ['sich entschuldigen','道歉','希 恩特舒尔迪根','Ich muss mich {entschuldigen}.','我得道歉。','v'],
+ ['sich bedanken','感谢','希 贝丹肯','Ich möchte mich {bedanken}.','我想表示感谢。','v'],
+ ['begrüßen','欢迎，迎接','贝格吕森','Wir {begrüßen} die Gäste.','我们迎接客人。','v'],
+ ['sich verabschieden','告别','希 费尔阿普希登','Wir müssen uns {verabschieden}.','我们得告别了。','v'],
+ ['die Einladung','邀请','艾因拉东','Danke für die {Einladung}.','谢谢邀请。','n'],
+ ['der Anlass','场合，缘由','安拉斯','Was ist der {Anlass}?','是什么场合？','n'],
+ ['die Begegnung','相遇','贝格农','Die {Begegnung} war schön.','这次相遇很美好。','n'],
+ ['der Umgang','交往','乌姆冈','Der {Umgang} mit ihm ist leicht.','跟他相处很轻松。','n']
+]},
+{t:'常用固定搭配', lv:'B1', s:'Feste Wendungen', w:[
+ ['Wert legen auf','重视','韦尔特 莱根 奥夫','Ich {lege} großen Wert auf Pünktlichkeit.','我很重视守时。','v'],
+ ['Rücksicht nehmen auf','顾及','吕克济希特 内门 奥夫','Nimm {Rücksicht} auf die anderen!','顾及一下别人！','v'],
+ ['eine Rolle spielen','起作用','艾因 罗勒 施皮伦','Geld spielt eine große {Rolle}.','钱起很大作用。','v'],
+ ['Bescheid geben','通知','贝沙伊特 给本','Gib mir bitte {Bescheid}.','请通知我。','v'],
+ ['Abschied nehmen','告别','阿普希特 内门','Wir müssen {Abschied} nehmen.','我们得告别了。','v'],
+ ['in Kauf nehmen','接受（代价）','因 考夫 内门','Das muss man in {Kauf} nehmen.','这只能接受。','v'],
+ ['zur Verfügung stehen','可供使用','楚尔 费尔弗贡 施泰恩','Der Raum steht zur {Verfügung}.','房间可供使用。','v'],
+ ['in Frage kommen','在考虑之内','因 弗拉格 科门','Das kommt nicht in {Frage}.','这不在考虑之内。','v'],
+ ['zur Sprache bringen','提出（话题）','楚尔 施普拉赫 布林恩','Ich möchte das zur {Sprache} bringen.','我想提出这件事。','v'],
+ ['auf dem Laufenden halten','保持通报','奥夫 德姆 劳芬登 哈尔滕','Bitte halte mich auf dem {Laufenden}.','请随时告知我进展。','v']
+]}
+];
+
+</script>
+<script>
+/* ==== content-phrases.js ==== */
+/* ============================================================
+   日常口语高频句（B1）
+   这些是真人对话里真正会说出口的整句。格式同词汇，
+   例句里用 { } 标出整句本身，方便做「选句填空」。
+   ============================================================ */
+window.CONTENT_PHRASES = [
+{t:'开口与寒暄', lv:'B1', s:'Small Talk', w:[
+ ['Wie geht\'s?','你好吗？（随意）','维 给茨','Hallo! {Wie geht\'s}? – Danke, gut!','嗨！你好吗？——谢谢，挺好！','p'],
+ ['Wie geht es Ihnen?','您好吗？（正式）','维 给特 艾斯 伊嫩','Guten Tag, {Wie geht es Ihnen}?','您好，您过得好吗？','p'],
+ ['Mir geht es gut.','我很好','米尔 给特 艾斯 古特','{Mir geht es gut}, danke.','我很好，谢谢。','p'],
+ ['Es geht so.','还行吧','艾斯 给特 佐','A: Wie geht\'s? B: {Es geht so}.','A：你好吗？ B：还行吧。','p'],
+ ['Und dir?','你呢？','温特 迪尔','Mir geht es gut. {Und dir}?','我很好。你呢？','p'],
+ ['Lange nicht gesehen!','好久不见！','朗厄 尼希特 格泽恩','{Lange nicht gesehen}! Wie geht\'s dir?','好久不见！你怎么样？','p'],
+ ['Was gibt\'s Neues?','有什么新鲜事？','瓦斯 给普茨 诺伊厄斯','Hallo! {Was gibt\'s Neues}?','嗨！有什么新鲜事？','p'],
+ ['Alles klar?','还好吧？','阿勒斯 克拉','{Alles klar} bei dir?','你那边还好吧？','p'],
+ ['Schönes Wetter heute!','今天天气真好！','舍内斯 韦特 霍伊特','{Schönes Wetter heute}!','今天天气真好！','p'],
+ ['Wie war dein Tag?','你今天过得怎么样？','维 瓦尔 达因 塔克','{Wie war dein Tag}?','你今天过得怎么样？','p']
+]},
+{t:'表达不确定', lv:'B1', s:'Unsicherheit', w:[
+ ['Ich bin mir nicht sicher.','我不确定','伊希 宾 米尔 尼希特 济歇尔','{Ich bin mir nicht sicher}.','我不确定。','p'],
+ ['Ich weiß nicht genau.','我不太清楚','伊希 外斯 尼希特 格瑙','{Ich weiß nicht genau}, vielleicht.','我不太清楚，也许吧。','p'],
+ ['Vielleicht.','也许吧','菲尔莱希特','A: Kommst du? B: {Vielleicht}.','A：你来吗？ B：也许吧。','p'],
+ ['Kann sein.','有可能','坎 扎因','A: Ist er krank? B: {Kann sein}.','A：他病了吗？ B：有可能。','p'],
+ ['Ich glaube schon.','我想是的','伊希 格劳贝 舍恩','A: Kommt er? B: {Ich glaube schon}.','A：他来吗？ B：我想是的。','p'],
+ ['Ich glaube nicht.','我想不是','伊希 格劳贝 尼希特','{Ich glaube nicht}.','我想不是。','p'],
+ ['Keine Ahnung.','不知道','卡伊内 阿农','{Keine Ahnung}, frag ihn selbst.','不知道，你自己问他。','p'],
+ ['Das kommt darauf an.','看情况','达斯 科姆特 达劳夫 安','{Das kommt darauf an}.','看情况。','p'],
+ ['Soweit ich weiß, ...','据我所知……','佐外特 伊希 外斯','{Soweit ich weiß}, ist er zu Hause.','据我所知，他在家。','p'],
+ ['Ich bin mir ziemlich sicher.','我相当确定','伊希 宾 米尔 齐姆利希 济歇尔','{Ich bin mir ziemlich sicher}.','我相当确定。','p']
+]},
+{t:'请求与帮忙', lv:'B1', s:'Bitten', w:[
+ ['Könnten Sie mir helfen?','您能帮我吗？','克嫩滕 兹 米尔 赫尔芬','Entschuldigung, {könnten Sie mir helfen}?','劳驾，您能帮我吗？','p'],
+ ['Würden Sie bitte ...?','请您……好吗？','维尔登 兹 比特','{Würden Sie bitte} kurz warten?','请您稍等一下好吗？','p'],
+ ['Hätten Sie kurz Zeit?','您有空吗？','海滕 兹 库尔茨 蔡特','{Hätten Sie kurz Zeit}?','您有空吗？','p'],
+ ['Kann ich Sie etwas fragen?','我能问您件事吗？','坎 伊希 兹 埃特瓦斯 弗拉根','{Kann ich Sie etwas fragen}?','我能问您件事吗？','p'],
+ ['Es tut mir leid, ich habe keine Zeit.','抱歉，我没时间','艾斯 图特 米尔 莱特','{Es tut mir leid, ich habe keine Zeit}.','抱歉，我没时间。','p'],
+ ['Kein Problem!','没问题！','卡因 普罗布勒姆','A: Danke! B: {Kein Problem}!','A：谢谢！ B：没问题！','p'],
+ ['Ich brauche einen Rat.','我需要建议','伊希 布劳赫 艾嫩 拉特','{Ich brauche einen Rat}.','我需要建议。','p'],
+ ['Kannst du mir einen Gefallen tun?','能帮我个忙吗？','坎斯特 杜 米尔 艾嫩 格法伦 图恩','{Kannst du mir einen Gefallen tun}?','能帮我个忙吗？','p'],
+ ['Gerne!','乐意！','盖尔内','A: Hilfst du mir? B: {Gerne}!','A：你帮我吗？ B：乐意！','p'],
+ ['Darf ich Sie um etwas bitten?','我能请您帮个忙吗？','达尔夫 伊希 兹 乌姆 埃特瓦斯 比滕','{Darf ich Sie um etwas bitten}?','我能请您帮个忙吗？','p']
+]},
+{t:'同意与反对', lv:'B1', s:'Zustimmen und Widersprechen', w:[
+ ['Da hast du recht.','你说得对','达 哈斯特 杜 雷希特','{Da hast du recht}.','你说得对。','p'],
+ ['Das stimmt.','没错','达斯 施蒂姆特','{Das stimmt}, genau so ist es.','没错，就是这样。','p'],
+ ['Genau!','正是！','格瑙','A: Es ist zu teuer. B: {Genau}!','A：太贵了。 B：正是！','p'],
+ ['Auf keinen Fall.','绝对不行','奥夫 卡伊嫩 法尔','{Auf keinen Fall}! Das geht nicht.','绝对不行！这不行。','p'],
+ ['Das sehe ich anders.','我不这么看','达斯 泽厄 伊希 安德尔斯','{Das sehe ich anders}.','我不这么看。','p'],
+ ['Ich bin anderer Meinung.','我有不同意见','伊希 宾 安德雷尔 迈农','{Ich bin anderer Meinung}.','我有不同意见。','p'],
+ ['Das ist nicht ganz richtig.','这不完全对','达斯 伊斯特 尼希特 甘茨 里希蒂希','{Das ist nicht ganz richtig}.','这不完全对。','p'],
+ ['Einverstanden.','同意','艾因费尔施坦登','{Einverstanden}, machen wir das so.','同意，就这么办。','p'],
+ ['Das leuchtet mir ein.','这我明白了（有道理）','达斯 劳伊希特特 米尔 艾因','{Das leuchtet mir ein}.','这我明白了。','p'],
+ ['Na gut.','好吧','纳 古特','{Na gut}, wenn du meinst.','好吧，如果你这么认为。','p']
+]},
+{t:'情绪反应', lv:'B1', s:'Reaktionen', w:[
+ ['Wirklich?','真的吗？','维尔克利希','A: Ich ziehe um. B: {Wirklich}?','A：我要搬家。 B：真的吗？','p'],
+ ['Das ist ja toll!','太棒了！','达斯 伊斯特 雅 托尔','{Das ist ja toll}! Gratuliere!','太棒了！恭喜！','p'],
+ ['Wie schade!','好可惜！','维 沙德','{Wie schade}! Das hätte ich gern gesehen.','好可惜！我本想看的。','p'],
+ ['Mach dir keine Sorgen.','别担心','马赫 迪尔 卡伊内 佐尔根','{Mach dir keine Sorgen}, alles wird gut.','别担心，一切都会好的。','p'],
+ ['Das tut mir leid.','我很抱歉','达斯 图特 米尔 莱特','{Das tut mir leid}.','我很抱歉。','p'],
+ ['Kein Wunder.','难怪','卡因 温德尔','{Kein Wunder}, er ist ja auch müde.','难怪，他本来就累。','p'],
+ ['Ich freue mich sehr.','我很高兴','伊希 弗罗伊厄 米希 泽尔','{Ich freue mich sehr}!','我很高兴！','p'],
+ ['Das ist mir egal.','我无所谓','达斯 伊斯特 米尔 艾加尔','{Das ist mir egal}.','我无所谓。','p'],
+ ['Unglaublich!','难以置信！','温格劳普利希','{Unglaublich}! Das kann nicht sein.','难以置信！这不可能。','p'],
+ ['Alles Gute!','祝一切顺利！','阿勒斯 古特','Viel Erfolg! {Alles Gute}!','祝成功！一切顺利！','p']
+]},
+{t:'追问与澄清', lv:'B1', s:'Nachfragen', w:[
+ ['Wie bitte?','你说什么？','维 比特','{Wie bitte}? Ich habe nichts verstanden.','你说什么？我没听清。','p'],
+ ['Können Sie das wiederholen?','您能重复一遍吗？','克嫩 兹 达斯 维德霍尔恩','{Können Sie das wiederholen}?','您能重复一遍吗？','p'],
+ ['Was bedeutet das?','这是什么意思？','瓦斯 贝多伊特特 达斯','{Was bedeutet das} genau?','这具体是什么意思？','p'],
+ ['Wie sagt man das auf Deutsch?','这个德语怎么说？','维 扎克特 曼 达斯 奥夫 多伊奇','{Wie sagt man das auf Deutsch}?','这个德语怎么说？','p'],
+ ['Sprechen Sie bitte langsamer.','请说慢一点','施普雷贤 兹 比特 朗扎默','{Sprechen Sie bitte langsamer}.','请说慢一点。','p'],
+ ['Ich habe das nicht verstanden.','我没听懂','伊希 哈贝 达斯 尼希特 费尔施坦登','{Ich habe das nicht verstanden}.','我没听懂。','p'],
+ ['Meinen Sie ...?','您的意思是……吗？','迈嫩 兹','{Meinen Sie} das ernst?','您是认真的吗？','p'],
+ ['Wie meinen Sie das?','您是什么意思？','维 迈嫩 兹 达斯','{Wie meinen Sie das}?','您是什么意思？','p'],
+ ['Können Sie ein Beispiel geben?','能举个例子吗？','克嫩 兹 艾因 巴伊施皮尔 给本','{Können Sie ein Beispiel geben}?','能举个例子吗？','p'],
+ ['Was heißt das genau?','具体是什么意思？','瓦斯 哈伊斯特 达斯 格瑙','{Was heißt das genau}?','具体是什么意思？','p']
+]},
+{t:'结束与告别', lv:'B1', s:'Abschied', w:[
+ ['Ich muss los.','我得走了','伊希 穆斯 洛斯','{Ich muss los}, bis morgen!','我得走了，明天见！','p'],
+ ['Es war schön, dich zu sehen.','见到你真好','艾斯 瓦尔 舍恩 迪希 楚 泽恩','{Es war schön, dich zu sehen}.','见到你真好。','p'],
+ ['Wir sehen uns!','回头见！','维尔 泽恩 温斯','{Wir sehen uns}!','回头见！','p'],
+ ['Bis später!','晚点见！','比斯 施佩特','{Bis später}!','晚点见！','p'],
+ ['Bis bald!','很快见！','比斯 巴尔特','{Bis bald}!','很快见！','p'],
+ ['Mach\'s gut!','保重！','马赫斯 古特','{Mach\'s gut}!','保重！','p'],
+ ['Grüß deine Familie!','代问你家人好！','格吕斯 达伊内 法米利厄','{Grüß deine Familie}!','代问你家人好！','p'],
+ ['Schönen Tag noch!','祝你今天愉快！','舍嫩 塔克 诺赫','{Schönen Tag noch}!','祝你今天愉快！','p'],
+ ['Lass es dir gut gehen!','好好照顾自己！','拉斯 艾斯 迪尔 古特 给恩','{Lass es dir gut gehen}!','好好照顾自己！','p'],
+ ['Wir bleiben in Kontakt.','保持联系','维尔 布劳本 因 康塔克特','{Wir bleiben in Kontakt}.','保持联系。','p']
+]},
+{t:'电话与预约', lv:'B1', s:'Telefon und Termine', w:[
+ ['Kann ich einen Termin machen?','我能预约吗？','坎 伊希 艾嫩 泰尔明 马亨','{Kann ich einen Termin machen}?','我能预约吗？','p'],
+ ['Wann haben Sie Zeit?','您什么时候有空？','万 哈本 兹 蔡特','{Wann haben Sie Zeit}?','您什么时候有空？','p'],
+ ['Passt es Ihnen am Montag?','周一您方便吗？','帕斯特 艾斯 伊嫩 阿姆 蒙塔克','{Passt es Ihnen am Montag}?','周一您方便吗？','p'],
+ ['Ich rufe später zurück.','我晚点回电','伊希 鲁费 施佩特 楚吕克','{Ich rufe später zurück}.','我晚点回电。','p'],
+ ['Die Verbindung ist schlecht.','信号不好','迪 费尔宾东 伊斯特 施莱希特','{Die Verbindung ist schlecht}.','信号不好。','p'],
+ ['Können Sie mich durchstellen?','能帮我转接吗？','克嫩 兹 米希 杜尔希施泰伦','{Können Sie mich durchstellen}?','能帮我转接吗？','p'],
+ ['Ich bin unterwegs.','我在路上','伊希 宾 温特韦克斯','{Ich bin unterwegs}, ruf später an.','我在路上，晚点打。','p'],
+ ['Ich verspäte mich.','我会迟到','伊希 费尔施佩特 米希','{Ich verspäte mich} leider.','很抱歉我会迟到。','p'],
+ ['Ich bin gleich da.','我马上到','伊希 宾 格莱希 达','{Ich bin gleich da}.','我马上到。','p'],
+ ['Bis dann!','到时见！','比斯 丹','{Bis dann}!','到时见！','p']
+]}
+];
+
+</script>
+<script>
+/* ==== content-b2.js ==== */
+/* ============================================================
+   B2 课程内容
+   格式同 A1：[德语, 中文, 读音提示, 例句, 例句译文, 词性]
+   ============================================================ */
+window.CONTENT_B2 = [
+{t:'抽象与逻辑', lv:'B2', s:'Abstraktion und Logik', w:[
+ ['die Voraussetzung','前提','福劳斯泽聪','Das ist eine wichtige {Voraussetzung}.','这是个重要前提。','n'],
+ ['die Folge','后果','福尔格','Das hat schlimme {Folgen}.','这有严重后果。','n'],
+ ['der Zweck','目的','茨韦克','Der {Zweck} heiligt nicht die Mittel.','目的不能使手段正当。','n'],
+ ['der Aspekt','方面','阿斯佩克特','Unter diesem {Aspekt} stimmt das.','从这个角度看是对的。','n'],
+ ['die These','论点','泰泽','Seine {These} ist umstritten.','他的论点有争议。','n'],
+ ['die Schlussfolgerung','结论','施卢斯福尔格龙','Die {Schlussfolgerung} ist falsch.','这个结论是错的。','n'],
+ ['folglich','因此','福尔克利希','Er hat nicht gelernt, {folglich} fiel er durch.','他没学习，因此没及格。','x'],
+ ['dennoch','尽管如此','登诺赫','Es war schwer, {dennoch} hat es geklappt.','很难，尽管如此还是成了。','x'],
+ ['die Absicht','意图','阿普济希特','Das war keine böse {Absicht}.','这不是恶意的。','n'],
+ ['der Widerspruch','矛盾','维德尔施普鲁赫','Das ist ein klarer {Widerspruch}.','这是明显的矛盾。','n']
+]},
+{t:'社会与政治', lv:'B2', s:'Gesellschaft und Politik', w:[
+ ['die Demokratie','民主','德莫克拉蒂','Die {Demokratie} braucht Mitbestimmung.','民主需要参与。','n'],
+ ['die Wahl','选举，选择','瓦尔','Die {Wahl} findet im Herbst statt.','选举在秋天举行。','n'],
+ ['die Partei','政党','帕尔泰','Welche {Partei} wählst du?','你选哪个党？','n'],
+ ['der Staat','国家','施塔特','Der {Staat} muss handeln.','国家必须行动。','n'],
+ ['der Bürger','公民','比尔格','Jeder {Bürger} hat Rechte.','每个公民都有权利。','n'],
+ ['die Reform','改革','雷福尔姆','Die {Reform} ist notwendig.','改革是必要的。','n'],
+ ['die Gerechtigkeit','公正','格雷希蒂希凯特','Soziale {Gerechtigkeit} ist wichtig.','社会公正很重要。','n'],
+ ['die Macht','权力','马赫特','Die {Macht} liegt beim Volk.','权力属于人民。','n'],
+ ['die Öffentlichkeit','公众，公共领域','厄芬特利希凯特','Die {Öffentlichkeit} hat ein Recht darauf.','公众有权知道。','n'],
+ ['die Debatte','辩论','德巴特','Die {Debatte} war hitzig.','辩论很激烈。','n']
+]},
+{t:'经济与金融', lv:'B2', s:'Wirtschaft und Finanzen', w:[
+ ['die Investition','投资','因韦斯蒂齐翁','Die {Investition} hat sich gelohnt.','这笔投资值了。','n'],
+ ['der Gewinn','利润','格温','Der {Gewinn} ist gestiegen.','利润上升了。','n'],
+ ['der Verlust','亏损','费尔卢斯特','Die Firma macht {Verluste}.','公司在亏损。','n'],
+ ['die Nachfrage','需求','纳赫弗拉格','Die {Nachfrage} ist hoch.','需求很高。','n'],
+ ['das Angebot','供给，报价','安格博特','Das {Angebot} ist begrenzt.','供给有限。','n'],
+ ['die Konkurrenz','竞争','康库伦茨','Die {Konkurrenz} ist stark.','竞争激烈。','n'],
+ ['die Schulden','债务','舒尔登','Er hat hohe {Schulden}.','他债务很高。','n'],
+ ['die Inflation','通货膨胀','因弗拉齐翁','Die {Inflation} steigt.','通胀在上升。','n'],
+ ['die Währung','货币','韦鲁ン','Der Euro ist eine stabile {Währung}.','欧元是稳定的货币。','n'],
+ ['der Haushalt','预算，家庭','豪斯哈尔特','Der {Haushalt} ist knapp.','预算紧张。','n']
+]},
+{t:'环境与可持续', lv:'B2', s:'Umwelt', w:[
+ ['der Verbrauch','消耗','费尔布劳赫','Der {Verbrauch} muss sinken.','消耗必须下降。','n'],
+ ['die Emission','排放','埃米西翁','Die {Emissionen} müssen reduziert werden.','排放必须减少。','n'],
+ ['erneuerbar','可再生的','艾尔诺伊尔巴尔','{Erneuerbare} Energien sind die Zukunft.','可再生能源是未来。','a'],
+ ['der Rohstoff','原料','罗施托夫','{Rohstoffe} werden knapp.','原料在变紧缺。','n'],
+ ['die Verschmutzung','污染','费尔施穆聪','Die {Verschmutzung} nimmt zu.','污染在加剧。','n'],
+ ['das Klimaziel','气候目标','克利马齐尔','Das {Klimaziel} ist ambitioniert.','气候目标很宏大。','n'],
+ ['der Artenschutz','物种保护','阿尔滕舒茨','{Artenschutz} ist wichtig.','物种保护很重要。','n'],
+ ['die Ressource','资源','雷苏尔策','Wasser ist eine knappe {Ressource}.','水是稀缺资源。','n'],
+ ['der Ausstoß','排放量','奥斯施托斯','Der CO2-{Ausstoß} ist zu hoch.','二氧化碳排放太高。','n'],
+ ['verringern','减少','费尔林根','Wir müssen den Verbrauch {verringern}.','我们必须减少消耗。','v']
+]},
+{t:'科技与数字', lv:'B2', s:'Technik und Digitalisierung', w:[
+ ['die künstliche Intelligenz','人工智能','屈恩斯特利希 因泰利根茨','{Künstliche Intelligenz} verändert alles.','人工智能改变一切。','n'],
+ ['der Datenschutz','数据保护','达滕舒茨','{Datenschutz} ist ein Grundrecht.','数据保护是基本权利。','n'],
+ ['die Vernetzung','联网，互联','费尔内聪','Die {Vernetzung} schreitet voran.','互联在推进。','n'],
+ ['die Innovation','创新','因诺瓦齐翁','Diese {Innovation} ist bahnbrechend.','这项创新具有开创性。','n'],
+ ['die Schnittstelle','接口','施尼特施泰勒','Die {Schnittstelle} ist offen.','接口是开放的。','n'],
+ ['die Automatisierung','自动化','奥托马蒂齐龙','Die {Automatisierung} kostet Arbeitsplätze.','自动化会减少工作岗位。','n'],
+ ['das Netzwerk','网络','内茨韦克','Das {Netzwerk} ist ausgefallen.','网络宕机了。','n'],
+ ['die Anwendung','应用','安文东','Diese {Anwendung} ist nützlich.','这个应用很有用。','n'],
+ ['entwickeln','开发','恩特维克隆','Wir {entwickeln} eine neue App.','我们在开发一个新应用。','v'],
+ ['die Neuerung','新事物，革新','诺伊厄龙','Diese {Neuerung} spart viel Zeit.','这项革新省了很多时间。','n']
+]},
+{t:'心理与情绪', lv:'B2', s:'Psychologie', w:[
+ ['das Selbstvertrauen','自信','泽尔普斯特费尔特劳恩','Er hat wenig {Selbstvertrauen}.','他不太自信。','n'],
+ ['der Stress','压力','施特雷斯','Ich habe viel {Stress}.','我压力很大。','n'],
+ ['die Belastung','负担','贝拉施通','Die {Belastung} ist zu hoch.','负担太重了。','n'],
+ ['die Wahrnehmung','感知','瓦尔内门','Die {Wahrnehmung} täuscht manchmal.','感知有时会骗人。','n'],
+ ['das Bewusstsein','意识','贝武斯特扎因','Das ist mir ins {Bewusstsein} gekommen.','我意识到了这一点。','n'],
+ ['die Motivation','动力','莫蒂瓦齐翁','Die {Motivation} fehlt mir.','我缺乏动力。','n'],
+ ['die Resilienz','韧性','雷济利恩茨','{Resilienz} kann man lernen.','韧性是可以学的。','n'],
+ ['die Ausgeglichenheit','内心平衡','奥斯格格利亨海特','Sie strahlt {Ausgeglichenheit} aus.','她散发着内心的平静。','n'],
+ ['das Wohlbefinden','幸福感，舒适','沃尔贝芬登','Sport steigert das {Wohlbefinden}.','运动提升幸福感。','n'],
+ ['überfordert','不堪重负的','于贝尔福德特','Ich fühle mich {überfordert}.','我感到不堪重负。','a']
+]},
+{t:'学术与写作', lv:'B2', s:'Wissenschaftliches Schreiben', w:[
+ ['die Untersuchung','调查，研究','温特祖洪','Die {Untersuchung} zeigt deutlich...','研究表明……','n'],
+ ['die Studie','研究','施图迪厄','Eine neue {Studie} belegt das.','一项新研究证明了这点。','n'],
+ ['der Beleg','证据','贝莱克','Dafür gibt es keinen {Beleg}.','这没有证据。','n'],
+ ['zitieren','引用','齐蒂伦','Er {zitiert} eine bekannte Studie.','他引用了一项著名研究。','v'],
+ ['die Gliederung','结构，提纲','格利德龙','Die {Gliederung} ist klar.','结构很清晰。','n'],
+ ['der Absatz','段落','阿普扎茨','Der zweite {Absatz} ist wichtig.','第二段很重要。','n'],
+ ['die Einleitung','引言','艾因莱通','In der {Einleitung} steht das Thema.','引言里写了主题。','n'],
+ ['erläutern','阐述','艾尔劳伊特恩','Können Sie das {erläutern}?','您能阐述一下吗？','v'],
+ ['die Fußnote','脚注','弗斯诺特','Siehe {Fußnote} 3.','见脚注3。','n'],
+ ['der Schluss','结尾，结论','施卢斯','Zum {Schluss} noch ein Beispiel.','最后再举个例子。','n']
+]},
+{t:'职场与领导', lv:'B2', s:'Führung', w:[
+ ['die Führung','领导','菲龙','Die {Führung} trägt die Verantwortung.','领导承担责任。','n'],
+ ['die Entscheidung','决定','恩特沙伊东','Das war eine schwere {Entscheidung}.','这是个艰难的决定。','n'],
+ ['die Zuständigkeit','职责范围','楚施滕迪希凯特','Das liegt nicht in meiner {Zuständigkeit}.','这不在我的职责范围。','n'],
+ ['delegieren','授权，分派','德莱吉伦','Gute Chefs können {delegieren}.','好的领导懂得授权。','v'],
+ ['die Strategie','战略','施特拉特吉','Wir brauchen eine neue {Strategie}.','我们需要新战略。','n'],
+ ['die Hierarchie','层级','希拉尔希','Die {Hierarchie} ist flach.','层级很扁平。','n'],
+ ['die Effizienz','效率','埃菲齐恩茨','Die {Effizienz} muss steigen.','效率必须提高。','n'],
+ ['die Deadline','截止期限','德特拉因','Die {Deadline} ist morgen.','截止期是明天。','n'],
+ ['der Erfolg','成功','艾尔福尔克','Der {Erfolg} gibt ihm recht.','成功证明他是对的。','n'],
+ ['das Scheitern','失败','沙伊特恩','Das {Scheitern} war lehrreich.','这次失败很有教益。','n']
+]},
+{t:'法律与伦理', lv:'B2', s:'Recht und Ethik', w:[
+ ['die Haftung','责任（法律）','哈夫通','Die {Haftung} liegt beim Hersteller.','责任在制造商。','n'],
+ ['der Anspruch','要求，权利','安施普鲁赫','Er hat {Anspruch} auf Entschädigung.','他有权获得赔偿。','n'],
+ ['die Moral','道德','莫拉尔','Das widerspricht jeder {Moral}.','这违背一切道德。','n'],
+ ['die Ethik','伦理','埃蒂克','Die {Ethik} spielt hier eine Rolle.','伦理在这里起作用。','n'],
+ ['der Verstoß','违规','费尔施托斯','Das ist ein {Verstoß} gegen das Gesetz.','这是违法行为。','n'],
+ ['die Genehmigung','许可','格内米贡','Wir brauchen eine {Genehmigung}.','我们需要许可。','n'],
+ ['das Urteil','判决','乌尔泰尔','Das {Urteil} fiel gestern.','判决昨天下来了。','n'],
+ ['die Klage','起诉','克拉格','Die {Klage} wurde abgewiesen.','起诉被驳回。','n'],
+ ['der Anwalt','律师','安瓦尔特','Mein {Anwalt} prüft das.','我的律师在核查。','n'],
+ ['der Beweis','证据','贝外斯','Es gibt keinen {Beweis}.','没有证据。','n']
+]},
+{t:'媒体与舆论', lv:'B2', s:'Medien und Öffentlichkeit', w:[
+ ['die Schlagzeile','头条标题','施拉克蔡勒','Die {Schlagzeile} war irreführend.','这个标题有误导性。','n'],
+ ['die Meinungsfreiheit','言论自由','迈农斯弗赖海特','{Meinungsfreiheit} ist ein Grundrecht.','言论自由是基本权利。','n'],
+ ['die Zensur','审查','岑苏尔','{Zensur} ist inakzeptabel.','审查是不可接受的。','n'],
+ ['die Presse','新闻界','普雷瑟','Die {Presse} berichtete ausführlich.','新闻界做了详细报道。','n'],
+ ['die Propaganda','宣传','普罗帕甘达','Das ist reine {Propaganda}.','这纯粹是宣传。','n'],
+ ['die Glaubwürdigkeit','可信度','格劳普维尔迪希凯特','Die {Glaubwürdigkeit} hat gelitten.','可信度受损了。','n'],
+ ['die Kampagne','（宣传）运动','康帕涅','Die {Kampagne} läuft seit Wochen.','这场运动已进行数周。','n'],
+ ['die Reichweite','覆盖面，影响范围','赖希外特','Die {Reichweite} ist enorm.','影响面巨大。','n'],
+ ['die Kritik','批评','克里蒂克','Es gab scharfe {Kritik}.','有尖锐的批评。','n'],
+ ['beeinflussen','影响','贝艾因弗卢森','Das kann die Meinung {beeinflussen}.','这会影响舆论。','v']
+]},
+{t:'文化与社会变迁', lv:'B2', s:'Kultur und Wandel', w:[
+ ['der Wandel','变迁','万德尔','Der {Wandel} ist unaufhaltsam.','变迁不可阻挡。','n'],
+ ['die Vielfalt','多样性','菲法尔特','Kulturelle {Vielfalt} bereichert uns.','文化多样性丰富了我们。','n'],
+ ['die Globalisierung','全球化','格洛巴利齐龙','Die {Globalisierung} hat viele Seiten.','全球化有多面性。','n'],
+ ['der Gegensatz','对立','格根扎茨','Das ist ein krasser {Gegensatz}.','这是鲜明的对立。','n'],
+ ['die Anerkennung','认可','阿内尔肯农','Er verdient {Anerkennung}.','他值得认可。','n'],
+ ['der Austausch','交流','奥斯塔乌施','Der kulturelle {Austausch} ist wichtig.','文化交流很重要。','n'],
+ ['die Prägung','塑造，印记','普雷贡','Kindheit ist eine wichtige {Prägung}.','童年是重要的塑造期。','n'],
+ ['die Zugehörigkeit','归属感','楚格赫里希凯特','Er sucht {Zugehörigkeit}.','他在寻找归属感。','n'],
+ ['die Moderne','现代','莫德内','Die {Moderne} begann im 19. Jahrhundert.','现代始于19世纪。','n'],
+ ['sich wandeln','变化','希 万德尔恩','Die Gesellschaft hat sich {gewandelt}.','社会发生了变化。','v']
+]},
+{t:'健康与医学', lv:'B2', s:'Medizin', w:[
+ ['die Diagnose','诊断','迪阿格诺泽','Die {Diagnose} war eindeutig.','诊断很明确。','n'],
+ ['die Therapie','治疗','特拉皮','Die {Therapie} dauert Monate.','治疗要持续数月。','n'],
+ ['die Nebenwirkung','副作用','内本维尔孔','Das Medikament hat {Nebenwirkungen}.','这药有副作用。','n'],
+ ['die Vorbeugung','预防','福尔博伊贡','{Vorbeugung} ist besser als Behandlung.','预防胜于治疗。','n'],
+ ['chronisch','慢性的','克罗尼施','Er hat eine {chronische} Krankheit.','他有慢性病。','a'],
+ ['die Ernährung','营养，饮食','艾尔内龙','Gesunde {Ernährung} ist wichtig.','健康饮食很重要。','n'],
+ ['die Genesung','康复','格内宗','Gute {Genesung}!','祝早日康复！','n'],
+ ['das Symptom','症状','聚普托姆','Die {Symptome} sind mild.','症状轻微。','n'],
+ ['die Immunität','免疫力','因穆尼泰特','Sport stärkt die {Immunität}.','运动增强免疫力。','n'],
+ ['verschreiben','开（药方）','费尔施赖本','Der Arzt hat mir Tabletten {verschrieben}.','医生给我开了药片。','v']
+]},
+{t:'表达与修辞', lv:'B2', s:'Ausdruck', w:[
+ ['hervorheben','强调，突出','赫尔福尔赫本','Er hat das besonders {hervorgehoben}.','他特别强调了这点。','v'],
+ ['übertreiben','夸张','于贝尔特赖本','Du {übertreibst} maßlos.','你太夸张了。','v'],
+ ['andeuten','暗示','安多伊滕','Er hat es nur {angedeutet}.','他只是暗示了一下。','v'],
+ ['verdeutlichen','阐明','费尔多伊特利亨','Lass mich das {verdeutlichen}.','让我阐明一下。','v'],
+ ['widerlegen','驳斥','维德尔莱根','Diese These lässt sich {widerlegen}.','这个论点可以被驳斥。','v'],
+ ['formulieren','表述','福尔穆利伦','Bitte {formulier} das anders.','请换个说法。','v'],
+ ['verallgemeinern','概括，一般化','费尔阿尔格马伊内尔恩','Man darf nicht {verallgemeinern}.','不能一概而论。','v'],
+ ['präzisieren','明确化','普雷齐济伦','Können Sie das {präzisieren}?','您能说得更明确吗？','v'],
+ ['relativieren','相对化','雷拉蒂维伦','Das {relativiert} die Aussage.','这让说法相对化了。','v'],
+ ['der Ausdruck','表达，措辞','奥斯德鲁克','Das ist ein treffender {Ausdruck}.','这个措辞很贴切。','n']
+]},
+{t:'时间与过程', lv:'B2', s:'Zeit und Ablauf', w:[
+ ['der Ablauf','流程','阿普劳夫','Der {Ablauf} ist genau geregelt.','流程有明确规定。','n'],
+ ['die Phase','阶段','法泽','Das ist nur eine {Phase}.','这只是个阶段。','n'],
+ ['der Übergang','过渡','于贝尔冈','Der {Übergang} war schwierig.','过渡很艰难。','n'],
+ ['die Dauer','持续时间','道尔','Die {Dauer} beträgt zwei Stunden.','时长为两小时。','n'],
+ ['vorläufig','暂时的','福尔劳菲希','Das ist nur {vorläufig}.','这只是暂时的。','a'],
+ ['allmählich','逐渐','阿尔梅利希','Es wird {allmählich} besser.','逐渐变好了。','x'],
+ ['unmittelbar','立刻，直接的','温米特尔巴尔','Das hat {unmittelbar} gewirkt.','立刻见效了。','x'],
+ ['langfristig','长期的','朗夫里斯蒂希','Wir müssen {langfristig} denken.','我们得做长远考虑。','a'],
+ ['der Zeitpunkt','时刻，时点','蔡特普恩克特','Der {Zeitpunkt} ist ungünstig.','时机不巧。','n'],
+ ['verlaufen','进行','费尔劳芬','Die Sitzung ist gut {verlaufen}.','会议进行得不错。','v']
+]},
+{t:'程度与评价', lv:'B2', s:'Grade und Bewertung', w:[
+ ['erheblich','相当大的','艾尔赫普利希','Das ist ein {erheblicher} Unterschied.','这是相当大的差别。','a'],
+ ['gering','少的，轻微的','格林','Die Chance ist {gering}.','机会渺茫。','a'],
+ ['überwiegend','主要的，压倒性的','于贝尔维根特','Die Reaktion war {überwiegend} positiv.','反应总体是积极的。','a'],
+ ['ausreichend','足够的','奥斯赖兴特','Die Zeit ist {ausreichend}.','时间够用。','a'],
+ ['angemessen','恰当的','安格梅森','Die Reaktion war {angemessen}.','反应是恰当的。','a'],
+ ['fraglich','有疑问的','弗拉克利希','Ob das klappt, ist {fraglich}.','能不能成还有疑问。','a'],
+ ['eindeutig','明确的','艾因多伊蒂希','Das Ergebnis ist {eindeutig}.','结果很明确。','a'],
+ ['zweifellos','无疑的','茨外费尔洛斯','Das ist {zweifellos} richtig.','这无疑是对的。','a'],
+ ['vergleichbar','可比的','费尔格莱希巴尔','Die Fälle sind nicht {vergleichbar}.','这些情况不可比。','a'],
+ ['beachtlich','可观的','贝阿赫特利希','Das ist eine {beachtliche} Leistung.','这是很可观的成绩。','a']
+]}
+];
+
+</script>
+<script>
+/* ==== content-readings.js ==== */
+/* ============================================================
+   阅读理解
+   after 表示学完第几组后解锁（组序号从 0 开始）
+   ============================================================ */
+window.CONTENT_READINGS = [
+{id:'r1', after:2, t:'Ich heiße Anna', zh:'我叫安娜',
+ de:['Hallo! Ich heiße Anna Müller. Ich komme aus Deutschland. Ich wohne in Berlin. Ich bin Studentin. Ich lerne Chinesisch. Guten Tag!'],
+ tr:'你好！我叫安娜·穆勒。我来自德国。我住在柏林。我是大学生。我在学中文。你好！',
+ qs:[
+  {q:'安娜从哪里来？', de:'Woher kommt Anna?', o:['中国','德国','柏林'], a:1},
+  {q:'安娜住在哪里？', de:'Wo wohnt Anna?', o:['柏林','慕尼黑','科隆'], a:0},
+  {q:'安娜在做什么？', de:'Was macht Anna?', o:['工作','学中文','做饭'], a:1}
+ ]},
+{id:'r2', after:6, t:'Meine Familie', zh:'我的家庭',
+ de:['Meine Familie ist nicht groß. Ich habe einen Vater, eine Mutter und eine Schwester.',
+     'Mein Vater arbeitet in einem Büro. Meine Mutter ist Lehrerin.',
+     'Meine Schwester heißt Lena und ist zwölf Jahre alt. Wir wohnen in Hamburg.',
+     'Am Wochenende essen wir zusammen.'],
+ tr:'我的家庭不大。我有爸爸、妈妈和一个姐姐。我爸爸在办公室工作。我妈妈是老师。我姐姐叫蕾娜，十二岁。我们住在汉堡。周末我们一起吃饭。',
+ qs:[
+  {q:'这个人有几个兄弟姐妹？', de:'Wie viele Geschwister?', o:['一个姐妹','一个兄弟','两个姐妹'], a:0},
+  {q:'妈妈做什么工作？', de:'Was ist die Mutter von Beruf?', o:['老师','医生','职员'], a:0},
+  {q:'蕾娜多大？', de:'Wie alt ist Lena?', o:['十岁','十二岁','二十岁'], a:1}
+ ]},
+{id:'r3', after:9, t:'Im Restaurant', zh:'在餐厅',
+ de:['Am Abend gehen wir ins Restaurant. Der Kellner bringt die Speisekarte.',
+     'Ich bestelle eine Suppe und ein Bier. Mein Freund möchte Fleisch mit Reis.',
+     'Das Essen ist lecker. Am Ende bezahlen wir. Die Rechnung ist 32 Euro.'],
+ tr:'晚上我们去餐厅。服务员拿来菜单。我点了一份汤和一杯啤酒。我朋友想要肉配米饭。饭菜很好吃。最后我们结账，账单是32欧元。',
+ qs:[
+  {q:'这个人点了什么？', de:'Was bestellt die Person?', o:['汤和啤酒','肉和米饭','面包和牛奶'], a:0},
+  {q:'朋友想吃什么？', de:'Was möchte der Freund?', o:['汤','肉配米饭','只有啤酒'], a:1},
+  {q:'这顿饭多少钱？', de:'Wie viel kostet das Essen?', o:['23欧元','32欧元','42欧元'], a:1}
+ ]},
+{id:'r4', after:12, t:'Eine Reise nach München', zh:'慕尼黑之行',
+ de:['Morgen fahre ich nach München. Der Zug fährt um acht Uhr vom Bahnhof ab.',
+     'Die Fahrt dauert vier Stunden. In München besuche ich einen Freund.',
+     'Wir gehen auf den Markt und trinken Kaffee. Am Abend fahre ich mit dem Bus zum Hotel.'],
+ tr:'明天我去慕尼黑。火车八点从火车站出发。车程四小时。在慕尼黑我拜访一个朋友。我们去市场喝咖啡。晚上我坐公交车去酒店。',
+ qs:[
+  {q:'火车几点出发？', de:'Wann fährt der Zug ab?', o:['七点','八点','十点'], a:1},
+  {q:'车程多长？', de:'Wie lange dauert die Fahrt?', o:['两小时','四小时','八小时'], a:1},
+  {q:'这个人怎么去酒店？', de:'Wie fährt die Person zum Hotel?', o:['坐公交','坐火车','坐飞机'], a:0}
+ ]},
+{id:'r5', after:17, t:'Im Geschäft und im Hotel', zh:'在商店和酒店',
+ de:['Ich brauche ein neues Hemd. Ich gehe in ein Geschäft in der Stadt.',
+     'Das Hemd kostet 25 Euro, aber die Größe ist zu klein. Ich probiere eine andere Größe an.',
+     'Dann gehe ich zum Hotel. Ich habe ein Zimmer reserviert. Der Schlüssel liegt an der Rezeption.',
+     'Das Zimmer ist klein, aber bequem.'],
+ tr:'我需要一件新衬衫。我去城里的一家商店。衬衫25欧元，但尺码太小。我试了另一个尺码。然后我去酒店。我预订了一个房间。钥匙在前台。房间不大，但很舒服。',
+ qs:[
+  {q:'这个人需要什么？', de:'Was braucht die Person?', o:['一件衬衫','一双鞋','一个包'], a:0},
+  {q:'为什么不买第一件？', de:'Warum kauft sie das erste Hemd nicht?', o:['太贵','尺码太小','颜色不好'], a:1},
+  {q:'钥匙在哪里？', de:'Wo ist der Schlüssel?', o:['在前台','在房间里','在商店'], a:0}
+ ]},
+{id:'r6', after:25, t:'Ein Tag im Winter', zh:'冬日的一天',
+ de:['Es ist Winter und sehr kalt. Heute ist Montag. Ich stehe um sieben Uhr auf.',
+     'Ich frühstücke mit Brot und Milch. Draußen liegt Schnee und der Wind ist stark.',
+     'Ich bin müde, denn ich schlafe nur sechs Stunden. Mein Kopf tut weh.',
+     'Ich gehe nicht zur Arbeit. Ich bleibe zu Hause und trinke Tee.'],
+ tr:'现在是冬天，非常冷。今天是星期一。我七点起床。我早餐吃面包喝牛奶。外面有积雪，风很大。我很累，因为我只睡了六小时。我头疼。我不去上班，待在家里喝茶。',
+ qs:[
+  {q:'今天是星期几？', de:'Welcher Tag ist heute?', o:['星期一','星期二','星期天'], a:0},
+  {q:'早餐吃什么？', de:'Was isst die Person zum Frühstück?', o:['面包和牛奶','鸡蛋和茶','汤和米饭'], a:0},
+  {q:'为什么不去上班？', de:'Warum geht sie nicht zur Arbeit?', o:['下雪','她累而且头疼','交通不便'], a:1}
+ ]},
+
+/* ===== A2 ===== */
+{id:'r7', after:34, t:'Ein Umzug nach Berlin', zh:'搬去柏林',
+ de:['Letzten Monat bin ich nach Berlin umgezogen. Die neue Wohnung liegt in einem ruhigen Stadtteil.',
+     'Die Miete ist höher als vorher, aber die Wohnung hat einen Balkon und einen Aufzug.',
+     'Am Anfang war mir die Stadt fremd. Ich kannte niemanden und musste mich erst anpassen.',
+     'Inzwischen habe ich nette Nachbarn kennengelernt. Wir treffen uns manchmal im Hof und unterhalten uns.',
+     'Ich habe mich an das Leben hier gewöhnt. Berlin gefällt mir immer besser.'],
+ tr:'上个月我搬到了柏林。新公寓在一个安静的城区。租金比以前高，但公寓有阳台和电梯。一开始这座城市对我很陌生。我谁也不认识，得先适应。这期间我认识了不错的邻居。我们有时在院子里见面聊天。我已经习惯了这里的生活。柏林越来越让我喜欢。',
+ qs:[
+  {q:'新公寓在哪里？', de:'Wo liegt die neue Wohnung?', o:['市中心','一个安静的城区','火车站附近'], a:1},
+  {q:'公寓的租金怎么样？', de:'Wie ist die Miete?', o:['比以前高','比以前低','一样'], a:0},
+  {q:'作者刚到柏林时感觉如何？', de:'Wie war es am Anfang?', o:['很熟悉','很陌生','很无聊'], a:1},
+  {q:'作者和邻居做什么？', de:'Was macht der Autor mit den Nachbarn?', o:['一起工作','偶尔在院子里聊天','一起去旅行'], a:1}
+ ]},
+{id:'r8', after:40, t:'Umwelt im Alltag', zh:'日常中的环保',
+ de:['Viele Menschen wollen die Umwelt schützen, aber im Alltag ist das nicht immer einfach.',
+     'In Deutschland trennt man den Müll: Papier, Plastik, Glas und Restmüll kommen in verschiedene Tonnen.',
+     'Manche Leute kaufen keine Plastiktüten mehr, sondern nehmen eigene Taschen mit.',
+     'Auch beim Strom kann man sparen. Wer das Licht ausschaltet, wenn er den Raum verlässt, verbraucht weniger Energie.',
+     'Kleine Gewohnheiten machen einen Unterschied. Wenn viele mitmachen, hat das großen Einfluss auf das Klima.'],
+ tr:'很多人都想保护环境，但日常生活中并不总是容易。在德国人们做垃圾分类：纸、塑料、玻璃和其余垃圾放进不同的桶。有些人不买塑料袋了，而是自带袋子。用电也能节省。离开房间时关灯，就能少耗能源。小习惯也会带来改变。如果很多人一起做，对气候就有很大影响。',
+ qs:[
+  {q:'德国的垃圾怎么处理？', de:'Wie wird der Müll behandelt?', o:['全部一起扔','分类投放','只回收纸'], a:1},
+  {q:'有些人购物时怎么做？', de:'Was machen manche beim Einkaufen?', o:['自带袋子','买更多塑料袋','不购物'], a:0},
+  {q:'怎样节省电？', de:'Wie spart man Strom?', o:['离开房间时关灯','多开灯','用更多电器'], a:0},
+  {q:'作者认为小习惯有用吗？', de:'Was denkt der Autor über kleine Gewohnheiten?', o:['没用','很有影响','只对个人有用'], a:1}
+ ]},
+{id:'r9', after:46, t:'Ein Bewerbungsgespräch', zh:'一次面试',
+ de:['Frau Weber hat sich um eine Stelle beworben und ist zum Vorstellungsgespräch eingeladen worden.',
+     'Der Chef fragt: „Warum möchten Sie bei uns arbeiten?" Sie antwortet: „Ihre Firma hat einen guten Ruf, und ich möchte mich weiterentwickeln."',
+     'Dann fragt er nach ihrer Erfahrung. Sie erklärt, dass sie drei Jahre in einem ähnlichen Bereich gearbeitet hat.',
+     'Am Ende fragt sie selbst: „Welche Möglichkeiten gibt es für eine Fortbildung?"',
+     'Der Chef ist zufrieden. Zwei Tage später bekommt sie die Zusage und unterschreibt den Vertrag.'],
+ tr:'韦伯女士申请了一个职位，被邀请去面试。上司问：「您为什么想在我们这里工作？」她回答：「贵公司声誉很好，我想继续发展。」然后他问她的经验。她解释说自己在类似领域工作了三年。最后她自己也问：「有哪些进修的机会？」上司很满意。两天后她收到了录用通知，签了合同。',
+ qs:[
+  {q:'韦伯女士为什么想去这家公司？', de:'Warum will Frau Weber dort arbeiten?', o:['工资高','公司声誉好','离家近'], a:1},
+  {q:'她有多少年相关经验？', de:'Wie viel Erfahrung hat sie?', o:['一年','三年','十年'], a:1},
+  {q:'她最后问了什么？', de:'Was fragt sie am Ende?', o:['进修的机会','工资多少','休假多久'], a:0},
+  {q:'面试结果如何？', de:'Wie war das Ergebnis?', o:['她得到了职位','她被拒绝','她还在等'], a:0}
+ ]},
+
+/* ===== B1 ===== */
+{id:'r10', after:55, t:'Stadt oder Land?', zh:'城市还是乡村？',
+ de:['Die Frage, ob man lieber in der Stadt oder auf dem Land lebt, wird oft diskutiert. Beide Seiten haben Vorteile und Nachteile.',
+     'In der Stadt gibt es mehr Arbeitsplätze, bessere Verkehrsmittel und ein größeres kulturelles Angebot. Wer Karriere machen will, ist hier oft im Vorteil.',
+     'Allerdings sind die Mieten hoch, es ist laut, und viele Menschen fühlen sich einsam, obwohl sie von Leuten umgeben sind.',
+     'Auf dem Land ist das Leben ruhiger und günstiger. Die Natur ist nah, und die Nachbarn kennen sich.',
+     'Der Nachteil: Wer dort wohnt, braucht meistens ein Auto, und die Auswahl an Jobs ist begrenzt.',
+     'Meiner Meinung nach kommt es darauf an, was einem wichtiger ist. Ich persönlich würde die Stadt vorziehen, solange ich jung bin.',
+     'Später möchte ich vielleicht aufs Land ziehen. Man muss sich nicht für immer entscheiden.'],
+ tr:'「更愿意住在城市还是乡村」这个问题经常被讨论。两边各有优劣。城市里工作机会更多、交通更好、文化生活更丰富。想发展事业的人在这里往往更有优势。不过租金高、嘈杂，而且很多人尽管被人群包围，却感到孤独。乡村生活更安静、更便宜。自然就在身边，邻居之间彼此认识。缺点是：住在那里通常需要一辆车，工作选择也有限。在我看来，这取决于什么对你更重要。就我个人而言，趁年轻我会更愿意选城市。以后也许我会搬到乡下去。人不必永远做出决定。',
+ qs:[
+  {q:'城市有哪些优势？', de:'Welche Vorteile hat die Stadt?', o:['更多工作机会和交通','更便宜','更安静'], a:0},
+  {q:'城市生活的缺点是什么？', de:'Welche Nachteile hat die Stadt?', o:['租金高而且嘈杂','没有工作','自然太近'], a:0},
+  {q:'住在乡下通常需要什么？', de:'Was braucht man auf dem Land meistens?', o:['一辆车','地铁','很多钱'], a:0},
+  {q:'作者个人的倾向是什么？', de:'Was bevorzugt der Autor persönlich?', o:['年轻时选城市','一直住乡下','都不喜欢'], a:0}
+ ]}
+];
+
+</script>
+<script>
+/* ==== content-grammar.js ==== */
+/* ============================================================
+   语法专项训练
+   格式：{id, lv, t, why, items:[{q, a, opts, why}]}
+     q    题干，用 ___ 表示空
+     a    正确答案
+     opts 选项（一般 3–4 个）
+     why  讲解——语法题的价值就在这句
+   ============================================================ */
+window.CONTENT_GRAMMAR = [
+
+{id:'g-sein', lv:'A1', t:'sein 和 haben 的现在时', s:'Präsens: sein / haben',
+ why:'这两个动词是所有句子的地基，但它们是强变化，必须背熟：sein = bin / bist / ist / sind / seid / sind；haben = habe / hast / hat / haben / habt / haben。',
+ items:[
+  {q:'Ich ___ Student.', a:'bin', opts:['bin','bist','ist'], why:'ich 配 bin。这几乎是德语第一句话。'},
+  {q:'Du ___ aus China.', a:'bist', opts:['bin','bist','seid'], why:'du 配 bist。'},
+  {q:'Er ___ Lehrer.', a:'ist', opts:['ist','bist','sind'], why:'er / sie / es 都配 ist。'},
+  {q:'Wir ___ aus Deutschland.', a:'sind', opts:['sind','seid','ist'], why:'wir 配 sind。'},
+  {q:'Ihr ___ müde.', a:'seid', opts:['sind','seid','bist'], why:'ihr（你们）配 seid——这是最容易被忽略的一个，它和不规则的 sind 只差一个字母。'},
+  {q:'Ich ___ einen Bruder.', a:'habe', opts:['habe','hat','haben'], why:'ich 配 habe。'},
+  {q:'Sie ___ Zeit.', a:'hat', opts:['hat','habe','habt'], why:'sie（她）配 hat。'},
+  {q:'Wir ___ zwei Kinder.', a:'haben', opts:['haben','habt','hat'], why:'wir 配 haben。'}
+ ]},
+
+{id:'g-regverb', lv:'A1', t:'规则动词现在时', s:'Regelmäßige Verben',
+ why:'规则动词的词尾像模板一样固定：-e, -st, -t, -en, -t, -en。去掉词尾 -en 得到词干，再加这些词尾。',
+ items:[
+  {q:'Ich ___ Deutsch. (lernen)', a:'lerne', opts:['lerne','lernst','lernt'], why:'ich 加 -e。'},
+  {q:'Du ___ in Berlin. (wohnen)', a:'wohnst', opts:['wohne','wohnst','wohnt'], why:'du 加 -st。'},
+  {q:'Er ___ in einem Büro. (arbeiten)', a:'arbeitet', opts:['arbeite','arbeitest','arbeitet'], why:'词干以 -t 结尾时要加一个 e 再接词尾，否则读不出来：arbeit + e + t。'},
+  {q:'Wir ___ nach Hamburg. (fahren)', a:'fahren', opts:['fahre','fahrt','fahren'], why:'wir 加 -en，和原形相同。'},
+  {q:'Ihr ___ gern Musik. (hören)', a:'hört', opts:['höre','hört','hören'], why:'ihr 加 -t。'},
+  {q:'Sie (复数) ___ Brot. (kaufen)', a:'kaufen', opts:['kauft','kaufen','kaufst'], why:'sie（他们）加 -en。'},
+  {q:'Du ___ gut. (kochen)', a:'kochst', opts:['kochst','kocht','koche'], why:'du 加 -st。'},
+  {q:'Ich ___ einen Brief. (schreiben)', a:'schreibe', opts:['schreibe','schreibst','schreibt'], why:'ich 加 -e。'}
+ ]},
+
+{id:'g-nom', lv:'A1', t:'第一格：主语用格', s:'Nominativ',
+ why:'第一格就是「谁在做」，做主语。定冠词：der（阳）/ die（阴）/ das（中）/ die（复数）。德语名词的性别是天生的，必须和单词一起记。',
+ items:[
+  {q:'___ Mann liest ein Buch.', a:'Der', opts:['Der','Den','Dem'], why:'Mann 是阳性，做主语用第一格，所以 der。'},
+  {q:'___ Frau arbeitet hier.', a:'Die', opts:['Die','Der','Das'], why:'Frau 是阴性，第一格用 die。'},
+  {q:'___ Kind spielt im Garten.', a:'Das', opts:['Das','Der','Die'], why:'Kind 是中性，第一格用 das。'},
+  {q:'___ Kinder sind müde.', a:'Die', opts:['Die','Der','Das'], why:'复数一律用 die，不分性别。'},
+  {q:'___ Tisch ist neu.', a:'Der', opts:['Der','Die','Das'], why:'Tisch 是阳性（der Tisch）。'},
+  {q:'___ Wohnung ist groß.', a:'Die', opts:['Die','Der','Das'], why:'Wohnung 是阴性（die Wohnung）。'},
+  {q:'___ Buch ist interessant.', a:'Das', opts:['Das','Der','Die'], why:'Buch 是中性（das Buch）。'},
+  {q:'___ Wasser ist kalt.', a:'Das', opts:['Das','Der','Die'], why:'Wasser 是中性（das Wasser）。'}
+ ]},
+
+{id:'g-akk', lv:'A1', t:'第四格：宾语用格', s:'Akkusativ',
+ why:'第四格是「动作直接落在谁身上」。只有阳性冠词会变：der → den。阴性 die、中性 das、复数 die 都不变。支配第四格的常见动词：sehen、kaufen、haben、lesen、essen、trinken、brauchen、suchen。',
+ items:[
+  {q:'Ich sehe ___ Mann.', a:'den', opts:['der','den','dem'], why:'sehen 支配第四格，阳性 der 变 den。'},
+  {q:'Ich kaufe ___ Brot.', a:'das', opts:['das','dem','den'], why:'Brot 是中性，第四格不变，还是 das。'},
+  {q:'Er liest ___ Zeitung.', a:'die', opts:['die','der','den'], why:'Zeitung 是阴性，第四格不变，还是 die。'},
+  {q:'Wir haben ___ Hund.', a:'einen', opts:['ein','einen','einem'], why:'不定冠词阳性在第四格是 einen（ein → einen）。'},
+  {q:'Sie sucht ___ Schlüssel.', a:'den', opts:['der','den','dem'], why:'suchen 支配第四格，der Schlüssel → den Schlüssel。'},
+  {q:'Ich trinke ___ Kaffee.', a:'einen', opts:['ein','eine','einen'], why:'Kaffee 是阳性，第四格用 einen。'},
+  {q:'Ich brauche ___ Fahrkarte.', a:'eine', opts:['ein','eine','einen'], why:'Fahrkarte 是阴性，第四格用 eine。'},
+  {q:'Er isst ___ Apfel.', a:'einen', opts:['ein','einen','einem'], why:'Apfel 是阳性，第四格用 einen。'}
+ ]},
+
+{id:'g-dat', lv:'A1', t:'第三格：间接宾语', s:'Dativ',
+ why:'第三格是「给谁、对谁」。变化：der → dem，die → der，das → dem，复数 → den（名词还要加 -n）。支配第三格的常见动词：helfen、danken、gefallen、gehören。还有一批介词固定带第三格：mit、nach、bei、aus、von、zu、seit。',
+ items:[
+  {q:'Ich helfe ___ Mann.', a:'dem', opts:['der','den','dem'], why:'helfen 支配第三格，阳性 der 变 dem。'},
+  {q:'Ich danke ___ Frau.', a:'der', opts:['die','der','dem'], why:'danken 支配第三格，阴性 die 变 der。'},
+  {q:'Ich fahre mit ___ Bus.', a:'dem', opts:['der','den','dem'], why:'mit 固定带第三格，Bus 是阳性 → dem。'},
+  {q:'Sie kommt aus ___ Schweiz.', a:'der', opts:['die','der','dem'], why:'aus 固定带第三格，Schweiz 是阴性 → der。'},
+  {q:'Das Buch gehört ___ Kind.', a:'dem', opts:['das','dem','den'], why:'gehören 支配第三格，Kind 是中性 → dem。'},
+  {q:'Ich gehe zu ___ Arzt.', a:'dem', opts:['der','dem','den'], why:'zu 固定带第三格，Arzt 是阳性 → dem。'},
+  {q:'Nach ___ Arbeit gehe ich nach Hause.', a:'der', opts:['die','der','dem'], why:'nach 固定带第三格，Arbeit 是阴性 → der。'},
+  {q:'Ich wohne bei ___ Eltern.', a:'den', opts:['die','den','der'], why:'bei 带第三格；复数在第三格是 den，名词还要加 -n：den Eltern。'}
+ ]},
+
+{id:'g-modal', lv:'A1', t:'情态动词现在时', s:'Modalverben',
+ why:'情态动词有两个特点：一是单数第一、三人称同形（ich kann / er kann，都不加 -t）；二是它会占住句子的第二个位置，把主要动词挤到句子最末尾，用原形。',
+ items:[
+  {q:'Ich ___ Deutsch sprechen.', a:'kann', opts:['kann','kannst','könnt'], why:'ich 和 er 都用 kann。können 是「会、能」。'},
+  {q:'Du ___ mehr schlafen.', a:'musst', opts:['muss','musst','müsst'], why:'du 用 musst。müssen 是「必须」。'},
+  {q:'Er ___ heute arbeiten.', a:'muss', opts:['muss','musst','müssen'], why:'第三人称单数用 muss，不加 -t。'},
+  {q:'Wir ___ nach Berlin fahren.', a:'wollen', opts:['wollt','wollen','will'], why:'wollen 是「想要」。wir 用 wollen。'},
+  {q:'Ich ___ einen Kaffee.', a:'möchte', opts:['möchte','mag','möchtest'], why:'möchten 是礼貌的「想要」，点单万能句。ich 用 möchte。'},
+  {q:'Hier ___ man nicht rauchen.', a:'darf', opts:['darf','darfst','dürft'], why:'dürfen 是「被允许」。man 是泛指「人们」，配 darf。'},
+  {q:'Was ___ ich tun?', a:'soll', opts:['soll','sollst','sollen'], why:'sollen 是「应该」。'},
+  {q:'Ich ___ jetzt gehen.', a:'muss', opts:['muss','musst','müssen'], why:'注意语序：情态动词在第二位，主要动词 gehen 被推到句尾。'}
+ ]},
+
+{id:'g-wortstellung', lv:'A1', t:'语序：动词占第二位', s:'Wortstellung',
+ why:'德语主句的铁律：变位动词永远在第二个位置。如果时间、地点等被提到句首，主谓就要倒过来（动词仍是第二，主语挪到动词后面）。这一点和中文直觉完全不同。',
+ items:[
+  {q:'Heute ___ ich nach Berlin.', a:'fahre', opts:['fahre','ich fahre','fahren'], why:'Heute 占第一位，动词必须占第二位，主语 ich 被挤到动词后面。'},
+  {q:'Ich ___ heute nach Berlin.', a:'fahre', opts:['fahre','fahren','fahre ich'], why:'主语开头时，动词紧随其后。'},
+  {q:'Am Montag ___ wir einen Termin.', a:'haben', opts:['haben','wir haben','hat'], why:'时间状语开头 → 动词第二位，主语后移。'},
+  {q:'___ du gern Musik?', a:'Hörst', opts:['Hörst','Du hörst','Hören'], why:'一般疑问句：动词提到最前面，没有疑问词。'},
+  {q:'Wo ___ du?', a:'wohnst', opts:['wohnst','du wohnst','wohnen'], why:'特殊疑问句：疑问词占第一位，动词仍占第二位。'},
+  {q:'Ich glaube, dass er morgen ___.', a:'kommt', opts:['kommt','kommen','er kommt'], why:'dass 引导的从句里，动词要挪到最末尾。'},
+  {q:'Nach der Arbeit ___ ich müde.', a:'bin', opts:['bin','ich bin','ist'], why:'介词短语开头 → 动词第二位。'},
+  {q:'___ Sie Deutsch?', a:'Sprechen', opts:['Sprechen','Sie sprechen','Spricht'], why:'一般疑问句，动词提前。'}
+ ]},
+
+{id:'g-negation', lv:'A1', t:'否定：nicht 还是 kein', s:'Negation',
+ why:'nicht 否定动词、形容词、整句；kein 只否定名词，而且当那个名词前面是 ein 或者没有冠词时用。kein 要像 ein 一样变格：kein / keine / keinen / keinem。',
+ items:[
+  {q:'Das ist ___ Problem.', a:'kein', opts:['nicht','kein','keine'], why:'否定名词 Problem，且原本是 ein Problem，所以用 kein。'},
+  {q:'Ich habe ___ Zeit.', a:'keine', opts:['nicht','kein','keine'], why:'Zeit 是阴性，kein 变成 keine。'},
+  {q:'Ich verstehe ___.', a:'nicht', opts:['nicht','kein','keine'], why:'否定的是动词 verstehen，用 nicht。'},
+  {q:'Er hat ___ Geld.', a:'kein', opts:['nicht','kein','keine'], why:'Geld 是中性，kein 不变形。'},
+  {q:'Das Wetter ist ___ gut.', a:'nicht', opts:['nicht','kein','keine'], why:'否定形容词 gut，用 nicht。'},
+  {q:'Sie hat ___ Bruder.', a:'keinen', opts:['kein','keinen','keinem'], why:'Bruder 是阳性，且这里是第四格宾语，所以 keinen。'},
+  {q:'Ich komme ___.', a:'nicht', opts:['nicht','kein','keine'], why:'否定动词 kommen，用 nicht。'},
+  {q:'Wir haben ___ Auto.', a:'kein', opts:['nicht','kein','keine'], why:'Auto 是中性，用 kein。'}
+ ]},
+
+{id:'g-possessiv', lv:'A1', t:'物主代词', s:'Possessivartikel',
+ why:'我的 mein、你的 dein、他的 sein、她的 ihr、我们的 unser、你们的 euer、他们的 ihr、您的 Ihr。它们后面的词尾和 ein 完全一样，所以学一套就够：mein / meine / meinen / meinem。',
+ items:[
+  {q:'Das ist ___ Bruder. (我)', a:'mein', opts:['mein','meine','meinen'], why:'Bruder 是阳性第一格，用 mein。'},
+  {q:'Das ist ___ Schwester. (我)', a:'meine', opts:['mein','meine','meinen'], why:'Schwester 是阴性，用 meine。'},
+  {q:'Wie heißt ___ Frau? (你)', a:'deine', opts:['dein','deine','deinen'], why:'Frau 是阴性，dein 加 -e 变 deine。'},
+  {q:'Ich liebe ___ Familie. (我)', a:'meine', opts:['mein','meine','meinen'], why:'Familie 是阴性，第四格也不变，仍是 meine。'},
+  {q:'Er sucht ___ Schlüssel. (他)', a:'seinen', opts:['sein','seinen','seinem'], why:'Schlüssel 是阳性，做第四格宾语 → seinen。'},
+  {q:'___ Vater arbeitet hier. (她)', a:'Ihr', opts:['Ihr','Ihre','Sein'], why:'「她的」是 ihr，Vater 阳性第一格 → Ihr（句首大写）。'},
+  {q:'Wie ist ___ Nummer? (您)', a:'Ihre', opts:['Ihr','Ihre','deine'], why:'尊称「您」的物主代词是 Ihr，要大写；Nummer 阴性 → Ihre。'},
+  {q:'Wir lieben ___ Stadt. (我们)', a:'unsere', opts:['unser','unsere','unseren'], why:'Stadt 是阴性 → unsere。'}
+ ]},
+
+{id:'g-perfekt', lv:'A2', t:'完成时：说过去的事', s:'Perfekt',
+ why:'口语里说过去，几乎都用完成时。公式：haben 或 sein + 过去分词，两个部分分别占句子的第二位和末尾。绝大多数动词配 haben；表示移动或状态改变的动词（gehen、fahren、kommen、aufstehen）配 sein。',
+ items:[
+  {q:'Ich ___ gestern Deutsch gelernt.', a:'habe', opts:['habe','bin','hatte'], why:'lernen 配 haben。'},
+  {q:'Wir ___ nach Berlin gefahren.', a:'sind', opts:['haben','sind','waren'], why:'fahren 表示移动，配 sein。'},
+  {q:'Er ___ einen Kaffee getrunken.', a:'hat', opts:['hat','ist','hatte'], why:'trinken 配 haben。'},
+  {q:'Sie ___ um sieben aufgestanden.', a:'ist', opts:['hat','ist','sind'], why:'aufstehen 表示状态改变，配 sein。'},
+  {q:'Ich ___ das Buch gelesen.', a:'habe', opts:['habe','bin','hatte'], why:'lesen 配 haben。'},
+  {q:'___ du schon gegessen?', a:'Hast', opts:['Hast','Bist','Hattest'], why:'essen 配 haben；一般疑问句动词提到句首。'},
+  {q:'Wir ___ gestern zu Hause geblieben.', a:'sind', opts:['haben','sind','waren'], why:'bleiben 表示位置状态持续，配 sein（这是个要单独记的）。'},
+  {q:'Er ___ mir geholfen.', a:'hat', opts:['hat','ist','hatte'], why:'helfen 配 haben。'}
+ ]},
+
+{id:'g-partizip', lv:'A2', t:'过去分词怎么造', s:'Partizip II',
+ why:'规则动词：ge + 词干 + t，比如 machen → gemacht。强变化动词要单独背，多数是 ge + 词干 + en，而且词干里的元音会变，比如 sprechen → gesprochen。前缀不可分的动词（be-、ver-、er-）不加 ge：besuchen → besucht。',
+ items:[
+  {q:'machen → Ich habe das ___.', a:'gemacht', opts:['gemacht','gemachtet','machen'], why:'规则：ge + mach + t。'},
+  {q:'sprechen → Er hat Deutsch ___.', a:'gesprochen', opts:['gesprecht','gesprochen','gesprechen'], why:'强变化，元音 e → o，词尾 -en。'},
+  {q:'kaufen → Ich habe Brot ___.', a:'gekauft', opts:['gekauft','gekaufen','kaufte'], why:'规则：ge + kauf + t。'},
+  {q:'besuchen → Wir haben Museen ___.', a:'besucht', opts:['gebesucht','besucht','besuchen'], why:'be- 前缀不可分，不加 ge。'},
+  {q:'verstehen → Ich habe das ___.', a:'verstanden', opts:['geverstanden','verstanden','verstehte'], why:'ver- 前缀不可分，不加 ge。'},
+  {q:'fahren → Wir sind nach Köln ___.', a:'gefahren', opts:['gefahrt','gefahren','gefuhren'], why:'强变化，a → a，词尾 -en。'},
+  {q:'essen → Ich habe Reis ___.', a:'gegessen', opts:['geesst','gegessen','gegesset'], why:'强变化：essen → gegessen。'},
+  {q:'trinken → Er hat Wasser ___.', a:'getrunken', opts:['getrinkt','getrunken','getrankt'], why:'强变化：trinken → getrunken。'}
+ ]},
+
+{id:'g-praeteritum', lv:'A2', t:'过去时：war / hatte / 情态动词', s:'Präteritum',
+ why:'口语里一般动词用完成时，但三个词例外，说过去时更自然：sein → war，haben → hatte，以及所有情态动词（können → konnte，müssen → musste）。它们不加 ge，直接变。',
+ items:[
+  {q:'Ich ___ gestern müde.', a:'war', opts:['war','ist','hatte'], why:'sein 的过去时：war / warst / war / waren / wart / waren。'},
+  {q:'Wir ___ damals in Berlin.', a:'waren', opts:['waren','sind','hatten'], why:'wir 用 waren。'},
+  {q:'Ich ___ keine Zeit.', a:'hatte', opts:['hatte','war','habe'], why:'haben 的过去时：hatte / hattest / hatte / hatten / hattet / hatten。'},
+  {q:'Er ___ nicht kommen.', a:'konnte', opts:['konnte','kann','könnte'], why:'können 的过去时是 konnte，注意丢掉变音。'},
+  {q:'Ich ___ gestern arbeiten.', a:'musste', opts:['musste','muss','müsste'], why:'müssen 的过去时是 musste。'},
+  {q:'Sie ___ nach Hause gehen.', a:'wollte', opts:['wollte','will','wolltest'], why:'wollen 的过去时是 wollte。'},
+  {q:'Als Kind ___ ich nicht schwimmen.', a:'konnte', opts:['konnte','kann','könnte'], why:'说过去的能力，用 konnte。'},
+  {q:'Wir ___ viel Spaß.', a:'hatten', opts:['hatten','waren','haben'], why:'「我们有乐趣」用 haben 的过去时 hatten。'}
+ ]},
+
+{id:'g-trennbar', lv:'A2', t:'可分动词', s:'Trennbare Verben',
+ why:'德语有一大类动词带前缀，主句里前缀会「飞」到句子最末尾：aufstehen → Ich stehe um sieben auf。常见的有 auf-、an-、aus-、ein-、mit-、zu-、ab-。要判断能不能分，看前缀是不是重读——重读就能分。',
+ items:[
+  {q:'Ich ___ um sieben ___. (aufstehen)', a:'stehe / auf', opts:['stehe / auf','aufstehe / —','stehe / an'], why:'aufstehen 可分，前缀 auf 飞到句尾。'},
+  {q:'Er ___ den Fernseher ___. (anmachen)', a:'macht / an', opts:['macht / an','anmacht / —','macht / auf'], why:'anmachen 可分，an 到句尾。'},
+  {q:'Wir ___ heute ___. (einkaufen)', a:'kaufen / ein', opts:['kaufen / ein','einkaufen / —','kaufen / aus'], why:'einkaufen 可分。'},
+  {q:'Bitte ___ Sie das Fenster ___. (zumachen)', a:'machen / zu', opts:['machen / zu','zumachen / —','machen / ab'], why:'zumachen 可分。'},
+  {q:'Ich ___ meine Freundin ___. (anrufen)', a:'rufe / an', opts:['rufe / an','anrufe / —','rufe / auf'], why:'anrufen 可分，an 到句尾。'},
+  {q:'Der Zug ___ um acht ___. (abfahren)', a:'fährt / ab', opts:['fährt / ab','abfährt / —','fährt / an'], why:'abfahren 可分。'},
+  {q:'___ du bitte ___? (mitkommen)', a:'Kommst / mit', opts:['Kommst / mit','Mitkommst / —','Kommst / an'], why:'一般疑问句里动词提前，前缀仍在句尾。'},
+  {q:'Ich ___ heute nicht ___. (mitkommen)', a:'komme / mit', opts:['komme / mit','mitkomme / —','komme / an'], why:'前缀 mit 始终在末尾。'}
+ ]},
+
+{id:'g-praeposition', lv:'A2', t:'介词配格', s:'Präpositionen',
+ why:'介词分三类。固定第三格：mit、nach、bei、aus、von、zu、seit。固定第四格：für、ohne、gegen、um、durch。还有一类「双向介词」：in、an、auf、über、unter、vor、hinter、neben、zwischen——表示「去哪里」用第四格，表示「在哪里」用第三格。',
+ items:[
+  {q:'Ich fahre mit ___ Fahrrad.', a:'dem', opts:['das','dem','den'], why:'mit 固定第三格，Fahrrad 中性 → dem。'},
+  {q:'Das Geschenk ist für ___ Mutter.', a:'die', opts:['die','der','dem'], why:'für 固定第四格，Mutter 阴性 → die（第四格不变）。'},
+  {q:'Ich gehe in ___ Stadt.', a:'die', opts:['die','der','dem'], why:'in + 去哪里 → 第四格，Stadt 阴性 → die。'},
+  {q:'Ich bin in ___ Stadt.', a:'der', opts:['die','der','dem'], why:'in + 在哪里 → 第三格，Stadt 阴性 → der。'},
+  {q:'Das Buch liegt auf ___ Tisch.', a:'dem', opts:['den','dem','der'], why:'auf + 在哪里（静态）→ 第三格，Tisch 阳性 → dem。'},
+  {q:'Ich lege das Buch auf ___ Tisch.', a:'den', opts:['den','dem','der'], why:'auf + 放上去（动态方向）→ 第四格，Tisch 阳性 → den。'},
+  {q:'Wir fahren durch ___ Stadt.', a:'die', opts:['die','der','dem'], why:'durch 固定第四格，Stadt 阴性 → die。'},
+  {q:'Seit ___ Jahr lerne ich Deutsch.', a:'einem', opts:['ein','einem','einen'], why:'seit 固定第三格，Jahr 中性 → einem。'}
+ ]},
+
+{id:'g-adjektiv', lv:'A2', t:'形容词词尾', s:'Adjektivendungen',
+ why:'形容词放在名词前要加词尾，规则取决于前面有没有冠词。定冠词后（der/die/das）：-e 或 -en，因为冠词已经把性别说清楚了。不定冠词后（ein/kein/物主代词）：要补上冠词没说的信息，所以阳性和中性第一格用 -er/-es。',
+ items:[
+  {q:'Der ___ Mann ist mein Nachbar. (alt)', a:'alte', opts:['alt','alte','alten'], why:'定冠词后第一格单数：加 -e。'},
+  {q:'Die ___ Frau ist Lehrerin. (jung)', a:'junge', opts:['jung','junge','jungen'], why:'定冠词后阴性第一格：加 -e。'},
+  {q:'Das ___ Kind spielt. (klein)', a:'kleine', opts:['klein','kleine','kleines'], why:'定冠词后中性第一格：加 -e。'},
+  {q:'Ein ___ Mann wartet. (alt)', a:'alter', opts:['alt','alter','altes'], why:'不定冠词后阳性第一格：ein 没显示性别，形容词要加 -er。'},
+  {q:'Ein ___ Kind spielt. (klein)', a:'kleines', opts:['klein','kleine','kleines'], why:'不定冠词后中性第一格：加 -es。'},
+  {q:'Ich kaufe ein ___ Auto. (neu)', a:'neues', opts:['neu','neue','neues'], why:'中性第一/第四格同形 → neues。'},
+  {q:'Ich sehe den ___ Mann. (alt)', a:'alten', opts:['alte','alten','altem'], why:'定冠词后第四格阳性：加 -en。'},
+  {q:'Ich habe eine ___ Wohnung. (groß)', a:'große', opts:['groß','große','großen'], why:'不定冠词后阴性：eine 已显示阴性，形容词加 -e。'}
+ ]},
+
+{id:'g-nebensatz', lv:'A2', t:'从句：动词去末尾', s:'Nebensätze',
+ why:'这是德语和中文差别最大的地方。dass（那）、weil（因为）、wenn（如果/当）、obwohl（虽然）引导的从句里，变位动词要挪到整个从句的最末尾。主句和从句之间用逗号隔开。',
+ items:[
+  {q:'Ich weiß, dass er morgen ___.', a:'kommt', opts:['kommt','kommen','er kommt'], why:'dass 从句，动词到末尾。'},
+  {q:'Ich bleibe zu Hause, weil ich krank ___.', a:'bin', opts:['bin','ist','bin ich'], why:'weil 从句，动词 bin 到末尾。'},
+  {q:'___, kommst du zu mir? (如果)', a:'Wenn du Zeit hast', opts:['Wenn du Zeit hast','Wenn hast du Zeit','Wenn du hast Zeit'], why:'wenn 从句里动词 hast 到末尾。'},
+  {q:'Er sagt, dass er keine Zeit ___.', a:'hat', opts:['hat','haben','hat er'], why:'dass 从句，hat 到末尾。'},
+  {q:'Sie lernt Deutsch, weil sie in Berlin ___ will.', a:'arbeiten', opts:['arbeitet','arbeiten','arbeitet sie'], why:'从句里有情态动词时，情态动词在末尾，主要动词在它前面。'},
+  {q:'Ich weiß nicht, ob er ___.', a:'kommt', opts:['kommt','kommen','er kommt'], why:'ob（是否）引导的从句也是动词到末尾。'},
+  {q:'___, gehe ich nicht zur Arbeit. (因为下雨)', a:'Weil es regnet', opts:['Weil es regnet','Weil regnet es','Weil es regnen'], why:'weil 从句动词 regnet 到末尾。'},
+  {q:'Er arbeitet viel, obwohl er müde ___.', a:'ist', opts:['ist','ist er','sein'], why:'obwohl 从句，动词到末尾。'}
+ ]},
+
+{id:'g-reflexiv', lv:'A2', t:'反身动词', s:'Reflexivverben',
+ why:'反身动词的动作回到自己身上，要配反身代词：mich / dich / sich / uns / euch / sich。常见的有 sich freuen（高兴）、sich interessieren für（对……感兴趣）、sich treffen（见面）、sich waschen（洗）。',
+ items:[
+  {q:'Ich freue ___ auf den Urlaub.', a:'mich', opts:['mich','mir','sich'], why:'ich 的反身代词是 mich（第四格）。'},
+  {q:'Wie fühlst du ___?', a:'dich', opts:['dich','dir','sich'], why:'du 配 dich。'},
+  {q:'Er interessiert ___ für Musik.', a:'sich', opts:['sich','ihm','ihn'], why:'er/sie/es 的反身代词都是 sich。'},
+  {q:'Wir treffen ___ um acht.', a:'uns', opts:['uns','euch','sich'], why:'wir 配 uns。'},
+  {q:'Beeilt ___ bitte!', a:'euch', opts:['euch','uns','sich'], why:'ihr 配 euch。'},
+  {q:'Ich muss ___ noch duschen.', a:'mich', opts:['mich','mir','sich'], why:'sich duschen 反身，ich 用 mich。'},
+  {q:'Sie (复数) freuen ___ auf das Fest.', a:'sich', opts:['sich','sie','ihnen'], why:'第三人称复数反身代词仍是 sich。'},
+  {q:'Ich habe ___ erkältet.', a:'mich', opts:['mich','mir','sich'], why:'sich erkälten（感冒），ich 用 mich。'}
+ ]},
+
+{id:'g-konjunktiv2', lv:'B1', t:'虚拟式 II：礼貌与假设', s:'Konjunktiv II',
+ why:'Konjunktiv II 有两个核心用法：一是让请求变得客气（Könnten Sie...? 比 Können Sie...? 委婉得多），二是说「如果……就……」的非现实假设。常见形式：könnte、hätte、wäre、würde、müsste。',
+ items:[
+  {q:'___ Sie mir bitte helfen?', a:'Könnten', opts:['Können','Könnten','Konnten'], why:'Könnten 比 Können 客气得多，是德语礼貌请求的标准说法。'},
+  {q:'Ich ___ gern ein Zimmer reservieren.', a:'würde', opts:['werde','würde','wurde'], why:'würde + 不定式 是最常用的委婉表达。'},
+  {q:'Wenn ich Zeit ___, käme ich mit.', a:'hätte', opts:['hatte','hätte','habe'], why:'hätte 是 haben 的虚拟式，表示「假如我有」。'},
+  {q:'Wenn ich reich ___, würde ich reisen.', a:'wäre', opts:['war','wäre','bin'], why:'wäre 是 sein 的虚拟式。'},
+  {q:'___ Sie mir den Weg zeigen?', a:'Könnten', opts:['Können','Könnten','Konnten'], why:'问路时用 Könnten 会礼貌很多。'},
+  {q:'Ich ___ lieber Tee als Kaffee.', a:'hätte', opts:['habe','hätte','hatte'], why:'hätte gern / hätte lieber 是点单和表达偏好的黄金句型。'},
+  {q:'An deiner Stelle ___ ich mehr lernen.', a:'würde', opts:['werde','würde','wurde'], why:'「如果我是你」用 würde。'},
+  {q:'___ es möglich, dass Sie später kommen?', a:'Wäre', opts:['War','Wäre','Ist'], why:'Wäre es möglich... 是礼貌询问「有可能……吗」。'}
+ ]},
+
+{id:'g-passiv', lv:'B1', t:'被动语态', s:'Passiv',
+ why:'被动语态把重点从「谁做的」移到「发生了什么」。公式：werden + 过去分词。施动者用 von 引出。口语里更常用 man 代替被动，但读懂被动是 B1 的硬要求。',
+ items:[
+  {q:'Das Haus ___ 1990 gebaut.', a:'wurde', opts:['wurde','ward','wird'], why:'过去时的被动：wurde + 过去分词。'},
+  {q:'Die Briefe ___ jeden Tag gebracht.', a:'werden', opts:['werden','wird','wurden'], why:'复数主语用 werden（现在时被动）。'},
+  {q:'Das Auto ___ von meinem Vater repariert.', a:'wurde', opts:['wurde','wird','war'], why:'被动 + von 引出施动者。'},
+  {q:'Hier ___ Deutsch gesprochen.', a:'wird', opts:['wird','werden','wurde'], why:'单数主语，现在时被动 → wird。'},
+  {q:'Die Prüfung ___ nächste Woche geschrieben.', a:'wird', opts:['wird','werden','wurde'], why:'将来发生的被动，用现在时被动表达即可。'},
+  {q:'Das Problem ___ schnell gelöst.', a:'wurde', opts:['wurde','wird','war'], why:'说已完成的被动动作 → wurde。'},
+  {q:'In Deutschland ___ viel Bier getrunken.', a:'wird', opts:['wird','werden','wurde'], why:'Bier 是不可数，视为单数 → wird。'},
+  {q:'Die Kinder ___ von der Lehrerin betreut.', a:'werden', opts:['werden','wird','wurden'], why:'复数主语 + 现在时 → werden。'}
+ ]},
+
+{id:'g-relativsatz', lv:'B1', t:'关系从句', s:'Relativsatz',
+ why:'关系从句用来修饰前面的名词，由关系代词引导，而关系代词的性别和数要跟着前面的名词走，格则由它在从句里做什么成分决定。从句里的动词照例去末尾。',
+ items:[
+  {q:'Der Mann, ___ dort steht, ist mein Chef.', a:'der', opts:['der','den','dem'], why:'Mann 是阳性，且在从句里做主语 → 第一格 der。'},
+  {q:'Die Frau, ___ ich gestern traf, ist Ärztin.', a:'die', opts:['die','der','den'], why:'Frau 阴性，在从句里做第四格宾语 → die（阴性第四格同形）。'},
+  {q:'Das Buch, ___ ich lese, ist spannend.', a:'das', opts:['das','den','dem'], why:'Buch 中性，第四格 → das。'},
+  {q:'Der Freund, ___ ich helfe, wohnt hier.', a:'dem', opts:['der','den','dem'], why:'helfen 支配第三格 → 阳性第三格 dem。'},
+  {q:'Die Stadt, in ___ ich wohne, ist schön.', a:'der', opts:['die','der','dem'], why:'in + 在哪里 → 第三格，Stadt 阴性 → der。'},
+  {q:'Der Kollege, mit ___ ich arbeite, ist nett.', a:'dem', opts:['der','den','dem'], why:'mit 固定第三格 → dem。'},
+  {q:'Die Kinder, ___ im Garten spielen, sind laut.', a:'die', opts:['die','den','der'], why:'复数第一格 → die。'},
+  {q:'Das Haus, ___ wir gekauft haben, ist alt.', a:'das', opts:['das','dem','den'], why:'中性第四格 → das。'}
+ ]},
+
+{id:'g-konnektor', lv:'B1', t:'连词与语序', s:'Konnektoren',
+ why:'这是德语写作和口语的关键分水岭。三类词对语序的影响完全不同：und/aber/oder 不占位置；deshalb/trotzdem/dann 占第一位，所以动词要紧接着占第二位；weil/obwohl 引导从句，动词去末尾。',
+ items:[
+  {q:'Es regnet, ___ ich bleibe zu Hause.', a:'deshalb', opts:['deshalb','weil','und'], why:'deshalb（所以）占第一位，后面紧跟动词，主语后移。'},
+  {q:'Ich bleibe zu Hause, ___ es regnet.', a:'weil', opts:['deshalb','weil','aber'], why:'weil 引导从句，动词 regnet 去末尾。'},
+  {q:'Es regnet, ___ gehe ich spazieren.', a:'trotzdem', opts:['trotzdem','weil','deshalb'], why:'trotzdem（尽管如此）表示让步，占第一位，动词第二位。'},
+  {q:'Ich mag Tee, ___ ich trinke lieber Kaffee.', a:'aber', opts:['aber','deshalb','weil'], why:'aber 是并列连词，不占位置，语序不变。'},
+  {q:'Er ist müde, ___ er arbeitet weiter.', a:'obwohl', opts:['obwohl','deshalb','und'], why:'obwohl（虽然）引导从句，动词去末尾。'},
+  {q:'Zuerst esse ich, ___ gehe ich zur Arbeit.', a:'dann', opts:['dann','weil','obwohl'], why:'dann（然后）占第一位，动词紧随其后。'},
+  {q:'Ich lerne Deutsch, ___ ich in Berlin arbeiten will.', a:'weil', opts:['weil','deshalb','aber'], why:'表原因的从句用 weil，动词到末尾。'},
+  {q:'Er hat viel gelernt, ___ hat er die Prüfung bestanden.', a:'deshalb', opts:['deshalb','obwohl','aber'], why:'前因后果，用 deshalb 并引起主谓倒装。'}
+ ]},
+
+{id:'g-genitiv', lv:'B1', t:'第二格与所属', s:'Genitiv',
+ why:'第二格表示「谁的」，书面色彩较重。阳性、中性的冠词变 des，名词还要加 -s 或 -es：das Auto des Mannes。口语里更常说 von + 第三格，但看懂第二格是 B1 必须的。',
+ items:[
+  {q:'Das ist das Auto ___ Mannes.', a:'des', opts:['des','dem','der'], why:'Mannes 是阳性第二格，冠词 des，名词加 -es。'},
+  {q:'Die Farbe ___ Wand ist weiß.', a:'der', opts:['der','die','des'], why:'Wand 阴性，第二格用 der。'},
+  {q:'Die Tür ___ Hauses ist offen.', a:'des', opts:['des','dem','der'], why:'Haus 中性，第二格 des。'},
+  {q:'Das ist die Tasche ___ Frau.', a:'der', opts:['der','die','des'], why:'Frau 阴性，第二格 der（名词不加 -s）。'},
+  {q:'Wegen ___ Wetters bleiben wir hier.', a:'des', opts:['des','dem','der'], why:'wegen 支配第二格，Wetter 中性 → des。'},
+  {q:'Die Meinung ___ Leute ist wichtig.', a:'der', opts:['der','die','den'], why:'复数第二格用 der。'},
+  {q:'Trotz ___ Regens gingen wir spazieren.', a:'des', opts:['des','dem','den'], why:'trotz 支配第二格。'},
+  {q:'Das Ende ___ Films war traurig.', a:'des', opts:['des','dem','der'], why:'Film 阳性第二格 → des。'}
+ ]},
+
+{id:'g-infinitivzu', lv:'B1', t:'带 zu 的不定式', s:'Infinitiv mit zu',
+ why:'很多动词和表达后面接「zu + 动词原形」，zu 放在动词原形前面，可分动词的 zu 插在前缀和词干之间：aufzustehen。常见搭配：Ich habe Lust, ... zu ...；Es ist wichtig, ... zu ...；Ich versuche, ... zu ...。',
+ items:[
+  {q:'Ich habe Lust, ins Kino ___.', a:'zu gehen', opts:['zu gehen','gehen zu','zu gegangen'], why:'Lust haben + zu + 不定式。'},
+  {q:'Es ist wichtig, jeden Tag ___.', a:'zu üben', opts:['zu üben','üben zu','geübt'], why:'Es ist wichtig + zu + 不定式。'},
+  {q:'Ich versuche, früher ___.', a:'aufzustehen', opts:['aufzustehen','zu aufstehen','aufstehen zu'], why:'可分动词：zu 插在 auf 和 stehen 中间。'},
+  {q:'Er hat vergessen, mich ___.', a:'anzurufen', opts:['anzurufen','zu anrufen','anrufen zu'], why:'可分动词 anrufen → anzurufen。'},
+  {q:'Ich freue mich darauf, dich ___.', a:'zu sehen', opts:['zu sehen','sehen zu','gesehen'], why:'sich freuen auf + zu + 不定式。'},
+  {q:'Sie hat keine Zeit, ___.', a:'zu kommen', opts:['zu kommen','kommen zu','gekommen'], why:'Zeit haben + zu + 不定式。'},
+  {q:'Es ist schwer, Deutsch ___.', a:'zu lernen', opts:['zu lernen','lernen zu','gelernt'], why:'简单不定式加 zu。'},
+  {q:'Ich bitte dich, mir ___.', a:'zu helfen', opts:['zu helfen','helfen zu','geholfen'], why:'bitten + zu + 不定式。'}
+ ]}
+];
+
+</script>
+<script>
+/* ==== content-lectures.js ==== */
+/* ============================================================
+   语法讲义（邪修版）
+   一条一个「捷径」，不是教科书。格式：
+     core  一句话核心（必须能一眼记住）
+     rows  可选小表 [词尾/情况, 结果, 例子]
+     egs   可选例句 [[德语, 中文]]
+     note  可选提醒/例外
+   ============================================================ */
+window.CONTENT_LECTURES = [
+
+{id:'L1', lv:'A1', t:'名词性别不用背，看词尾', s:'Genus erkennen', core:'德语名词的 der/die/das 不是随机的。看到这些词尾，直接判，命中率九成以上。',
+ rows:[
+  ['-ung / -heit / -keit / -schaft / -tion / -tät','die','die Wohnung 公寓 · die Freiheit 自由 · die Zeitung 报纸'],
+  ['-er / -ling / -ist / -ismus（做某事的人）','der','der Lehrer 老师 · der Frühling 春天 · der Journalist 记者'],
+  ['-chen / -lein（小称）','das','das Mädchen 女孩 · das Brötchen 小面包'],
+  ['-ment / -um / -ma','das','das Dokument 文件 · das Zentrum 中心 · das Thema 主题']
+ ],
+ egs:[['Die Zeitung ist neu.','这份报纸是新的。'],['Das Mädchen spielt im Garten.','那个女孩在花园里玩。']],
+ note:'最容易翻车的一条：das Mädchen（女孩）是<strong>中性</strong>——因为 -chen 永远中性，跟人本身是男是女无关。同理 das Fräulein。'},
+
+{id:'L2', lv:'A1', t:'三个格，一句话说清', s:'Die drei Fälle', core:'别背表格。就问自己三句话：谁在做（第一格）？动作直接落在谁身上（第四格）？给谁做的（第三格）？',
+ rows:[
+  ['第一格 Nominativ','谁在做 → 主语','Der Mann liest. 男人在读书'],
+  ['第四格 Akkusativ','动作直接落在谁身上 → 直接宾语','Ich sehe den Mann. 我看见那个男人'],
+  ['第三格 Dativ','给谁 / 对谁 → 间接宾语','Ich helfe dem Mann. 我帮那个男人']
+ ],
+ note:'中文没有格，所以你不需要理解它，只需要会问那三句话。动词决定了后面接几格——所以动词要连着格一起记，比如 <strong>helfen 永远配第三格</strong>，没有例外。'},
+
+{id:'L3', lv:'A1', t:'只有阳性会变：der → den', s:'Der Kern des Akkusativs', core:'这是整个德语格系统最大的简化：从第一格到第四格，<strong>只有阳性单数会变</strong>，其他全部原样。',
+ rows:[
+  ['der Mann','→ den Mann','阳性：变'],
+  ['die Frau','→ die Frau','阴性：不变'],
+  ['das Kind','→ das Kind','中性：不变'],
+  ['die Kinder','→ die Kinder','复数：不变']
+ ],
+ egs:[['Ich sehe den Mann.','我看见那个男人。'],['Ich sehe die Frau / das Kind.','我看见那个女人／那个孩子。']],
+ note:'所以做第四格题时，你只需要做一个判断：<strong>这个词是阳性的吗？</strong>是就 der→den、ein→einen、mein→meinen；不是就别动。'},
+
+{id:'L4', lv:'A1', t:'介词带几格：两个口诀 + 一个判断', s:'Präpositionen', core:'介词分三类。前两类死记口诀，第三类用一个判断解决。',
+ rows:[
+  ['第三格口诀','mit · nach · bei · aus · von · zu · seit','嘴上一串念下来'],
+  ['第四格口诀','für · ohne · gegen · um · durch','"为了不带对抗绕过去"'],
+  ['双向介词','in · an · auf · über · unter · vor · hinter · neben · zwischen','去哪里→四格／在哪里→三格']
+ ],
+ egs:[['Ich fahre mit dem Bus.','我坐公交。（mit 永远三格）'],['Ich lege das Buch auf den Tisch.','我把书放到桌上。（放上去→四格）'],['Das Buch liegt auf dem Tisch.','书在桌上。（在那儿→三格）']],
+ note:'双向介词只有这一个判断：<strong>有移动方向吗？有就四格，没有就三格。</strong>legen/liegen、stellen/stehen、hängen 这几对动词就是专门考这个的。'},
+
+{id:'L5', lv:'A1', t:'动词永远坐第二把交椅', s:'Wortstellung', core:'德语主句里，变位动词永远在第二个位置。<strong>不管谁开头，这个位置不动。</strong>',
+ rows:[
+  ['Ich fahre heute nach Berlin.','主语开头 → 动词第二','我今天去柏林'],
+  ['Heute fahre ich nach Berlin.','时间开头 → 动词仍第二，主语被挤到后面','今天我（倒装）去柏林']
+ ],
+ egs:[['Am Montag haben wir einen Termin.','周一我们有个约。'],['Nach der Arbeit gehe ich einkaufen.','下班后我去买东西。']],
+ note:'中文习惯「时间+主语+动词」，德语是「时间+<strong>动词</strong>+主语」。所以只要句首不是主语，动词和主语就要<strong>换位置</strong>——这叫倒装，不是可选项，是语法要求。'},
+
+{id:'L6', lv:'A1', t:'从句：动词滚到最后', s:'Nebensatz', core:'见到 <strong>dass / weil / wenn / obwohl / ob</strong>，从句里的动词就搬家到<strong>整句最末尾</strong>。',
+ rows:[
+  ['主句','Ich bleibe zu Hause, ...','我待在家'],
+  ['+ weil','..., weil es regnet.','因为下雨（动词 regnet 到末尾）']
+ ],
+ egs:[['Ich weiß, dass er morgen kommt.','我知道他明天来。'],['Ich lerne Deutsch, weil ich in Berlin arbeiten will.','我学德语，因为我想在柏林工作。']],
+ note:'这是德语和中文差别最大的地方，也是中国学生最容易错的地方。记住一个画面：<strong>从句像是被「倒过来」说的</strong>，动词收尾。从句和主句之间永远有逗号。'},
+
+{id:'L7', lv:'A1', t:'情态动词：ich 和 er 长得一样', s:'Modalverben', core:'情态动词的单数第一人称和第三人称<strong>同形，而且都不加 -t</strong>。',
+ rows:[
+  ['können','ich kann / er kann','（不是 kannt）'],
+  ['müssen','ich muss / er muss',''],
+  ['wollen','ich will / er will',''],
+  ['dürfen','ich darf / er darf','']
+ ],
+ egs:[['Ich kann Deutsch sprechen.','我会说德语。'],['Er muss heute arbeiten.','他今天必须工作。']],
+ note:'第二个更要紧的点：情态动词占住第二位后，<strong>主要动词被赶到句子最末尾，用原形</strong>。所以是「Er muss heute <strong>arbeiten</strong>」，不是「Er muss heute arbeitet」。'},
+
+{id:'L8', lv:'A1', t:'否定：kein 还是 nicht', s:'Negation', core:'一句话判断：<strong>否定名词用 kein，否定其他一切用 nicht。</strong>',
+ rows:[
+  ['kein','后面跟名词，且那个名词前面是 ein 或者没有冠词','Ich habe kein Geld. / Das ist kein Problem.'],
+  ['nicht','否定动词、形容词、整句','Ich verstehe nicht. / Das ist nicht gut.']
+ ],
+ note:'kein 像 ein 一样变：kein / keine / keinen / keinem。所以 <strong>keinen</strong> 用于阳性第四格（Ich habe keinen Bruder）。'},
+
+{id:'L9', lv:'A1', t:'完成时：默认 haben，只有一种情况用 sein', s:'Perfekt: haben oder sein', core:'拿不准就用 <strong>haben</strong>。只有「移动」或「状态改变」的动词用 sein。',
+ rows:[
+  ['配 sein 的动词','表示移动或状态变化','gehen 走 · kommen 来 · fahren 乘车 · fliegen 飞 · aufstehen 起床 · einschlafen 入睡 · sterben 死'],
+  ['必须记住的三个例外','不动但也配 sein','sein 是 · bleiben 停留 · werden 变成'],
+  ['其他全部','配 haben','essen · trinken · lesen · kaufen · machen · arbeiten …']
+ ],
+ egs:[['Ich habe Deutsch gelernt.','我学了德语。'],['Wir sind nach Berlin gefahren.','我们去了柏林。']],
+ note:'背一个小故事串住 sein 家族：<strong>「来了、走了、飞了、起来了、睡着了、死了、留下了、变了」</strong>——全是位置或状态发生变化的。'},
+
+{id:'L10', lv:'A1', t:'复数：五种变法 + 一条铁律', s:'Plural', core:'德语复数就五种结局，背不下来的话，至少记住那条铁律。',
+ rows:[
+  ['-e','der Tisch → die Tische','常见，阳性多'],
+  ['-en / -n','die Frau → die Frauen','阴性多'],
+  ['-er','das Kind → die Kinder','中性多（常加变音）'],
+  ['-s','das Auto → die Autos','外来词'],
+  ['不变','der Lehrer → die Lehrer','-er/-en 结尾的阳阴名词']
+ ],
+ note:'<strong>铁律</strong>：以 -ung / -heit / -keit / -schaft 结尾的阴性名词，复数一律加 -en，没有例外（die Wohnung → die Wohnungen）。这一条就能覆盖你日常遇到的一大批词。'},
+
+{id:'L11', lv:'A2', t:'形容词词尾：默认 -en，只有三处例外', s:'Adjektivendungen', core:'这是德语最臭名昭著的表。但用「默认值 + 例外」的思路，你只需要记三行。',
+ rows:[
+  ['默认情况','-en','几乎所有复数、所有第三格、所有第二格、阳性第四格'],
+  ['例外一：定冠词 + 单数','-e','der alte Mann / die alte Frau / das alte Haus'],
+  ['例外二：不定冠词 + 阳性主格','-er','ein alter Mann'],
+  ['例外三：不定冠词 + 中性主格/第四格','-es','ein altes Haus']
+ ],
+ egs:[['Der alte Mann wartet.','那位老人在等。'],['Ein alter Mann wartet.','一位老人在等。'],['Ich sehe den alten Mann.','我看见那位老人。']],
+ note:'背后的逻辑只有一句：<strong>冠词已经把性别说清楚了，形容词就偷懒用 -e/-en；冠词没说清楚的（ein 看不出阳性还是中性），形容词就自己扛起 -er/-es。</strong>理解这句，你就不用背表了。'},
+
+{id:'L12', lv:'A2', t:'可分动词：前缀飞到句尾', s:'Trennbare Verben', core:'主句里，可分动词的<strong>前缀永远被甩到句子最末尾</strong>。',
+ rows:[
+  ['aufstehen','Ich stehe um sieben auf.','我七点起床'],
+  ['einkaufen','Wir kaufen heute ein.','我们今天购物'],
+  ['anrufen','Ich rufe dich später an.','我晚点打给你'],
+  ['zumachen','Mach bitte die Tür zu!','请把门关上！']
+ ],
+ note:'怎么判断能不能分？<strong>看前缀重不重读。</strong>重读的能分（AUFstehen、EINkaufen）；不重读的不能分（beSUchen、verSTEHen、erZÄHlen）——这类加 ge 时也不加 ge-。'},
+
+{id:'L13', lv:'A2', t:'命令式：三步造出来', s:'Imperativ', core:'对谁说，就按那个人的规则改，不需要额外记新形式。',
+ rows:[
+  ['对 du（熟人）','去掉 -st，去掉 du','du machst → <strong>Mach!</strong> · du kommst → <strong>Komm!</strong>'],
+  ['对 ihr（一群人）','去掉 -t，保留 ihr 位置去掉','ihr macht → <strong>Macht!</strong>'],
+  ['对 Sie（尊称）','动词原形 + Sie，语序倒过来','<strong>Machen Sie!</strong> · <strong>Kommen Sie!</strong>']
+ ],
+ note:'对 du 的命令式里，<strong>词干元音 e→i/ie 的动词保留变化</strong>：du nimmst → <strong>Nimm!</strong>（不是 Nehm!）、du liest → <strong>Lies!</strong>。'},
+
+{id:'L14', lv:'A2', t:'被动语态：werden + 过去分词', s:'Passiv', core:'公式就一个：<strong>werden + 过去分词</strong>。过去时换成 wurde，其余不变。',
+ rows:[
+  ['现在时','Das Haus <strong>wird</strong> gebaut.','这房子在建'],
+  ['过去时','Das Haus <strong>wurde</strong> gebaut.','这房子（当时）在建'],
+  ['带情态动词','Das Haus <strong>muss</strong> gebaut <strong>werden</strong>.','这房子必须建']
+ ],
+ note:'口语里德国人更爱用 <strong>man</strong> 代替被动：不用说「Das wird gemacht」，直接说「<strong>Man macht das</strong>」，意思一样还省事。但考试和书面语要能看懂被动。'},
+
+{id:'L15', lv:'A2', t:'比较级：-er，最高级 am -sten', s:'Komparativ und Superlativ', core:'和英语几乎一样，只是词尾不同。',
+ rows:[
+  ['原级','schnell 快',''],
+  ['比较级','schnell<strong>er</strong> 更快','+ als = 比…（schneller als du）'],
+  ['最高级','am schnell<strong>sten</strong> 最快',''],
+  ['常用不规则','gut → besser → am besten','viel → mehr → am meisten · gern → lieber → am liebsten']
+ ],
+ note:'「gern 的比较级」特别好用：「Ich trinke gern Tee」是「我喜欢喝茶」，「Ich trinke <strong>lieber</strong> Kaffee」就是「我更爱喝咖啡」——点单时显得地道。'},
+
+{id:'L16', lv:'B1', t:'虚拟式 II：客气话的万能公式', s:'Konjunktiv II', core:'把「我想要」说得客气，把「如果…就…」说得非现实，全靠这几个词。',
+ rows:[
+  ['würde + 原形','最万能，任何动词都能用','Ich würde gern mitkommen. 我很乐意一起来'],
+  ['hätte','haben 的虚拟式','Ich hätte gern einen Kaffee. 我想要杯咖啡'],
+  ['wäre','sein 的虚拟式','Das wäre schön. 那就太好了'],
+  ['könnte','können 的虚拟式','Könnten Sie mir helfen? 您能帮我吗']
+ ],
+ egs:[['Wenn ich Zeit hätte, käme ich mit.','如果我有时间，我就一起来了。'],['Könnten Sie das wiederholen?','您能重复一遍吗？']],
+ note:'最实用的一条：<strong>把 Können 换成 Könnten，礼貌程度立刻上一个台阶。</strong>德国人问路、点单、提要求，几乎都用 Könnten。'},
+
+{id:'L17', lv:'B1', t:'关系从句：性别跟名词，格看成分', s:'Relativsatz', core:'两个判断：关系代词的<strong>性别和单复数跟着前面那个名词</strong>，<strong>格看它在从句里干什么活儿</strong>。',
+ rows:[
+  ['做主语','第一格','Der Mann, <strong>der</strong> dort steht, ...'],
+  ['做第四格宾语','第四格','Die Frau, <strong>die</strong> ich traf, ...'],
+  ['做第三格宾语','第三格','Der Freund, <strong>dem</strong> ich helfe, ...']
+ ],
+ note:'别忘了从句的老规矩：<strong>动词去末尾</strong>。「Der Mann, der dort <strong>steht</strong>」——steht 在最后。'},
+
+{id:'L18', lv:'B1', t:'连接词分三类，语序各不同', s:'Konnektoren', core:'这是德语写作和口语的分水岭。拿到一个连接词，先问：<strong>它占不占句首位置？</strong>',
+ rows:[
+  ['不占位置','und · aber · oder · denn','语序完全不变'],
+  ['占第一位','deshalb · trotzdem · dann · also','动词紧随其后，主语后移'],
+  ['引导从句','weil · obwohl · dass · wenn','动词滚到从句末尾']
+ ],
+ egs:[['Es regnet, deshalb bleibe ich zu Hause.','下雨，所以我待在家。'],['Ich bleibe zu Hause, weil es regnet.','我待在家，因为下雨。']],
+ note:'同一个意思，用 deshalb 和用 weil，句子结构完全相反：<strong>deshalb 后面动词紧跟，weil 后面动词垫底。</strong>记住这一对，这一类就通了。'},
+
+{id:'L19', lv:'B1', t:'带 zu 的不定式：zu 插在中间', s:'Infinitiv mit zu', core:'很多动词后面接「zu + 原形」。可分动词的话，<strong>zu 插在前缀和词干中间</strong>。',
+ rows:[
+  ['普通动词','zu + 原形','Ich habe Lust, ins Kino <strong>zu gehen</strong>.'],
+  ['可分动词','zu 插进中间','Ich versuche, früher <strong>aufzustehen</strong>.'],
+  ['常见搭配','Lust haben / Zeit haben / versuchen / vergessen / bitten','全是 + zu + 不定式']
+ ],
+ note:'对比一下就很清楚：<strong>情态动词不带 zu</strong>（Ich muss gehen），<strong>普通动词要带 zu</strong>（Ich versuche zu gehen）。这是德语的一个硬规矩。'},
+
+{id:'L20', lv:'B1', t:'第二格口语能绕就绕', s:'Genitiv', core:'第二格书面气重，口语里德国人几乎都用 <strong>von + 第三格</strong>代替。',
+ rows:[
+  ['书面 / 第二格','das Auto <strong>des</strong> Mannes','那个男人的车'],
+  ['口语 / von + 三格','das Auto <strong>von dem</strong> Mann','意思完全一样'],
+  ['人名最省事','<strong>Christinas</strong> Auto','克里斯蒂娜的车（直接加 s）']
+ ],
+ note:'但「wegen / trotz / während」这几个介词后面<strong>必须</strong>用第二格（wegen des Wetters），这个躲不掉，考试也常考。'},
+
+{id:'L21', lv:'A1', t:'一个动作，两种动词：legen/liegen 这类', s:'Positionsverben', core:'德语把「放」和「在」拆成两个不同的动词，这是中文里没有的区分，但用起来特别准。',
+ rows:[
+  ['legen（放，及物）','我把书放到桌上','Ich <strong>lege</strong> das Buch auf den Tisch.（四格）'],
+  ['liegen（躺着，不及物）','书在桌上','Das Buch <strong>liegt</strong> auf dem Tisch.（三格）'],
+  ['stellen / stehen','竖着放 / 竖着立','Ich stelle die Flasche hin. / Die Flasche steht.'],
+  ['hängen / hängen','挂（及物）/ 挂着','Ich hänge das Bild auf. / Das Bild hängt.']
+ ],
+ note:'规律：<strong>及物的那个配第四格（有动作、有对象），不及物的那个配第三格。</strong>搞混这两个是外国人最明显的破绽之一。'},
+
+{id:'L22', lv:'A2', t:'物主代词：跟 ein 走就对了', s:'Possessivartikel', core:'mein/dein/sein/ihr/unser/euer 的词尾<strong>和 ein 一模一样</strong>。学一套等于学八套。',
+ rows:[
+  ['我 / 你 / 他 / 她','mein / dein / sein / ihr',''],
+  ['我们 / 你们 / 他们 / 您','unser / euer / ihr / Ihr','尊称 Ihr 永远大写'],
+  ['词尾规则','mein / meine / meinen / meinem','跟 ein / eine / einen / einem 完全同步']
+ ],
+ egs:[['Das ist mein Bruder.','这是我弟弟。'],['Ich liebe meine Familie.','我爱我的家人。'],['Er sucht seinen Schlüssel.','他在找他的钥匙。']],
+ note:'一个坑：「她的」和「他们的」都是 <strong>ihr</strong>，靠动词和上下文区分；「您的」是 <strong>Ihr</strong>，永远大写。'},
+
+{id:'L23', lv:'B1', t:'别逐字翻译中文', s:'Nicht wörtlich übersetzen', core:'很多错句不是语法不会，是<strong>把中文的词一个个搬过去</strong>。这些是最高频的翻车点。',
+ rows:[
+  ['我很热','Ich bin heiß ✗ → Mir ist warm ✓','德语用第三格说感受'],
+  ['我有兴趣','Ich habe Interesse ✓','这个和中文一致'],
+  ['我喜欢','Ich mag / Ich finde ... gut','没有「喜欢」这个动词，用 mag 或 gern'],
+  ['我同意你','Ich stimme dir zu ✓','zu 在末尾（可分动词）'],
+  ['这对我来说很难','Das ist schwer für mich ✓','用 für + 第四格']
+ ],
+ note:'另一个重灾区：<strong>「是」不要滥用</strong>。中文「我是学生」是 Ich bin Student；但「我觉得累」不能说 Ich bin müde 之外的 Ich bin 累。德语说感受多用 <strong>Mir ist ...</strong> 或 <strong>Ich habe ...</strong>。'},
+
+{id:'L24', lv:'A2', t:'反身动词：动作弹回自己', s:'Reflexive Verben', core:'动作回到自己身上时，要加一个「反身代词」，而且它<strong>像人称代词一样跟着变</strong>。',
+ rows:[
+  ['第四格反身','mich / dich / sich / uns / euch / sich','Ich freue <strong>mich</strong>. 我很高兴'],
+  ['第三格反身','mir / dir / sich / uns / euch / sich','Ich wasche <strong>mir</strong> die Hände. 我洗手'],
+  ['高频反身动词','sich freuen / sich interessieren für / sich treffen / sich erholen / sich beeilen','']
+ ],
+ note:'怎么判断用第四格还是第三格反身代词？<strong>句子里已经有第四格宾语了，反身代词就用第三格</strong>。Ich wasche mich（没别的宾语→四格）；Ich wasche mir die Hände（die Hände 是四格→反身用三格）。'}
+];
+
+</script>
 <script>
 /* ============================================================
    课程内容

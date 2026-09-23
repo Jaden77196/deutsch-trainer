@@ -67,15 +67,32 @@ powershell -ExecutionPolicy Bypass -File serve.ps1
 
 ## 文件说明
 
+**`index.html` 是自动生成的，不要直接改它**——改了会被下次构建覆盖。
+
 | 文件 | 内容 |
 |---|---|
-| `index.html` | 应用本体（界面 + 逻辑） |
+| `template.html` | 应用本体（界面 + 逻辑）← **要改界面/逻辑改这里** |
 | `content-a1.js` / `content-a2.js` / `content-b1.js` / `content-b2.js` | 分级词汇 |
 | `content-phrases.js` | 日常口语高频句 |
 | `content-grammar.js` | 语法专题 |
 | `content-lectures.js` | 语法讲义（速记卡） |
 | `content-readings.js` | 阅读文章 |
+| `index.html` | **构建产物**：以上全部内联成单文件 |
+| `build.ps1` | 构建脚本 |
 | `serve.ps1` / `start-server.cmd` | 本地服务器 |
+
+### 为什么是单文件
+
+App 主要在手机上、在不稳定的网络下使用。单文件 = **1 个请求**；拆成 8 个内容文件 = **9 个请求**，只要有一个失败或超时，页面就是空壳。内联之后还顺带能离线用、能直接从文件打开。
+
+### 改完怎么上线
+
+```bash
+powershell -ExecutionPolicy Bypass -File build.ps1   # 重新生成单文件 index.html
+git add -A && git commit -m "..." && git push
+```
+
+GitHub Pages 会在约 1 分钟后自动更新。**改完内容一定要先跑 build.ps1**，否则线上还是旧的。
 
 ### 加词格式
 
